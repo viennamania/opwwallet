@@ -852,7 +852,7 @@ export default function Index({ params }: any) {
     
     const [sellOrders, setSellOrders] = useState<SellOrder[]>([]);
 
-    const [searchMyOrders, setSearchMyOrders] = useState(true);
+    const [searchMyOrders, setSearchMyOrders] = useState(false);
 
 
     const [loadingFetchSellOrders, setLoadingFetchSellOrders] = useState(false);
@@ -1058,9 +1058,12 @@ export default function Index({ params }: any) {
         return;
       }
 
+
       const data = await response.json();
 
       //console.log('data', data);
+
+
 
       if (data.result) {
         toast.success(
@@ -2515,7 +2518,7 @@ export default function Index({ params }: any) {
                                   disabled={!isSeller || !paymentMethod || usdtAmount === 0 || agreementPlaceOrder === false}
                                   className={`text-lg text-white px-4 py-2 rounded-md ${!isSeller || !paymentMethod || usdtAmount === 0 || agreementPlaceOrder === false ? 'bg-gray-500' : 'bg-green-500'}`}
                                   onClick={() => {
-                                      console.log('Sell OPW');
+                                      //console.log('Sell OPW');
                                       // open trade detail
                                       // open modal of trade detail
                                       ///openModal();
