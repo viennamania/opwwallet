@@ -1008,7 +1008,7 @@ export default function Index({ params }: any) {
               }}
               connectModal={{
                 size: "wide", 
-                titleIcon: "https://wallet.novarwa.io/logo-nova.png",                       
+                titleIcon: "https://wallet.novarwa.io/logo-opw.png",                       
                 showThirdwebBranding: false,
 
               }}
@@ -2075,7 +2075,7 @@ function Header(
         >
           <div className="flex flex-row gap-2 items-center">
             <Image
-              src="/logo-nova.png"
+              src="/logo-opw.png"
               alt="Circle Logo"
               width={35}
               height={35}

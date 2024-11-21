@@ -1356,7 +1356,7 @@ export default function Index({ params }: any) {
                       }}
                       connectModal={{
                         size: "wide", 
-                        titleIcon: "https://wallet.novarwa.io/logo-nova.png",                       
+                        titleIcon: "https://wallet.novarwa.io/logo-opw.png",                       
                         showThirdwebBranding: false,
 
                       }}
