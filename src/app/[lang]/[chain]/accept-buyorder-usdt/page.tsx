@@ -94,7 +94,7 @@ interface BuyOrder {
   paymentMethods: string[];
 
   usdtAmount: number;
-  krwAmount: number;
+  fietAmount: number;
   rate: number;
 
 
@@ -1329,10 +1329,10 @@ export default function Index({ params }: any) {
   const [paymentAmounts, setPaymentAmounts] = useState([] as number[]);
   useEffect(() => {
 
-    // default payment amount is from sellOrders krwAmount
+    // default payment amount is from sellOrders fietAmount
       
     setPaymentAmounts(
-      buyOrders.map((item) => item.krwAmount)
+      buyOrders.map((item) => item.fietAmount)
       );
 
   } , [buyOrders]);
@@ -1340,7 +1340,7 @@ export default function Index({ params }: any) {
   const [paymentAmountsUsdt, setPaymentAmountsUsdt] = useState([] as number[]);
   useEffect(() => {
 
-    // default payment amount is from sellOrders krwAmount
+    // default payment amount is from sellOrders fietAmount
       
     setPaymentAmountsUsdt(
       buyOrders.map((item) => item.usdtAmount)
@@ -2154,7 +2154,7 @@ export default function Index({ params }: any) {
                     */}
 
                     {/* select table view or card view */}
-                    {/*
+                    
                     <div className="flex flex-row items-center space-x-4">
                         <div className="text-sm">{Table_View}</div>
                         <input
@@ -2164,7 +2164,7 @@ export default function Index({ params }: any) {
                           className="w-5 h-5 rounded-full"
                         />
                     </div>
-                    */}
+                    
 
                   </div>
 
@@ -2244,7 +2244,7 @@ export default function Index({ params }: any) {
                           <th className="p-2">{Buy_Order_Opened}</th>
                           <th className="p-2">{Deposit_Name} / {Buyer}</th>
                           <th className="p-2">{TID}</th>
-                          <th className="p-2">{Price} / {Buy_Amount} / {Rate}</th>
+                          <th className="p-2">{Buy_Amount} / {Rate} / {Price}</th>
                           <th className="p-2">{Payment}</th>
                           <th className="p-2">{Payment_Amount}</th>
                           <th className="p-2">{Status}</th>
@@ -2311,7 +2311,7 @@ export default function Index({ params }: any) {
 
                                       item.walletAddress === address ? 'Me' :
 
-                                      item?.buyer?.depositBankName + ' ' + item?.buyer?.depositName
+                                      item?.buyer && item?.buyer?.depositBankName + ' ' + item?.buyer?.depositName
 
                                     }
                                   </div>
@@ -2330,20 +2330,21 @@ export default function Index({ params }: any) {
                             </td>
 
                             <td className="p-2">
-                              <div className="flex flex-col gap-1">
-                                <span className="text-lg text-yellow-500 font-semibold">
-                                  {Number(item.krwAmount).toLocaleString('ko-KR', {
-                                    style: 'currency',
-                                    currency: 'KRW',
-                                  })}
-                                </span>
+                              <div className="flex flex-col gap-1 text-white">
                                 <span className="text-sm">{item.usdtAmount}{' '}USDT</span>
                                 <span className="text-xs">
                                   {
                                     Number(item.rate).toFixed(2)
-                                    //Number(item.krwAmount / item.usdtAmount).toFixed(2)
+                                    //Number(item.fietAmount / item.usdtAmount).toFixed(2)
                                   }
                                 </span>
+                                <span className="text-lg text-yellow-500 font-semibold">
+                                  {Number(item.fietAmount).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'CNY',
+                                  })}
+                                </span>
+
                               </div>
                             </td>
 
@@ -2370,7 +2371,7 @@ export default function Index({ params }: any) {
                                   item.status === 'paymentConfirmed' ? (
 
                                     <div className=" text-green-500 text-xl font-semibold">
-                                      {item.krwAmount}
+                                      {item.fietAmount}
                                     </div>
 
                                   ) : item.status === 'paymentRequested' ? (
@@ -3156,9 +3157,9 @@ export default function Index({ params }: any) {
                                   {Price}: {
                                     // currency
                                   
-                                    Number(item.krwAmount).toLocaleString('ko-KR', {
+                                    Number(item.fietAmount).toLocaleString('en-US', {
                                       style: 'currency',
-                                      currency: 'KRW',
+                                      currency: 'CNY',
                                     })
 
                                   }
@@ -3171,7 +3172,7 @@ export default function Index({ params }: any) {
                                   </p>
                                   <p className="text-lg font-semibold text-gray-800">{Rate}: {
 
-                                    Number(item.krwAmount / item.usdtAmount).toFixed(2)
+                                    Number(item.fietAmount / item.usdtAmount).toFixed(2)
 
                                     }</p>
                                 </div>
@@ -3558,9 +3559,9 @@ export default function Index({ params }: any) {
                                       />
 
                                       <div>Waiting for buyer to send {
-                                      item.krwAmount.toLocaleString('ko-KR', {
+                                      item.fietAmount.toLocaleString('en-US', {
                                         style: 'currency',
-                                        currency: 'KRW',
+                                        currency: 'CNY',
                                       })} to seller...</div>
                                     
 
