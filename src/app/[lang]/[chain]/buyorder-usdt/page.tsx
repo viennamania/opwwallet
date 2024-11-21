@@ -2161,7 +2161,7 @@ export default function Index({ params }: any) {
 
                     <div className="flex flex-col gap-2 items-center">
                       <div className="text-sm">{Trades}</div>
-                      <div className="text-xl font-semibold text-white">
+                      <div className="text-xl font-semibold text-zinc-500">
 
                         {
                           //buyOrders.filter((item) => item.status === 'accepted').length
