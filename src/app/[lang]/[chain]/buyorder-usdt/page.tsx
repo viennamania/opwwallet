@@ -865,7 +865,7 @@ export default function Index({ params }: any) {
 
 
     // check input krw amount at sell order
-    const [checkInputKrwAmount, setCheckInputKrwAmount] = useState(true);
+    const [checkInputKrwAmount, setCheckInputKrwAmount] = useState(false);
 
 
 
@@ -1513,6 +1513,7 @@ export default function Index({ params }: any) {
 
 
                   {/* check box for sell order */}
+                  {/*
                   <div className="flex flex-row items-center gap-2">
                     <input
                       type="checkbox"
@@ -1523,6 +1524,7 @@ export default function Index({ params }: any) {
                       {Buy_Order_Fiat}
                     </p>
                   </div>
+                  */}
 
                   <div className=" w-full grid gap-4  justify-center">
 
@@ -1580,7 +1582,7 @@ export default function Index({ params }: any) {
 
                           <p className="mt-4 text-xl font-bold text-zinc-400">1 USDT = {
                             // currency format
-                            Number(rate).toLocaleString('en-US', {
+                            Number(rate).toLocaleString('zh-CN', {
                               style: 'currency',
                               currency: 'CNY'
                             })
@@ -1625,7 +1627,7 @@ export default function Index({ params }: any) {
 
                             <p className=" text-xl text-zinc-400 font-bold">
                               = {
-                              Number(defaultKrWAmount).toLocaleString('ko-KR', {
+                              Number(defaultKrWAmount).toLocaleString('zh-CN', {
                                 style: 'currency',
                                 currency: 'CNY'
                               })
@@ -2347,7 +2349,7 @@ export default function Index({ params }: any) {
                               <td>
                                 <div className="flex flex-col gap-1">
                                   <span className="text-lg text-yellow-500 font-semibold">
-                                    {Number(item.fietAmount).toLocaleString('zh-CN', {
+                                    {Number(item.fietAmount).toLocaleString('en-US', {
                                       style: 'currency',
                                       currency: 'CNY',
                                     })}
@@ -2369,7 +2371,7 @@ export default function Index({ params }: any) {
 
                               <td className="text-lg text-yellow-500 font-semibold">
                                 {item.status === 'paymentConfirmed' && (
-                                  Number(item.fietAmount).toLocaleString('zh-CN', {
+                                  Number(item.fietAmount).toLocaleString('en-US', {
                                     style: 'currency',
                                     currency: 'CNY',
                                   })
@@ -2817,7 +2819,7 @@ export default function Index({ params }: any) {
                                 {Price}: {
                                   // currency
                                 
-                                  Number(item.fietAmount).toLocaleString('ko-KR', {
+                                  Number(item.fietAmount).toLocaleString('en-US', {
                                     style: 'currency',
                                     currency: 'CNY',
                                   })

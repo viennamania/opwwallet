@@ -2142,7 +2142,7 @@ export default function Index({ params }: any) {
                                   currency: 'JPY'
                                 })
                               ) : fietCurrency === 'CNY' ? (
-                                Number(rate).toLocaleString('zh-CN', {
+                                Number(rate).toLocaleString('en-US', {
                                   style: 'currency',
                                   currency: 'CNY'
                                 })
