@@ -959,13 +959,13 @@ export default function Index({ params }: any) {
     useEffect(() => {
 
       if (fietCurrency === 'USD') {
-        setRate(2);
+        setRate(1);
       } else if (fietCurrency === 'KRW') {
-        setRate(2792);
+        setRate(1400);
       } else if (fietCurrency === 'JPY') {
-        setRate(309);
+        setRate(155);
       } else if (fietCurrency === 'CNY') {
-        setRate(14);
+        setRate(7);
       }
 
     } , [fietCurrency]);
