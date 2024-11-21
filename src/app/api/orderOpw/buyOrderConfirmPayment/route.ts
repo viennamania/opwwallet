@@ -472,7 +472,7 @@ export async function POST(request: NextRequest) {
     try {
 
 
-      const msgBody = `[OPW] TID[${tradeId}] You received ${amount} USDT from ${nickname}! https://wallet.novarwa.io/${lang}/${chain}/sell-usdt/${orderId}`;
+      const msgBody = `[OPW] TID[${tradeId}] You received ${amount} USDT from ${nickname}! https://wallet.olgaai.io/${lang}/${chain}/sell-usdt/${orderId}`;
   
       message = await client.messages.create({
         ///body: "This is the ship that made the Kessel Run in fourteen parsecs?",

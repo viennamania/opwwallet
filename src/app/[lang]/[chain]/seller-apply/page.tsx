@@ -767,7 +767,7 @@ export default function SettingsPage({ params }: any) {
                             }}
                             connectModal={{
                                 size: "wide", 
-                                titleIcon: "https://wallet.novarwa.io/logo-opw.png",                       
+                                titleIcon: "https://wallet.olgaai.io/logo-opw.png",                       
                                 showThirdwebBranding: false,
 
                             }}

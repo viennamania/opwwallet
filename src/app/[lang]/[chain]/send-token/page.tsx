@@ -995,7 +995,7 @@ export default function SendUsdt({ params }: any) {
                     }}
                     connectModal={{
                       size: "wide", 
-                      titleIcon: "https://wallet.novarwa.io/logo-opw.png",                       
+                      titleIcon: "https://wallet.olgaai.io/logo-opw.png",                       
                       showThirdwebBranding: false,
 
                     }}

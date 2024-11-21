@@ -890,9 +890,9 @@ export default function SendUsdt({ params }: any) {
 
               appMetadata={
                 {
-                  logoUrl: "https://wallet.novarwa.io/logo.png",
+                  logoUrl: "https://wallet.olgaai.io/logo.png",
                   name: "Next App",
-                  url: "https://wallet.novarwa.io",
+                  url: "https://wallet.olgaai.io",
                   description: "This is a Next App.",
 
                 }
@@ -1012,9 +1012,9 @@ export default function SendUsdt({ params }: any) {
 
                       appMetadata={
                         {
-                          logoUrl: "https://wallet.novarwa.io/logo.png",
+                          logoUrl: "https://wallet.olgaai.io/logo.png",
                           name: "Next App",
-                          url: "https://wallet.novarwa.io",
+                          url: "https://wallet.olgaai.io",
                           description: "This is a Next App.",
 
                         }

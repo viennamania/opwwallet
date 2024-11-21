@@ -93,11 +93,11 @@ export async function POST(request: NextRequest) {
       let msgBody2 = '';
 
       if (lang === 'en') { 
-        msgBody2 = `[OPW] TID[${tradeId}] Check the trade: https://wallet.novarwa.io/${lang}/${chain}/sell-usdt/${orderId}`;
+        msgBody2 = `[OPW] TID[${tradeId}] Check the trade: https://wallet.olgaai.io/${lang}/${chain}/sell-usdt/${orderId}`;
       } else if (lang === 'kr') {
-        msgBody2 = `[OPW] TID[${tradeId}] 거래 확인: https://wallet.novarwa.io/${lang}/${chain}/sell-usdt/${orderId}`;
+        msgBody2 = `[OPW] TID[${tradeId}] 거래 확인: https://wallet.olgaai.io/${lang}/${chain}/sell-usdt/${orderId}`;
       } else {
-        msgBody2 = `[OPW] TID[${tradeId}] Check the trade: https://wallet.novarwa.io/${lang}/${chain}/sell-usdt/${orderId}`;
+        msgBody2 = `[OPW] TID[${tradeId}] Check the trade: https://wallet.olgaai.io/${lang}/${chain}/sell-usdt/${orderId}`;
       }
 
 

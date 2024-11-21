@@ -150,8 +150,8 @@ export default function Index({ params }: any) {
       appMetadata: {
         name: "GoodTether",
         description: "GoodTether",
-        url: "https://wallet.novarwa.io",
-        //icons: ["https://wallet.novarwa.io/logo.png"],
+        url: "https://wallet.olgaai.io",
+        //icons: ["https://wallet.olgaai.io/logo.png"],
       },
       */
 
@@ -1008,7 +1008,7 @@ export default function Index({ params }: any) {
               }}
               connectModal={{
                 size: "wide", 
-                titleIcon: "https://wallet.novarwa.io/logo-opw.png",                       
+                titleIcon: "https://wallet.olgaai.io/logo-opw.png",                       
                 showThirdwebBranding: false,
 
               }}
@@ -1956,9 +1956,9 @@ export default function Index({ params }: any) {
                       
                       appMetadata={
                         {
-                          logoUrl: "https://wallet.novarwa.io/logo.png",
+                          logoUrl: "https://wallet.olgaai.io/logo.png",
                           name: "Next App",
-                          url: "https://wallet.novarwa.io",
+                          url: "https://wallet.olgaai.io",
                           description: "This is a Next App.",
 
                         }

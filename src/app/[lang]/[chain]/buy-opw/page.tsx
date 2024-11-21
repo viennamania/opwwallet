@@ -953,7 +953,7 @@ export default function Index({ params }: any) {
                       }}
                       connectModal={{
                         size: "wide", 
-                        titleIcon: "https://wallet.novarwa.io/logo-opw.png",                       
+                        titleIcon: "https://wallet.olgaai.io/logo-opw.png",                       
                         showThirdwebBranding: false,
 
                       }}
@@ -1606,7 +1606,7 @@ export default function Index({ params }: any) {
                                       className="text-sm bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
                                       onClick={() => {
 
-                                        window.open(`https://wallet.novarwa.io/${params.lang}/sell-opw/${item._id}`, '_blank');
+                                        window.open(`https://wallet.olgaai.io/${params.lang}/sell-opw/${item._id}`, '_blank');
 
                                       }}
                                     >
@@ -1758,11 +1758,11 @@ export default function Index({ params }: any) {
                                       className="ml-5 text-sm bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
                                       onClick={() => {
 
-                                        //window.open(`https://wallet.novarwa.io/${params.lang}/${params.chain}/sell-opw/${item._id}`, '_blank');
+                                        //window.open(`https://wallet.olgaai.io/${params.lang}/${params.chain}/sell-opw/${item._id}`, '_blank');
 
                                         // copy to clipboard
 
-                                        navigator.clipboard.writeText(`https://wallet.novarwa.io/${params.lang}/${params.chain}/sell-opw/${item._id}`);
+                                        navigator.clipboard.writeText(`https://wallet.olgaai.io/${params.lang}/${params.chain}/sell-opw/${item._id}`);
 
                                         toast.success('Link copied to clipboard');
 

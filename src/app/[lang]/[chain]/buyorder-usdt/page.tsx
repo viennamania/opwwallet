@@ -1432,7 +1432,7 @@ export default function Index({ params }: any) {
                       }}
                       connectModal={{
                         size: "wide", 
-                        titleIcon: "https://wallet.novarwa.io/logo-opw.png",                       
+                        titleIcon: "https://wallet.olgaai.io/logo-opw.png",                       
                         showThirdwebBranding: false,
 
                       }}
@@ -3027,7 +3027,7 @@ export default function Index({ params }: any) {
                                       ////router.push(`/sell-usdt/${item._id}`);
 
                                       // copy to clipboard
-                                      navigator.clipboard.writeText(`https://wallet.novarwa.io/${params.lang}/${params.chain}/sell-usdt/${item._id}`);
+                                      navigator.clipboard.writeText(`https://wallet.olgaai.io/${params.lang}/${params.chain}/sell-usdt/${item._id}`);
                                       toast.success('Link has been copied to clipboard');
 
                                     }}

@@ -654,7 +654,7 @@ export default function Index({ params }: any) {
         body: JSON.stringify({
           name: tradeId,
           channel_url: orderId,
-          cover_url: 'https://wallet.novarwa.io/icon-trade.png',
+          cover_url: 'https://wallet.olgaai.io/icon-trade.png',
           custom_type: 'trade',
 
         }),
@@ -702,7 +702,7 @@ export default function Index({ params }: any) {
             body: JSON.stringify({
               name: sellOrders[0].tradeId,
               channel_url: sellOrders[0]._id,
-              cover_url: 'https://wallet.novarwa.io/icon-trade.png',
+              cover_url: 'https://wallet.olgaai.io/icon-trade.png',
               custom_type: 'trade',
     
             }),
@@ -1356,7 +1356,7 @@ export default function Index({ params }: any) {
                       }}
                       connectModal={{
                         size: "wide", 
-                        titleIcon: "https://wallet.novarwa.io/logo-opw.png",                       
+                        titleIcon: "https://wallet.olgaai.io/logo-opw.png",                       
                         showThirdwebBranding: false,
 
                       }}
@@ -1898,7 +1898,7 @@ export default function Index({ params }: any) {
                                         //router.push(`/sell-usdt/${item._id}`);
 
                                         // copy link to clipboard
-                                        navigator.clipboard.writeText(`https://wallet.novarwa.io/${params.lang}/sell-usdt/${item._id}`);
+                                        navigator.clipboard.writeText(`https://wallet.olgaai.io/${params.lang}/sell-usdt/${item._id}`);
                                         toast.success('Link has been copied');
 
                                       }}

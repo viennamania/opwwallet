@@ -656,7 +656,7 @@ export default function Index({ params }: any) {
         body: JSON.stringify({
           name: tradeId,
           channel_url: orderId,
-          cover_url: 'https://wallet.novarwa.io/icon-trade.png',
+          cover_url: 'https://wallet.olgaai.io/icon-trade.png',
           custom_type: 'trade',
 
         }),
@@ -704,7 +704,7 @@ export default function Index({ params }: any) {
             body: JSON.stringify({
               name: sellOrders[0].tradeId,
               channel_url: sellOrders[0]._id,
-              cover_url: 'https://wallet.novarwa.io/icon-trade.png',
+              cover_url: 'https://wallet.olgaai.io/icon-trade.png',
               custom_type: 'trade',
     
             }),
@@ -1394,9 +1394,9 @@ export default function Index({ params }: any) {
                     
                     appMetadata={
                       {
-                        logoUrl: "https://wallet.novarwa.io/logo.png",
+                        logoUrl: "https://wallet.olgaai.io/logo.png",
                         name: "Next App",
-                        url: "https://wallet.novarwa.io",
+                        url: "https://wallet.olgaai.io",
                         description: "This is a Next App.",
 
                       }
@@ -1437,9 +1437,9 @@ export default function Index({ params }: any) {
 
                       appMetadata={
                         {
-                          logoUrl: "https://wallet.novarwa.io/logo.png",
+                          logoUrl: "https://wallet.olgaai.io/logo.png",
                           name: "Next App",
-                          url: "https://wallet.novarwa.io",
+                          url: "https://wallet.olgaai.io",
                           description: "This is a Next App.",
     
                         }

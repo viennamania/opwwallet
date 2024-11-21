@@ -819,9 +819,9 @@ export default function Index({ params }: any) {
                           
                           appMetadata={
                             {
-                              logoUrl: "https://wallet.novarwa.io/logo.png",
+                              logoUrl: "https://wallet.olgaai.io/logo.png",
                               name: "Next App",
-                              url: "https://wallet.novarwa.io",
+                              url: "https://wallet.olgaai.io",
                               description: "This is a Next App.",
 
                             }
@@ -862,9 +862,9 @@ export default function Index({ params }: any) {
 
                             appMetadata={
                               {
-                                logoUrl: "https://wallet.novarwa.io/logo.png",
+                                logoUrl: "https://wallet.olgaai.io/logo.png",
                                 name: "Next App",
-                                url: "https://wallet.novarwa.io",
+                                url: "https://wallet.olgaai.io",
                                 description: "This is a Next App.",
 
                               }
@@ -1984,7 +1984,7 @@ export default function Index({ params }: any) {
                                       ////router.push(`/sell-usdt/${item._id}`);
 
                                       // copy to clipboard
-                                      navigator.clipboard.writeText(`https://wallet.novarwa.io/${params.lang}/sell-usdt/${item._id}`);
+                                      navigator.clipboard.writeText(`https://wallet.olgaai.io/${params.lang}/sell-usdt/${item._id}`);
                                       toast.success('Link has been copied to clipboard');
 
                                     }}

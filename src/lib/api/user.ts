@@ -106,7 +106,7 @@ export async function insertOne(data: any) {
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
   // check same walletAddress or smae nickname
 
@@ -177,7 +177,7 @@ export async function insertOneVerified(data: any) {
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
   // check same walletAddress or smae nickname
 
@@ -253,7 +253,7 @@ export async function updateOne(data: any) {
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -294,7 +294,7 @@ export async function updateOne(data: any) {
 
 export async function updateAvatar(data: any) {
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -327,7 +327,7 @@ export async function updateAvatar(data: any) {
 
 export async function updateSellerStatus(data: any) {
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -372,7 +372,7 @@ export async function updateSellerStatus(data: any) {
 export async function updateSellerStatusAliPay(data: any) {
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -412,7 +412,7 @@ export async function updateSellerStatusAliPay(data: any) {
 export async function updateSellerStatusWechatPay(data: any) {
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -452,7 +452,7 @@ export async function updateSellerStatusWechatPay(data: any) {
 export async function updateSellerStatusUnionPay(data: any) {
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -492,7 +492,7 @@ export async function updateSellerStatusUnionPay(data: any) {
 export async function updateSellerStatusJdPay(data: any) {
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -532,7 +532,7 @@ export async function updateSellerStatusJdPay(data: any) {
 export async function updateSellerStatusNaverPay(data: any) {
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -573,7 +573,7 @@ export async function updateSellerStatusNaverPay(data: any) {
 export async function updateSellerStatusKakaoPay(data: any) {
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // update and return updated user
@@ -621,7 +621,7 @@ export async function getOneByWalletAddress(
 
   const client = await clientPromise;
 
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
 
@@ -656,7 +656,7 @@ export async function getAllUsers(
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   console.log('limit: ' + limit);
@@ -730,7 +730,7 @@ export async function getBestSellers(
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   console.log('limit: ' + limit);
@@ -787,7 +787,7 @@ export async function getUserWalletPrivateKeyByWalletAddress(
 ): Promise<string | null> {
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
   const results = await collection.findOne<UserProps>(
     { walletAddress },
@@ -812,7 +812,7 @@ export async function getUserByEmail(
   console.log('getUser email: ' + email);
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   return await collection.findOne<UserProps>(
@@ -831,7 +831,7 @@ export async function checkUserByEmail(
   console.log('getUser email: ' + email);
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   const results = await collection.findOne<UserProps>(
@@ -864,7 +864,7 @@ export async function loginUserByEmail(
   console.log('getUser email: ' + email);
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   const results = await collection.findOne<UserProps>(
@@ -878,7 +878,7 @@ export async function loginUserByEmail(
   if (results) {
     
     // user_login_sesson
-    const sessionCollection = client.db('nova').collection('user_login_sessions');
+    const sessionCollection = client.db('olga').collection('user_login_sessions');
     const sessionResults = await sessionCollection.insertOne({
       id: results.id,
       email: results.email,
@@ -910,7 +910,7 @@ export async function loginUserByEmail(
 
 export async function searchUser(query: string): Promise<UserProps[]> {
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
   
   return await collection
@@ -991,7 +991,7 @@ export async function searchUser(query: string): Promise<UserProps[]> {
 
 export async function getUserCount(): Promise<number> {
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
   return await collection.countDocuments();
 }
 
@@ -999,7 +999,7 @@ export async function getUserCount(): Promise<number> {
 
 export async function updateUser(username: string, bio: string) {
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   // check dupplicated nickname
@@ -1017,7 +1017,7 @@ export async function checkUser(id: string, password: string): Promise<UserProps
   
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
   const results = await collection.findOne<UserProps>(
     {
       id,
@@ -1048,7 +1048,7 @@ export async function getAllUsersForSettlement(
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   console.log('limit: ' + limit);
@@ -1097,7 +1097,7 @@ export async function getAllUsersForSettlementOfStore(
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   console.log('limit: ' + limit);
@@ -1157,7 +1157,7 @@ export async function updateSettlementAmountOfFee(
   console.log('updateSettlementAmountOfFee walletAddress: ' + walletAddress + ' settlementAmountOfFee: ' + settlementAmountOfFee);
   
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
   return await collection.updateOne(
     { walletAddress },
@@ -1179,7 +1179,7 @@ export async function getAllUsersForSettlementOfFee(
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
 
   console.log('limit: ' + limit);
@@ -1238,7 +1238,7 @@ export async function setEscrowWalletAddressByWalletAddress(
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
   return await collection.updateOne(
     { walletAddress },
@@ -1264,7 +1264,7 @@ export async function setTronWalletAddressByWalletAddress(
 
 
   const client = await clientPromise;
-  const collection = client.db('nova').collection('users');
+  const collection = client.db('olga').collection('users');
 
   return await collection.updateOne(
     { walletAddress },
