@@ -10,16 +10,18 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
 
-  const { walletAddress, usdtAmount, krwAmount, rate, privateSale } = body;
+  const { walletAddress, usdtAmount, fietAmount, fietCurrency, rate, payment, privateSale } = body;
 
-  console.log("walletAddress", walletAddress);
+  console.log("setSellOrder walletAddress", walletAddress);
   
 
   const result = await insertSellOrder({
     walletAddress: walletAddress,
     usdtAmount: usdtAmount,
-    krwAmount: krwAmount,
+    fietAmount: fietAmount,
+    fietCurrency: fietCurrency,
     rate: rate,
+    payment: payment,
     privateSale: privateSale,
   });
 

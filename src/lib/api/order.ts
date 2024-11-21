@@ -158,12 +158,14 @@ export async function updatePrice(data: any) {
 
 
 
-
 export async function insertSellOrder(data: any) {
 
   console.log('insertSellOrder data: ' + JSON.stringify(data));
+  /*
+  {"walletAddress":"0xc6F48f56C5Da5c674746C298A460A2E1427d0998","usdtAmount":10,"fietAmount":15,"fietCurrency":"USD","rate":1.5,"payment":{"method":"Bank"},"privateSale":false}
+  */
 
-  if (!data.walletAddress || !data.usdtAmount || !data.krwAmount || !data.rate) {
+  if (!data.walletAddress || !data.usdtAmount || !data.fietAmount || !data.fietCurrency || !data.rate || !data.payment) {
     return null;
   }
 
@@ -175,13 +177,15 @@ export async function insertSellOrder(data: any) {
 
   // get user mobile number by wallet address
 
-  const userCollection = client.db('olga').collection('users');
+  const userCollection = client.db('nova').collection('users');
 
 
   const user = await userCollection.findOne<UserProps>(
     { walletAddress: data.walletAddress },
     { projection: { _id: 0, emailVerified: 0 } }
   );
+
+  
 
   if (!user) {
     return null;
@@ -201,7 +205,7 @@ export async function insertSellOrder(data: any) {
 
 
 
-  const collection = client.db('olga').collection('orders');
+  const collection = client.db('nova').collection('orders');
 
  
   const result = await collection.insertOne(
@@ -215,8 +219,10 @@ export async function insertSellOrder(data: any) {
       avatar: avatar,
       seller: seller,
       usdtAmount: data.usdtAmount,
-      krwAmount: data.krwAmount,
+      fietAmount: data.fietAmount,
+      fietCurrency: data.fietCurrency,
       rate: data.rate,
+      payment: data.payment,
       createdAt: new Date().toISOString(),
       status: 'ordered',
       privateSale: data.privateSale,
@@ -235,6 +241,8 @@ export async function insertSellOrder(data: any) {
   
 
 }
+
+
 
 
 // getOrderById
