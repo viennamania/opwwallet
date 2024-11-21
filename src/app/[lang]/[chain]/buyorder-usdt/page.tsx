@@ -1582,7 +1582,7 @@ export default function Index({ params }: any) {
 
                           <p className="mt-4 text-xl font-bold text-zinc-400">1 USDT = {
                             // currency format
-                            Number(rate).toLocaleString('zh-CN', {
+                            Number(rate).toLocaleString('en-US', {
                               style: 'currency',
                               currency: 'CNY'
                             })
@@ -1627,7 +1627,7 @@ export default function Index({ params }: any) {
 
                             <p className=" text-xl text-zinc-400 font-bold">
                               = {
-                              Number(defaultKrWAmount).toLocaleString('zh-CN', {
+                              Number(defaultKrWAmount).toLocaleString('en-US', {
                                 style: 'currency',
                                 currency: 'CNY'
                               })
@@ -1728,7 +1728,7 @@ export default function Index({ params }: any) {
                                   {Rate}: {
 
                                     // currency format
-                                    Number((fietAmount / usdtAmount).toFixed(2)).toLocaleString('zh-CN', {
+                                    Number((fietAmount / usdtAmount).toFixed(2)).toLocaleString('en-US', {
                                       style: 'currency',
                                       currency: 'CNY'
                                     })
@@ -1977,7 +1977,7 @@ export default function Index({ params }: any) {
 
                               <p className="mt-4 text-xl font-bold text-zinc-400">1 USDT = {
                                 // currency format
-                                Number(rate).toLocaleString('zh-CN', {
+                                Number(rate).toLocaleString('en-US', {
                                   style: 'currency',
                                   currency: 'CNY'
                                 })
