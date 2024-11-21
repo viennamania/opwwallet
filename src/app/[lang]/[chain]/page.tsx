@@ -1319,13 +1319,7 @@ export default function Index({ params }: any) {
 
                       // redirect to sell trades page
                       router.push(
-                        //"/" + params.lang + "/" + params.chain + "/accept-buyorder-usdt"
-
-                        wallet === "smart" ?
-                        "/" + params.lang + "/" + params.chain + "/accept-buyorder-usdt?wallet=smart"
-                        :
                         "/" + params.lang + "/" + params.chain + "/accept-buyorder-usdt"
-
                       );
 
                     }}
@@ -1772,13 +1766,7 @@ export default function Index({ params }: any) {
 
                     // redirect to buy USDT page
                     router.push(
-                      //"/" + params.lang + "/" + params.chain + "/buyorder-usdt"
-
-                      wallet === "smart" ?
-                      "/" + params.lang + "/" + params.chain + "/buyorder-usdt?wallet=smart"
-                      :
                       "/" + params.lang + "/" + params.chain + "/buyorder-usdt"
-
                     );
 
                   }}
