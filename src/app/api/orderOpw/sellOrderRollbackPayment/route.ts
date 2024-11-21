@@ -73,8 +73,8 @@ export const config = {
 //const chain = polygon;
 
 
-const tokenContractAddressOPW = "0x03cF969581AEdEA742506631188130d84e147806"; // OPW on Polygon
-const contractAddressArbitrum = "0x03cF969581AEdEA742506631188130d84e147806"; // OPW on Arbitrum
+const tokenContractAddressOPW = "0xcF3Ad9031729B5E131582138edE799F08F52299D"; // OPW on Polygon
+const contractAddressArbitrum = "0xcF3Ad9031729B5E131582138edE799F08F52299D"; // OPW on Arbitrum
 
 
 

@@ -125,8 +125,8 @@ export default function SendUsdt({ params }: any) {
       setContractAddress("0xc2132D05D31c914a87C6611C10748AEb04B58e8F"); // USDT on Polygon
       setContractAddressArbitrum("0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"); // USDT on Arbitrum
     } else if (token === "OPW") {
-      setContractAddress("0x03cF969581AEdEA742506631188130d84e147806"); // OPW on Polygon
-      setContractAddressArbitrum("0x03cF969581AEdEA742506631188130d84e147806"); // OPW on Arbitrum
+      setContractAddress("0xcF3Ad9031729B5E131582138edE799F08F52299D"); // OPW on Polygon
+      setContractAddressArbitrum("0xcF3Ad9031729B5E131582138edE799F08F52299D"); // OPW on Arbitrum
     }
   } , [token]);
 
