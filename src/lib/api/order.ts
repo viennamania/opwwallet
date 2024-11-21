@@ -1243,7 +1243,7 @@ export async function insertBuyOrder(data: any) {
 
   console.log('insertBuyOrder data: ' + JSON.stringify(data));
 
-  if (!data.walletAddress || !data.usdtAmount || !data.krwAmount || !data.rate) {
+  if (!data.walletAddress || !data.usdtAmount || !data.fietAmount || !data.rate) {
     return null;
   }
 
@@ -1303,7 +1303,7 @@ export async function insertBuyOrder(data: any) {
       //seller: seller,
 
       usdtAmount: data.usdtAmount,
-      krwAmount: data.krwAmount,
+      fietAmount: data.fietAmount,
       rate: data.rate,
       createdAt: new Date().toISOString(),
       status: 'ordered',

@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
 
-  const { walletAddress, nickname, usdtAmount, krwAmount, rate, privateSale, buyer } = body;
+  const { walletAddress, nickname, usdtAmount, fietAmount, rate, privateSale, buyer } = body;
 
   ///console.log("setBuyOrder =====  walletAddress", walletAddress);
   
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     walletAddress: walletAddress,
     nickname: nickname,
     usdtAmount: usdtAmount,
-    krwAmount: krwAmount,
+    fietAmount: fietAmount,
     rate: rate,
     privateSale: privateSale,
     buyer: buyer

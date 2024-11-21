@@ -80,7 +80,7 @@ interface SellOrder {
   paymentMethods: string[];
 
   usdtAmount: number;
-  krwAmount: number;
+  fietAmount: number;
   rate: number;
 
   walletAddress: string;
@@ -455,7 +455,7 @@ export default function Index({ params }: any) {
   
 
 
-    const [rate, setRate] = useState(1400);
+    const [rate, setRate] = useState(7); // CNY
 
 
 
@@ -826,7 +826,7 @@ export default function Index({ params }: any) {
 
     const [defaultKrWAmount, setDefaultKrwAmount] = useState(0);
 
-    const [krwAmount, setKrwAmount] = useState(0);
+    const [fietAmount, setFietAmount] = useState(0);
 
     console.log('usdtAmount', usdtAmount);
 
@@ -839,7 +839,7 @@ export default function Index({ params }: any) {
 
         setDefaultKrwAmount(0);
 
-        setKrwAmount(0);
+        setFietAmount(0);
 
         return;
       }
@@ -848,7 +848,7 @@ export default function Index({ params }: any) {
       setDefaultKrwAmount( Math.round(usdtAmount * rate) );
 
 
-      setKrwAmount( Math.round(usdtAmount * rate) );
+      setFietAmount( Math.round(usdtAmount * rate) );
 
     } , [usdtAmount, rate]);
 
@@ -894,7 +894,7 @@ export default function Index({ params }: any) {
       let orderUsdtAmount = usdtAmount;
 
       if (checkInputKrwAmount) {
-        orderUsdtAmount = parseFloat(Number(krwAmount / rate).toFixed(2));
+        orderUsdtAmount = parseFloat(Number(fietAmount / rate).toFixed(2));
       }
       
 
@@ -908,7 +908,7 @@ export default function Index({ params }: any) {
           chain: params.chain,
           walletAddress: address,
           usdtAmount: orderUsdtAmount,
-          krwAmount: krwAmount,
+          fietAmount: fietAmount,
           rate: rate,
           privateSale: privateBuyOrder,
         })
@@ -1270,10 +1270,10 @@ export default function Index({ params }: any) {
   const [paymentAmounts, setPaymentAmounts] = useState([] as number[]);
   useEffect(() => {
 
-    // default payment amount is from buyOrders krwAmount
+    // default payment amount is from buyOrders fietAmount
       
     setPaymentAmounts(
-      buyOrders.map((item) => item.krwAmount)
+      buyOrders.map((item) => item.fietAmount)
       );
 
   } , [buyOrders]);
@@ -1580,9 +1580,9 @@ export default function Index({ params }: any) {
 
                           <p className="mt-4 text-xl font-bold text-zinc-400">1 USDT = {
                             // currency format
-                            Number(rate).toLocaleString('ko-KR', {
+                            Number(rate).toLocaleString('en-US', {
                               style: 'currency',
-                              currency: 'KRW'
+                              currency: 'CNY'
                             })
                           }</p>
                           
@@ -1627,7 +1627,7 @@ export default function Index({ params }: any) {
                               = {
                               Number(defaultKrWAmount).toLocaleString('ko-KR', {
                                 style: 'currency',
-                                currency: 'KRW'
+                                currency: 'CNY'
                               })
                               }
                             </p>
@@ -1658,7 +1658,7 @@ export default function Index({ params }: any) {
                                 disabled={usdtAmount === 0}
                                 className="bg-red-400 text-white px-2 py-2 rounded-md"
                                 onClick={() => {
-                                  krwAmount > 0 && setKrwAmount(krwAmount - 1);
+                                  fietAmount > 0 && setFietAmount(fietAmount - 1);
                                 }}
                               >
                                 -1
@@ -1668,7 +1668,7 @@ export default function Index({ params }: any) {
                                 disabled={usdtAmount === 0}
                                 className="bg-red-600 text-white px-2 py-2 rounded-md"
                                 onClick={() => {
-                                  krwAmount > 10 && setKrwAmount(krwAmount - 10);
+                                  fietAmount > 10 && setFietAmount(fietAmount - 10);
                                 }}
                               >
                                 -10
@@ -1678,7 +1678,7 @@ export default function Index({ params }: any) {
                                 disabled={usdtAmount === 0}
                                 className="bg-red-800 text-white px-2 py-2 rounded-md"
                                 onClick={() => {
-                                  krwAmount > 100 && setKrwAmount(krwAmount - 100);
+                                  fietAmount > 100 && setFietAmount(fietAmount - 100);
                                 }}
                               >
                                 -100
@@ -1688,7 +1688,7 @@ export default function Index({ params }: any) {
                                 disabled={usdtAmount === 0}
                                 className="bg-red-900 text-white px-2 py-2 rounded-md"
                                 onClick={() => {
-                                  krwAmount > 1000 && setKrwAmount(krwAmount - 1000);
+                                  fietAmount > 1000 && setFietAmount(fietAmount - 1000);
                                 }}
                               >
                                 -1000
@@ -1703,32 +1703,32 @@ export default function Index({ params }: any) {
                                   disabled
                                   type="number"
                                   className=" w-36  px-3 py-2 text-black bg-white text-xl font-bold border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 "
-                                  value={krwAmount}
+                                  value={fietAmount}
                                   onChange={(e) => {
                                     // check number
                                     e.target.value = e.target.value.replace(/[^0-9.]/g, '');
 
                                     if (e.target.value === '') {
-                                      setKrwAmount(0);
+                                      setFietAmount(0);
                                       return;
                                     }
 
-                                    parseFloat(e.target.value) < 0 ? setKrwAmount(0) : setKrwAmount(parseFloat(e.target.value));
+                                    parseFloat(e.target.value) < 0 ? setFietAmount(0) : setFietAmount(parseFloat(e.target.value));
 
-                                    parseFloat(e.target.value) > 1000 ? setKrwAmount(1000) : setKrwAmount(parseFloat(e.target.value));
+                                    parseFloat(e.target.value) > 1000 ? setFietAmount(1000) : setFietAmount(parseFloat(e.target.value));
 
                                   } }
                                 />
                               </div>
 
-                              {krwAmount > 0 && (
+                              {fietAmount > 0 && (
                                 <div className="text-lg font-semibold text-zinc-400">
                                   {Rate}: {
 
                                     // currency format
-                                    Number((krwAmount / usdtAmount).toFixed(2)).toLocaleString('ko-KR', {
+                                    Number((fietAmount / usdtAmount).toFixed(2)).toLocaleString('zh-CN', {
                                       style: 'currency',
-                                      currency: 'KRW'
+                                      currency: 'CNY'
                                     })
 
                                   } 
@@ -1741,7 +1741,7 @@ export default function Index({ params }: any) {
                                 disabled={usdtAmount === 0}
                                 className="bg-green-400 text-white px-2 py-2 rounded-md"
                                 onClick={() => {
-                                  setKrwAmount(krwAmount + 1);
+                                  setFietAmount(fietAmount + 1);
                                 }}
                               >
                                 +1
@@ -1750,7 +1750,7 @@ export default function Index({ params }: any) {
                                 disabled={usdtAmount === 0}
                                 className="bg-green-600 text-white px-2 py-2 rounded-md"
                                 onClick={() => {
-                                  setKrwAmount(krwAmount + 10);
+                                  setFietAmount(fietAmount + 10);
                                 }}
                               >
                                 +10
@@ -1760,7 +1760,7 @@ export default function Index({ params }: any) {
                                 disabled={usdtAmount === 0}
                                 className="bg-green-800 text-white px-2 py-2 rounded-md"
                                 onClick={() => {
-                                  setKrwAmount(krwAmount + 100);
+                                  setFietAmount(fietAmount + 100);
                                 }}
                               >
                                 +100
@@ -1770,7 +1770,7 @@ export default function Index({ params }: any) {
                                 disabled={usdtAmount === 0}
                                 className="bg-green-900 text-white px-2 py-2 rounded-md"
                                 onClick={() => {
-                                  setKrwAmount(krwAmount + 1000);
+                                  setFietAmount(fietAmount + 1000);
                                 }}
                               >
                                 +1000
@@ -1975,9 +1975,9 @@ export default function Index({ params }: any) {
 
                               <p className="mt-4 text-xl font-bold text-zinc-400">1 USDT = {
                                 // currency format
-                                Number(rate).toLocaleString('ko-KR', {
+                                Number(rate).toLocaleString('zh-CN', {
                                   style: 'currency',
-                                  currency: 'KRW'
+                                  currency: 'CNY'
                                 })
                               }</p>
 
@@ -1989,7 +1989,7 @@ export default function Index({ params }: any) {
                                     type="number"
                                     className=" w-40 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 "
                                     placeholder={Price}
-                                    value={krwAmount}
+                                    value={fietAmount}
                                     onChange={(e) => {
                                       // check number
                                       e.target.value = e.target.value.replace(/[^0-9.]/g, '');
@@ -2002,31 +2002,31 @@ export default function Index({ params }: any) {
 
                                       /*
                                       if (e.target.value === '') {
-                                        setKrwAmount(0);
+                                        setFietAmount(0);
                                         return;
                                       }
                                       */
 
   
-                                      parseFloat(e.target.value) < 0 ? setKrwAmount(0) : setKrwAmount(parseFloat(e.target.value));
+                                      parseFloat(e.target.value) < 0 ? setFietAmount(0) : setFietAmount(parseFloat(e.target.value));
   
-                                      parseFloat(e.target.value) > 100000000 ? setKrwAmount(1000) : setKrwAmount(parseFloat(e.target.value));
+                                      parseFloat(e.target.value) > 100000000 ? setFietAmount(1000) : setFietAmount(parseFloat(e.target.value));
   
-                                      //setUsdtAmount(Number((krwAmount / rate).toFixed(2)));
+                                      //setUsdtAmount(Number((fietAmount / rate).toFixed(2)));
                                     
                                     
                                     } }
                                   />
 
-                                  <div className=" text-sm">KRW</div>
+                                  <div className=" text-sm">CNY</div>
 
                                 </div>
   
                                 <p className=" text-xl text-zinc-400 font-bold">
                                   = {
-                                  krwAmount === 0 ? '0' :
+                                  fietAmount === 0 ? '0' :
                                   
-                                  (krwAmount / rate).toFixed(2) === 'NaN' ? '0' : (krwAmount / rate).toFixed(2)
+                                  (fietAmount / rate).toFixed(2) === 'NaN' ? '0' : (fietAmount / rate).toFixed(2)
 
                                   }{' '}USDT
                                 </p>
@@ -2057,7 +2057,7 @@ export default function Index({ params }: any) {
                           <div className="mt-4 flex flex-col gap-2">
                             <div className="flex flex-row items-center gap-2">
                               <input
-                                disabled={!address || krwAmount === 0 || buyOrdering}
+                                disabled={!address || fietAmount === 0 || buyOrdering}
                                 type="checkbox"
                                 checked={agreementPlaceOrder}
                                 onChange={(e) => setAgreementPlaceOrder(e.target.checked)}
@@ -2093,8 +2093,8 @@ export default function Index({ params }: any) {
                                 </div>
                               ) : (
                                   <button
-                                      disabled={krwAmount === 0 || agreementPlaceOrder === false}
-                                      className={`text-lg text-white px-4 py-2 rounded-md ${krwAmount === 0 || agreementPlaceOrder === false ? 'bg-gray-500' : 'bg-green-500'}`}
+                                      disabled={fietAmount === 0 || agreementPlaceOrder === false}
+                                      className={`text-lg text-white px-4 py-2 rounded-md ${fietAmount === 0 || agreementPlaceOrder === false ? 'bg-gray-500' : 'bg-green-500'}`}
                                       onClick={() => {
                                           console.log('Sell USDT');
                                           // open trade detail
@@ -2347,14 +2347,14 @@ export default function Index({ params }: any) {
                               <td>
                                 <div className="flex flex-col gap-1">
                                   <span className="text-lg text-yellow-500 font-semibold">
-                                    {Number(item.krwAmount).toLocaleString('ko-KR', {
+                                    {Number(item.fietAmount).toLocaleString('zh-CN', {
                                       style: 'currency',
-                                      currency: 'KRW',
+                                      currency: 'CNY',
                                     })}
                                   </span>
                                 
                                   <span>{item.usdtAmount}</span>
-                                  <span>{Number(item.krwAmount / item.usdtAmount).toFixed(2)}</span>
+                                  <span>{Number(item.fietAmount / item.usdtAmount).toFixed(2)}</span>
                                 </div>
                               </td>
 
@@ -2369,9 +2369,9 @@ export default function Index({ params }: any) {
 
                               <td className="text-lg text-yellow-500 font-semibold">
                                 {item.status === 'paymentConfirmed' && (
-                                  Number(item.krwAmount).toLocaleString('ko-KR', {
+                                  Number(item.fietAmount).toLocaleString('zh-CN', {
                                     style: 'currency',
-                                    currency: 'KRW',
+                                    currency: 'CNY',
                                   })
                                 )}
 
@@ -2817,9 +2817,9 @@ export default function Index({ params }: any) {
                                 {Price}: {
                                   // currency
                                 
-                                  Number(item.krwAmount).toLocaleString('ko-KR', {
+                                  Number(item.fietAmount).toLocaleString('ko-KR', {
                                     style: 'currency',
-                                    currency: 'KRW',
+                                    currency: 'CNY',
                                   })
 
                                 }
@@ -2832,7 +2832,7 @@ export default function Index({ params }: any) {
 
                                 <p className="text-lg font-semibold text-white">{Rate}: {
 
-                                  Number(item.krwAmount / item.usdtAmount).toFixed(2)
+                                  Number(item.fietAmount / item.usdtAmount).toFixed(2)
 
                                 }</p>
 
@@ -3144,7 +3144,7 @@ export default function Index({ params }: any) {
                                     />
 
                                     <div>
-                                      {Waiting_for_seller_to_deposit} {item.krwAmount} KRW to {Seller}...
+                                      {Waiting_for_seller_to_deposit} {item.fietAmount} CNY to {Seller}...
                                     </div>
 
                                   </div>
@@ -3218,11 +3218,11 @@ const TradeDetail = (
         <div className="mt-4">
           <div className="flex justify-between text-gray-700">
             <span>Price</span>
-            <span>{price} KRW</span>
+            <span>{price} USD</span>
           </div>
           <div className="flex justify-between text-gray-700 mt-2">
             <span>Limit</span>
-            <span>40680.00 KRW - 99002.9 KRW</span>
+            <span>40680.00 USD - 99002.9 USD</span>
           </div>
           <div className="flex justify-between text-gray-700 mt-2">
             <span>Available</span>
