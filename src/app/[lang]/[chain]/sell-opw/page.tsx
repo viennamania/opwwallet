@@ -3979,7 +3979,9 @@ export default function Index({ params }: any) {
 
 
 
-                                {item.status === 'accepted' && (
+                                {
+                                item.walletAddress === address &&
+                                item.status === 'accepted' && (
                                   <div className="mt-5 flex flex-row gap-1">
 
                                     {/* check box for agreement */}
