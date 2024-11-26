@@ -33,7 +33,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/kr/polygon',
+        destination: '/zh/polygon',
         permanent: true,
       },
     ]
