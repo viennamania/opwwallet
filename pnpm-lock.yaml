@@ -26,6 +26,9 @@ importers:
       '@talkjs/react':
         specifier: ^0.1.9
         version: 0.1.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(talkjs@0.22.0)
+      '@tanstack/react-query':
+        specifier: ^5.62.0
+        version: 5.62.0(react@18.3.1)
       '@thirdweb-dev/engine':
         specifier: ^0.0.14
         version: 0.0.14
@@ -1372,8 +1375,16 @@ packages:
   '@tanstack/query-core@5.59.20':
     resolution: {integrity: sha512-e8vw0lf7KwfGe1if4uPFhvZRWULqHjFcz3K8AebtieXvnMOz5FSzlZe3mTLlPuUBcydCnBRqYs2YJ5ys68wwLg==}
 
+  '@tanstack/query-core@5.62.0':
+    resolution: {integrity: sha512-sx38bGrqF9bop92AXOvzDr0L9fWDas5zXdPglxa9cuqeVSWS7lY6OnVyl/oodfXjgOGRk79IfCpgVmxrbHuFHg==}
+
   '@tanstack/react-query@5.59.20':
     resolution: {integrity: sha512-Zly0egsK0tFdfSbh5/mapSa+Zfc3Et0Zkar7Wo5sQkFzWyB3p3uZWOHR2wrlAEEV2L953eLuDBtbgFvMYiLvUw==}
+    peerDependencies:
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.62.0':
+    resolution: {integrity: sha512-tj2ltjAn2a3fs+Dqonlvs6GyLQ/LKVJE2DVSYW+8pJ3P6/VCVGrfqv5UEchmlP7tLOvvtZcOuSyI2ooVlR5Yqw==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -5363,9 +5374,16 @@ snapshots:
 
   '@tanstack/query-core@5.59.20': {}
 
+  '@tanstack/query-core@5.62.0': {}
+
   '@tanstack/react-query@5.59.20(react@18.3.1)':
     dependencies:
       '@tanstack/query-core': 5.59.20
+      react: 18.3.1
+
+  '@tanstack/react-query@5.62.0(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-core': 5.62.0
       react: 18.3.1
 
   '@thirdweb-dev/engine@0.0.14': {}
