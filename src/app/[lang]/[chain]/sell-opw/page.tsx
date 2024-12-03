@@ -453,6 +453,7 @@ export default function Index({ params }: any) {
 
     Payment_has_been_rollbacked,
 
+
   } = data;
 
 
@@ -2887,7 +2888,7 @@ export default function Index({ params }: any) {
                             {Deposit_Name} / {Buyer}
                           </th>
 
-                          <th className="text-left">{Price} / {Sell_Amount} / {Rate}</th>
+                          <th className="text-left">{Sell_Amount} / {Price} / {Rate}</th>
 
 
                           <th className="text-left">{Payment}</th>
@@ -2962,6 +2963,8 @@ export default function Index({ params }: any) {
 
                               <td className="p-2">
                                 <div className="flex flex-col gap-1">
+                                  <span className="text-lg">{item.opwAmount}{' '}OPW</span>
+
                                   <span className="text-lg text-yellow-500 font-semibold">
                                     
                                     {item.fietCurrency === 'USD' ? (
@@ -2988,7 +2991,7 @@ export default function Index({ params }: any) {
 
 
                                   </span>
-                                  <span className="text-sm">{item.opwAmount}{' '}OPW</span>
+
                                   <span className="text-xs">
                                     {Number(item.rate).toFixed(2)}
                                   </span>
@@ -3568,44 +3571,49 @@ export default function Index({ params }: any) {
 
                             <div className="mt-4 flex flex-col items-start gap-2">
 
-
-                              <p className="text-2xl text-zinc-400">
-                                {Price}: 
-                                {
-                                  item.fietCurrency === 'KRW' ? (
-                                    Number(item.fietAmount).toLocaleString('ko-KR', {
-                                      style: 'currency',
-                                      currency: 'KRW',
-                                    })
-                                  ) : item.fietCurrency === 'USD' ? (
-                                    Number(item.fietAmount).toLocaleString('en-US', {
-                                      style: 'currency',
-                                      currency: 'USD',
-                                    })
-                                  ) : item.fietCurrency === 'JPY' ? (
-                                    Number(item.fietAmount).toLocaleString('ja-JP', {
-                                      style: 'currency',
-                                      currency: 'JPY',
-                                    })
-                                  ) : item.fietCurrency === 'CNY' ? (
-                                    Number(item.fietAmount).toLocaleString('en-US', {
-                                      style: 'currency',
-                                      currency: 'CNY',
-                                    })
-                                  ) : (
-                                    Number(item.fietAmount).toLocaleString('en-US', {
-                                      style: 'currency',
-                                      currency: 'USD',
-                                    })
-                                  )
-                                }
-                                
-                              </p>
-
+                              <div className="flex flex-row items-center gap-2">
+                                <span className="text-lg font-semibold text-white">
+                                  {Sell_Amount}:{' '}
+                                </span>
+                                <p className="text-2xl font-semibold text-green-500">
+                                  {item.opwAmount} OPW
+                                </p>
+                              </div>
 
                               <div className="flex flex-row items-start gap-2">
 
-                                <p className="text-lg font-semibold text-white">{item.opwAmount} OPW</p>
+                                <p className="text-xl text-zinc-400">
+                                  {Price}:{' '}
+                                  {
+                                    item.fietCurrency === 'KRW' ? (
+                                      Number(item.fietAmount).toLocaleString('ko-KR', {
+                                        style: 'currency',
+                                        currency: 'KRW',
+                                      })
+                                    ) : item.fietCurrency === 'USD' ? (
+                                      Number(item.fietAmount).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                      })
+                                    ) : item.fietCurrency === 'JPY' ? (
+                                      Number(item.fietAmount).toLocaleString('ja-JP', {
+                                        style: 'currency',
+                                        currency: 'JPY',
+                                      })
+                                    ) : item.fietCurrency === 'CNY' ? (
+                                      Number(item.fietAmount).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'CNY',
+                                      })
+                                    ) : (
+                                      Number(item.fietAmount).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                      })
+                                    )
+                                  }
+                                  
+                                </p>
 
                                 <p className="text-lg font-semibold text-white">{Rate}: {
 
@@ -3625,7 +3633,6 @@ export default function Index({ params }: any) {
                               
                               <div className="mt-4 flex flex-col gap-2 items-start">
                                 <p className="mt-2 text-sm text-zinc-400">
-
                                   {Payment}:
                                 </p>
                                   
@@ -3689,6 +3696,7 @@ export default function Index({ params }: any) {
                                 item.walletAddress === address &&
                                 (item.status === 'accepted' || item.status === 'paymentRequested') ? (
 
+                     
                                   <div className="flex flex-row items-center gap-2">
                                     <span>{Seller}: {item.nickname}</span>
                                     <span className="text-green-500">:{Me}</span>
@@ -3709,6 +3717,9 @@ export default function Index({ params }: any) {
                                     */}
                                 
                                   </div>
+
+
+
 
                                 ) : (item.walletAddress === address && item.status === 'ordered') ? (
 
@@ -3772,54 +3783,28 @@ export default function Index({ params }: any) {
                               }
                             </div>
 
+                          
+
    
 
 
 
                             {/* accept order button for seller */}
 
-                            {/*
+                            
                             {(item.status === 'accepted' || item.status === 'paymentRequested' || item.status === 'paymentConfirmed' || item.status === 'cancelled') 
                               && (
                                 <div className="w-full mt-4 mb-2 flex flex-col gap-2 items-start ">
-
-                                  <p className="text-sm text-green-500 font-semibold">
+                                  <p className="text-lg text-green-500 font-semibold">
                                     {Buyer}: {
                                       item.buyer.walletAddress === address ? item.buyer.nickname + ' :' + Me :
                                     
                                       item.buyer.nickname
                                     }
                                   </p>
-
-
-                                  {item.status !== 'paymentConfirmed' && item.status !== 'cancelled'
-                                  && address && item.walletAddress === address && (
-                                    <>
-
-                                    <button
-                                      className="bg-blue-500 text-white px-2 py-1 rounded-md"
-                                      onClick={() => {
-                                        
-
-                                        router.push("/" + params.lang + "/" + params.chain + `/sell-opw/${item._id}`);
-
-                                      }}
-                                    >
-                                      
-                                      퍈매 진행하기
-
-
-                                    </button>
-                                    
-                                    
-                                    </>
-                                  )}
-
-
-
                                 </div>
                             )}
-                            */}
+                            
 
 
 
