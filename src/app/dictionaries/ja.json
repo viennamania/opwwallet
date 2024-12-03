@@ -1,301 +1,170 @@
 {
-    
-    
-    "title": "Welcome to Magic Wallet",
-    "description": "Magic Wallet is a decentralized trading platform based on blockchain. You can buy and sell USDT through Magic Wallet.",
-
-
+    "title": "マジックウォレットへようこそ",
+    "description": "マジックウォレットはブロックチェーンに基づいた分散型取引プラットフォームです。マジックウォレットを通じてUSDTを売買できます。",
     "header": {
-        "home": "Home",
-        "about": "About",
-        "contact": "Contact"
+        "home": "ホーム",
+        "about": "約",
+        "contact": "連絡先"
     },
-
     "footer": {
-        "privacy": "Privacy Policy",
-        "terms": "Terms of Service",
-        "contact": "Contact Us"
+        "privacy": "プライバシーポリシー",
+        "terms": "利用規約",
+        "contact": "お問い合わせ"
     },
-
     "home": {
-        "title": "Welcome to Next.js 13 Localization Demo",
-        "content": "This is the home page of our Next.js 13 localization demo project. Here, you can explore the power of internationalization in the latest version of Next.js and learn how to build multilingual web apps with ease. Feel free to navigate through the different sections and discover the features of our demo application. If you have any questions or feedback, don't hesitate to contact us. We're here to help you create versatile, accessible, and engaging web applications for a global audience."
+        "title": "Next.js 13 ローカリゼーションデモへようこそ",
+        "content": "これは、Next.js 13 ローカリゼーションデモプロジェクトのホームページです。ここでは、最新バージョンのNext.jsの国際化の力を探求し、簡単に多言語対応のWebアプリを構築する方法を学ぶことができます。さまざまなセクションを自由にナビゲートして、デモアプリケーションの機能を発見してください。ご質問やフィードバックがある場合は、お気軽にお問い合わせください。グローバルなオーディエンスのために多用途でアクセス可能な魅力的なWebアプリケーションを作成するお手伝いをいたします。"
     },
-
     "about": {
-        "title": "About Next.js 13 Localization Demo",
-        "content": "The Next.js 13 localization demo project is designed to showcase the capabilities of internationalization in the latest version of Next.js. In this demo, we guide you through the process of building multilingual web apps with dynamic language switching, localized content, and global optimization. Whether you're a seasoned developer or just starting with Next.js, this demo will empower you to create versatile, accessible, and engaging web applications for users worldwide. Join us on a journey to make your projects truly global."
+        "title": "Next.js 13 ローカリゼーションデモについて",
+        "content": "Next.js 13 ローカリゼーションデモプロジェクトは、最新バージョンのNext.jsにおける国際化の機能を紹介するために設計されています。このデモでは、動的な言語切り替え、ローカライズされたコンテンツ、グローバル最適化を備えた多言語対応のWebアプリを構築するプロセスを案内します。経験豊富な開発者であれ、Next.jsを始めたばかりの方であれ、このデモは多用途でアクセス可能な魅力的なWebアプリケーションを世界中のユーザー向けに作成する力を与えます。プロジェクトを真にグローバルにする旅に参加してください。"
     },
-
-
-
     "menu": {
-        "buy": "Buy",
-        "sell": "Sell",
-        "trade": "Trade",
-        "chat": "Chat",
-        "history": "History",
-        "settings": "Settings"
+        "buy": "購入",
+        "sell": "販売",
+        "trade": "取引",
+        "chat": "チャット",
+        "history": "履歴",
+        "settings": "設定"
     },
-
-    "Go_Home": "Go Home",
-
-    "My_Balance": "My Balance",
-    "My_Nickname": "My Nickname",
-
-    "My_Buy_Trades": "My Buy Trades",
-    "My_Sell_Trades": "My Sell Trades",
-
-    "Order": "Order",
-    "Buy": "Buy",
-    "Sell": "Sell",
-    "Amount": "Amount",
-    "Buy_Amount": "Buy Amount",
-    "Sell_Amount": "Sell Amount",
-    "Price": "Price",
-
-    "Contact_Us": "Contact Us",
-
-    "Buy_Description": "Buy USDT with your favorite real-world currency.",
-
-    "Sell_Description": "Sell USDT and receive your favorite real-world currency.",
-
-    "Total": "Total",
-    "Orders": "Sell Orders",
-    "Trades": "Trades",
-    "Completed": "Trade Completed",
-    "Cancelled": "Trade Cancelled",
-
-    "Search_my_trades": "Search my trades",
-
-    "Anonymous": "Anonymous",
-
-    "Seller": "Seller",
-    "Buyer": "Buyer",
-    "Me": "Me",
-
-    "Buy_USDT": "Buy USDT",
-    "Sell_USDT": "Sell USDT",
-
-    "Accept_Buy_Order": "Accept Buy Order",
-    "Apply_Buy_Order": "Apply Buy Order",
-
-    "Send_USDT": "Send USDT",
-    "Pay_USDT": "Pay USDT",
-
-    "Coming_Soon": "Coming Soon",
-
-    "Open_Orders": "Open Orders",
-
-
-    "Please_connect_your_wallet_first": "Please connect your wallet first",
-
-
-    "USDT_sent_successfully": "USDT sent successfully",
-
-    "Failed_to_send_USDT": "Failed to send USDT",
-
-
-
-    "Go_Buy_USDT": "Go Buy USDT",
-    "Go_Sell_USDT": "Go Sell USDT",
-
-    "Enter_Wallet_Address": "Enter Wallet Address",
-
-    "Enter_the_amount_and_recipient_address": "Enter the amount and recipient address",
-    "Select_a_user": "Select a user",
-    "User_wallet_address": "User wallet address",
-
-    "This_address_is_not_white_listed": "This address is not white listed.",
-
-    "If_you_are_sure_please_click_the_send_button": "If you are sure, please click the send button.",
-
-    "Send": "Send",
-    "Sending": "Sending",
-
-    "Rate": "Rate",
-
-    "Payment_Information": "Payment Information",
-    "Payment": "Payment",
-    "Bank_Transfer": "Bank Transfer",
-    "Payment_Amount": "Payment Amount",
-
-
-
-
-    "I_agree_to_the_terms_of_trade": "I agree to the terms of trade",
-    "I_agree_to_cancel_the_trade": "I agree to cancel the trade",
-
-    "Opened_at": "Opened at",
-    "Started_at": "Started at",
-    "Cancelled_at": "Cancelled at",
-    "Completed_at": "Completed at",
-    "Payment_Requested_at": "Payment Requested at",
-
-    "TID": "TID",
-
-    "Trading_Time_is": "Trading Time is",
-
-
-    "Waiting_for_seller_to_deposit": "Waiting for seller to deposit",
-
-    "to_escrow": "to escrow",
-
-
-    "If_the_seller_does_not_deposit_the_USDT_to_escrow": "if the seller does not deposit the USDT to escrow.",
-    "this_trade_will_be_cancelled_in": "This trade will be cancelled in",
-
-    "Cancel_My_Trade": "Cancel My Trade",
-
-
-    "Order_accepted_successfully": "Order accepted successfully",
-    "Order_has_been_cancelled": "Order has been cancelled",
-
-    "My Order": "My Order",
-
-
-    "Wallet_Settings": "Wallet Settings",
-    "Profile_Settings": "Profile Settings",
-
-    "Profile": "Profile",
-    "My_Profile_Picture": "My Profile Picture",
-
-    "Edit": "Edit",
-    "Cancel": "Cancel",
-    "Save": "Save",
-    "Saving": "Saving",
-    "Copy": "Copy",
-    "Enter_your_nickname": "Enter your nickname",
-
-    "Nickname_should_be_5_10_characters": "Nickname should be 5-10 characters long and contain only alphanumeric lowercase characters.",
-
-
-    "My_Buy_USDT_Trades": "My Buy USDT Trades",
-    "My_Sell_USDT_Trades": "My Sell USDT Trades",
-
-    "Sale": "Sale",
-    "Private_Sale": "Private Sale",
-    "Public_Sale": "Public Sale",
-
-    "Place_Order": "Place Order",
-
-
-    "Search_my_orders": "Search my orders",
-
-
-    "Cancel_My_Order": "Cancel My Order",
-
-    "hours": "hours",
-    "minutes": "minutes",
-    "seconds": "seconds",
-
-    "hours_ago": "hours ago",
-    "minutes_ago": "minutes ago",
-    "seconds_ago": "seconds ago",
-
-    "Connect_Wallet": "Connect Wallet",
-    "Disconnect_Wallet": "Disconnect Wallet",
-
-    "Are_you_sure_you_want_to_disconnect_your_wallet": "Are you sure you want to disconnect your wallet?",
-
-
-
-    "Order_has_been_placed": "Order has been placed",
-
-    "Placing_Order": "Placing Order",
-
-    "My_Order": "My Order",
-
-
-    "If_you_request_payment": "If you request payment, the USDT will be escrowed to the smart contract and then the buyer will be requested to pay.",
-
-
-    "I_agree_to_escrow_USDT": "I agree to escrow USDT to the smart contract and request payment to the buyer.",
-
-
-    "Order_Opened": "Opened",
-
-    "Trade_Started": "Started",
-
-    "Expires_in": "Expires in",
-
-    "Bank_Name": "Bank Name",
-    "Account_Number": "Account Number",
-    "Account_Holder": "Account Holder",
-    "Deposit_Name": "Deposit Name",
-    "Deposit_Amount": "Deposit Amount",
-    "Deposit_Deadline": "Deposit Deadline",
-
-
-    "Waiting_for_seller_to_confirm_payment": "Waiting for seller to confirm payment",
-
-  
-    "Confirm_Payment": "Confirm Payment",
-
-
-    "Connect_Wallet_Description_For_Buyers": "If you want to buy USDT, you need to connect your wallet. Please click the Connect Wallet button. This wallet is decentralized and secure.",
-
-
-
-    "Requesting_Payment": "Requesting Payment",
-
-    "Deposit_Information": "Deposit Information",
-
-    "Request_Payment": "Request Payment",
-
-
-    "I_agree_to_check_the_bank_transfer_of": "I agree to check the bank transfer of KRW from buyer and transfer USDT to the buyer wallet address.",
-
-
-    "Transfering_USDT_to_the_buyer_wallet_address": "Transfering USDT to the buyer wallet address",
-
-  
-    "SMS_will_be_sent_to_your_mobile_number": "SMS will be sent to your mobile number to notify you when the buyer accepts the order.",
-
-    "Accepting_Order": "Accepting Order",
-
-
-    "Waiting_for_trading_partner_to_proceed": "Waiting for trading partner to proceed",
-
-
-    "Waiting_for_seller_to_deposit_USDT_to_escrow": "Waiting for seller to deposit USDT to escrow",
-
-
-
-    "Escrow": "Escrow",
-
+    "Go_Home": "ホームに戻る",
+    "My_Balance": "私の残高",
+    "My_Nickname": "私のニックネーム",
+    "My_Buy_Trades": "私の購入取引",
+    "My_Sell_Trades": "私の販売取引",
+    "Order": "注文",
+    "Buy": "購入",
+    "Sell": "販売",
+    "Amount": "量",
+    "Buy_Amount": "購入量",
+    "Sell_Amount": "販売量",
+    "Price": "価格",
+    "Contact_Us": "お問い合わせ",
+    "Buy_Description": "お好みの実世界の通貨でUSDTを購入します。",
+    "Sell_Description": "USDTを販売して、お好みの実世界の通貨を受け取ります。",
+    "Total": "合計",
+    "Orders": "販売注文",
+    "Trades": "取引",
+    "Completed": "取引完了",
+    "Cancelled": "取引キャンセル",
+    "Search_my_trades": "私の取引を検索",
+    "Anonymous": "匿名",
+    "Seller": "売り手",
+    "Buyer": "買い手",
+    "Me": "私",
+    "Buy_USDT": "USDTを購入",
+    "Sell_USDT": "USDTを販売",
+    "Buy_OPW": "OPWを購入",
+    "Sell_OPW": "OPWを販売",
+    "Accept_Buy_Order": "購入注文を受け入れる",
+    "Apply_Buy_Order": "購入注文を申し込む",
+    "Send_USDT": "USDTを送信",
+    "Pay_USDT": "USDTを支払う",
+    "Coming_Soon": "近日公開",
+    "Open_Orders": "オープン注文",
+    "Please_connect_your_wallet_first": "まずウォレットを接続してください",
+    "USDT_sent_successfully": "USDTが正常に送信されました",
+    "Failed_to_send_USDT": "USDTの送信に失敗しました",
+    "Go_Buy_USDT": "USDTを購入する",
+    "Go_Sell_USDT": "USDTを販売する",
+    "Enter_Wallet_Address": "ウォレットアドレスを入力",
+    "Enter_the_amount_and_recipient_address": "金額と受取人のアドレスを入力",
+    "Select_a_user": "ユーザーを選択",
+    "User_wallet_address": "ユーザーのウォレットアドレス",
+    "This_address_is_not_white_listed": "このアドレスはホワイトリストに登録されていません。",
+    "If_you_are_sure_please_click_the_send_button": "よろしければ送信ボタンをクリックしてください。",
+    "Send": "送信",
+    "Sending": "送信中",
+    "Rate": "レート",
+    "Payment_Information": "支払い情報",
+    "Payment": "支払い",
+    "Bank_Transfer": "銀行振込",
+    "Payment_Amount": "支払い金額",
+    "I_agree_to_the_terms_of_trade": "取引条件に同意します",
+    "I_agree_to_cancel_the_trade": "取引をキャンセルすることに同意します",
+    "Opened_at": "開設日時",
+    "Started_at": "開始日時",
+    "Cancelled_at": "キャンセル日時",
+    "Completed_at": "完了日時",
+    "Payment_Requested_at": "支払い要求日時",
+    "TID": "取引ID",
+    "Trading_Time_is": "取引時間は",
+    "Waiting_for_seller_to_deposit": "売り手の入金待ち",
+    "to_escrow": "エスクローへ",
+    "If_the_seller_does_not_deposit_the_USDT_to_escrow": "売り手がUSDTをエスクローに入金しない場合",
+    "this_trade_will_be_cancelled_in": "この取引は次の時間後にキャンセルされます",
+    "Cancel_My_Trade": "取引をキャンセル",
+    "Order_accepted_successfully": "注文が正常に受け入れられました",
+    "Order_has_been_cancelled": "注文がキャンセルされました",
+    "My Order": "私の注文",
+    "Wallet_Settings": "ウォレット設定",
+    "Profile_Settings": "プロフィール設定",
+    "Profile": "プロフィール",
+    "My_Profile_Picture": "私のプロフィール写真",
+    "Edit": "編集",
+    "Cancel": "キャンセル",
+    "Save": "保存",
+    "Saving": "保存中",
+    "Copy": "コピー",
+    "Enter_your_nickname": "ニックネームを入力",
+    "Nickname_should_be_5_10_characters": "ニックネームは5〜10文字で、英数字の小文字のみを含む必要があります。",
+    "My_Buy_USDT_Trades": "私のUSDT購入取引",
+    "My_Sell_USDT_Trades": "私のUSDT販売取引",
+    "Sale": "販売",
+    "Private_Sale": "プライベートセール",
+    "Public_Sale": "パブリックセール",
+    "Place_Order": "注文をする",
+    "Search_my_orders": "私の注文を検索",
+    "Cancel_My_Order": "注文をキャンセル",
+    "hours": "時間",
+    "minutes": "分",
+    "seconds": "秒",
+    "hours_ago": "時間前",
+    "minutes_ago": "分前",
+    "seconds_ago": "秒前",
+    "Connect_Wallet": "ウォレットを接続",
+    "Disconnect_Wallet": "ウォレットを切断",
+    "Are_you_sure_you_want_to_disconnect_your_wallet": "ウォレットを切断してもよろしいですか？",
+    "Order_has_been_placed": "注文が行われました",
+    "Placing_Order": "注文中",
+    "My_Order": "私の注文",
+    "If_you_request_payment": "支払いを要求すると、USDTがスマートコントラクトにエスクローされ、買い手に支払いを要求します。",
+    "I_agree_to_escrow_USDT": "USDTをスマートコントラクトにエスクローし、買い手に支払いを要求することに同意します。",
+    "Order_Opened": "開設",
+    "Trade_Started": "開始",
+    "Expires_in": "期限まで",
+    "Bank_Name": "銀行名",
+    "Account_Number": "口座番号",
+    "Account_Holder": "口座名義人",
+    "Deposit_Name": "入金名",
+    "Deposit_Amount": "入金額",
+    "Deposit_Deadline": "入金期限",
+    "Waiting_for_seller_to_confirm_payment": "売り手が支払いを確認するのを待っています",
+    "Confirm_Payment": "支払いを確認",
+    "Connect_Wallet_Description_For_Buyers": "USDTを購入するにはウォレットを接続する必要があります。ウォレットを接続ボタンをクリックしてください。このウォレットは分散型で安全です。",
+    "Requesting_Payment": "支払いを要求中",
+    "Deposit_Information": "入金情報",
+    "Request_Payment": "支払いを要求",
+    "I_agree_to_check_the_bank_transfer_of": "買い手からのKRWの銀行振込を確認し、買い手のウォレットアドレスにUSDTを転送することに同意します。",
+    "Transfering_USDT_to_the_buyer_wallet_address": "買い手のウォレットアドレスにUSDTを転送中",
+    "SMS_will_be_sent_to_your_mobile_number": "注文が受け入れられたときに通知するために、SMSが携帯電話番号に送信されます。",
+    "Accepting_Order": "注文を受け入れ中",
+    "Waiting_for_trading_partner_to_proceed": "取引パートナーの進行を待っています",
+    "Waiting_for_seller_to_deposit_USDT_to_escrow": "売り手がUSDTをエスクローに入金するのを待っています",
+    "Escrow": "エスクロー",
     "EA": "EA",
-
-    "Status": "Status",
-
-
-    "Table_View": "Table View",
-
-  
-    "I_gree_to_escrow_USDT_to_the_smart_contract_and_request_payment_to_the_buyer": "I agree to escrow USDT to the smart contract and request payment to the buyer.",
-
-
-    "My_Wallet_Address": "My Wallet Address",
-    "My_Phone_Number": "My Phone Number",
-
-    "Wallet_Address_Description1": "The address of this wallet is",
-    "Wallet_Address_Description2": "compatible with USDT Tether on the blockchain. Do not deposit any other tokens (e.g., Ethereum) to this address.",
-
-    "I_understand_that_I_should_never_deposit_any_other_tokens": "I understand that I should never deposit any other tokens (e.g., Ethereum) to this address.",
-
-
-    "Chat_with_Seller": "Chat with Seller",
-    "Chat_with_Buyer": "Chat with Buyer",
-
- 
-    "You_must_have_a_wallet_address_to_buy_USDT": "You must have a wallet address to buy USDT",
-
-
-    "Make_Wallet_Address": "Make Wallet Address",
-
-
-
-
+    "Status": "状態",
+    "Table_View": "テーブルビュー",
+    "I_gree_to_escrow_USDT_to_the_smart_contract_and_request_payment_to_the_buyer": "USDTをスマートコントラクトにエスクローし、買い手に支払いを要求することに同意します。",
+    "My_Wallet_Address": "私のウォレットアドレス",
+    "My_Phone_Number": "私の電話番号",
+    "Wallet_Address_Description1": "このウォレットのアドレスは",
+    "Wallet_Address_Description2": "ブロックチェーン上のUSDTテザーと互換性があります。このアドレスに他のトークン（例：イーサリアム）を入金しないでください。",
+    "I_understand_that_I_should_never_deposit_any_other_tokens": "このアドレスに他のトークン（例：イーサリアム）を入金してはいけないことを理解しています。",
+    "Chat_with_Seller": "売り手とチャット",
+    "Chat_with_Buyer": "買い手とチャット",
+    "You_must_have_a_wallet_address_to_buy_USDT": "USDTを購入するにはウォレットアドレスが必要です",
+    "Make_Wallet_Address": "ウォレットアドレスを作成",
     "PRICE_10000_KRW": "10,000 KRW",
     "PRICE_50000_KRW": "50,000 KRW",
     "PRICE_100000_KRW": "100,000 KRW",
@@ -304,112 +173,77 @@
     "PRICE_1000000_KRW": "1,000,000 KRW",
     "PRICE_5000000_KRW": "5,000,000 KRW",
     "PRICE_10000000_KRW": "10,000,000 KRW",
-
-
-    "Please_keep_Your_Wallet_address_safe": "Please keep Your Wallet address safe, as it will be required in case of a dispute with the Seller.",
-
-  
-    "Waiting_for_the_USDT_to_be_sent_to_the_store_address": "Waiting for the USDT to be sent to the store address...",
-    
-    "Successfully_sent_USDT_to_the_store_address": "Successfully sent USDT to the store address! You can check the store deposit status within 5 minutes.",
-
-
-    "When_the_deposit_is_completed": "When the deposit is completed, the escrowed USDT will be transferred to the buyer's wallet.",
-
-
-    "Please_enter_deposit_name": "Please enter deposit name",
-
-    "Your_wallet_address_is_copied": "Your wallet address is copied",
-
-    "Charge": "Charge",
-
-  
-    "Deposit_name_description": "When you deposit, please enter the deposit name in the deposit name field. If you do not enter the deposit name, the deposit may not be reflected in your account.",
-
-    "Deposit_Confirmed": "Seller has confirmed the deposit and completed the trade.",
-
-    "Escrow_Completed": "Escrow Completed",
-
-    "Payment_request_has_been_sent": "Payment request has been sent",
-
-    "Payment_has_been_confirmed": "Payment has been confirmed",
-
-    "Reload": "Reload",
-
- 
-    "Insufficient_balance": "Insufficient balance",
-
-
-    "Account_number_has_been_copied": "Account number has been copied",
-
-    "Payment_name_has_been_copied": "Payment name has been copied",
-
-    "Payment_amount_has_been_copied": "Payment amount has been copied",
-
-  
-
-    "Buy_Order": "Buy Order",
-    "Private_Buy_Order": "Private Buy Order",
-    "Public_Buy_Orer": "Public Buy Order",
-  
-    "Buy_Order_USDT": "Buy Order USDT",
-
-    "Buy_Order_SMS_will_be_sent_to_your_mobile_number": "When the seller accepts the order, an SMS will be sent to your mobile number.",
-
-    "Buy_Orders": "Buy Orders",
-
-    "Buy_Order_Opened": "Buy Order Opened",
-
-    "Buy_Order_Accept": "Buy Order Accept",
-
-    "Not_a_seller": "Not a seller",
-    "Apply": "Apply",
-    "Applying": "Applying",
-    "Enter_your_bank_name": "Enter your bank name",
-    "Enter_your_account_number": "Enter your account number",
-    "Enter_your_account_holder": "Enter your account holder",
-    "Send_OTP": "Send OTP",
-    "Enter_OTP": "Enter OTP",
-    "Verify_OTP": "Verify OTP",
-    "OTP_verified": "OTP verified",
-
-
-    "Please_verify_your_account_first_for_selling": "Please verify your account first for selling",
-
-    "Nickname_should_be_alphanumeric_lowercase": "Nickname should be alphanumeric and lowercase",
-    "Nickname_should_be_at_least_5_characters_and_at_most_10_characters": "Nickname should be at least 5 characters and at most 10 characters",
-
-
-
-    "File_uploaded": "File uploaded!",
-    "Upload_a_file": "Upload a file",
-    "Accepted_formats": "Accepted formats:",
-    "Drag_and_drop_or_click_to_upload": "Drag and drop or click to upload.",
-    "Max_file_size": "Max file size: 50MB",
-    "Photo_upload": "Photo upload",
-    "Confirm_upload": "Confirm upload",
-
-    "Make_Escrow_Wallet": "Make Escrow Wallet",
-
- 
-    "Escrow_Wallet_Address_has_been_created": "Escrow Wallet Address has been created",
-    "Failed_to_create_Escrow_Wallet_Address": "Failed to create Escrow Wallet Address",
-
-    "Newest_order_has_been_arrived": "Newest order has been arrived",
-
-    "Escrow_balance_is_less_than_payment_amount": "Escrow balance is less than payment amount",
-
-    "Copied_Wallet_Address": "Copied Wallet Address",
-
-
-    "Apply_for_Listing_New_Token": "Apply for Listing New Token",
-    "Apply_for_Listing_New_Seller": "Apply for Listing New Seller",
-    
-    "Copy_Wallet_Address": "Copy Wallet Address",
-
-    "Are_you_sure_you_want_to_send_token": "Are you sure you want to send token?",
-
-    "Fetch_Buy_Order": "Fetch Buy Order"
-
-
+    "Please_keep_Your_Wallet_address_safe": "売り手とのトラブル時に必要となるため、ウォレットアドレスを安全に保管してください。",
+    "Waiting_for_the_USDT_to_be_sent_to_the_store_address": "USDTが店舗アドレスに送信されるのを待っています...",
+    "Successfully_sent_USDT_to_the_store_address": "USDTが店舗アドレスに正常に送信されました！店舗の入金状況は5分以内に確認できます。",
+    "When_the_deposit_is_completed": "入金が完了すると、エスクローされたUSDTが買い手のウォレットに転送されます。",
+    "Please_enter_deposit_name": "入金名を入力してください",
+    "Your_wallet_address_is_copied": "ウォレットアドレスがコピーされました",
+    "Charge": "チャージ",
+    "Deposit_name_description": "入金時には、入金名欄に入金名を入力してください。入金名を入力しないと、入金がアカウントに反映されない場合があります。",
+    "Deposit_Confirmed": "売り手が入金を確認し、取引を完了しました。",
+    "Escrow_Completed": "エスクロー完了",
+    "Payment_request_has_been_sent": "支払い要求が送信されました",
+    "Payment_has_been_confirmed": "支払いが確認されました",
+    "Reload": "リロード",
+    "Insufficient_balance": "残高不足",
+    "Account_number_has_been_copied": "口座番号がコピーされました",
+    "Payment_name_has_been_copied": "支払い名がコピーされました",
+    "Payment_amount_has_been_copied": "支払い金額がコピーされました",
+    "Buy_Order": "購入注文",
+    "Private_Buy_Order": "プライベート購入注文",
+    "Public_Buy_Orer": "パブリック購入注文",
+    "Buy_Order_USDT": "購入注文 USDT",
+    "Buy_Order_SMS_will_be_sent_to_your_mobile_number": "売り手が注文を受け入れると、SMSが携帯電話番号に送信されます。",
+    "Buy_Orders": "購入注文",
+    "Buy_Order_Opened": "購入注文開設",
+    "Buy_Order_Accept": "購入注文受け入れ",
+    "Not_a_seller": "売り手ではありません",
+    "Apply": "申し込む",
+    "Applying": "申し込み中",
+    "Enter_your_bank_name": "銀行名を入力",
+    "Enter_your_account_number": "口座番号を入力",
+    "Enter_your_account_holder": "口座名義人を入力",
+    "Send_OTP": "OTPを送信",
+    "Enter_OTP": "OTPを入力",
+    "Verify_OTP": "OTPを確認",
+    "OTP_verified": "OTPが確認されました",
+    "Please_verify_your_account_first_for_selling": "販売のためにまずアカウントを確認してください",
+    "Nickname_should_be_alphanumeric_lowercase": "ニックネームは英数字の小文字である必要があります",
+    "Nickname_should_be_at_least_5_characters_and_at_most_10_characters": "ニックネームは5文字以上10文字以下である必要があります",
+    "File_uploaded": "ファイルがアップロードされました！",
+    "Upload_a_file": "ファイルをアップロード",
+    "Accepted_formats": "受け入れ可能な形式：",
+    "Drag_and_drop_or_click_to_upload": "ドラッグ＆ドロップまたはクリックしてアップロード。",
+    "Max_file_size": "最大ファイルサイズ：50MB",
+    "Photo_upload": "写真をアップロード",
+    "Confirm_upload": "アップロードを確認",
+    "Make_Escrow_Wallet": "エスクローウォレットを作成",
+    "Escrow_Wallet_Address_has_been_created": "エスクローウォレットアドレスが作成されました",
+    "Failed_to_create_Escrow_Wallet_Address": "エスクローウォレットアドレスの作成に失敗しました",
+    "Newest_order_has_been_arrived": "最新の注文が届きました",
+    "Escrow_balance_is_less_than_payment_amount": "エスクロー残高が支払い金額より少ないです",
+    "Copied_Wallet_Address": "ウォレットアドレスがコピーされました",
+    "Apply_for_Listing_New_Token": "新しいトークンのリストに申し込む",
+    "Apply_for_Listing_New_Seller": "新しい売り手のリストに申し込む",
+    "Copy_Wallet_Address": "ウォレットアドレスをコピー",
+    "Are_you_sure_you_want_to_send_token": "トークンを送信してもよろしいですか？",
+    "Fetch_Buy_Order": "購入注文を取得",
+    "Sign_in_with_Wallet": "ウォレットでサインイン",
+    "Token_sent_successfully": "トークンが正常に送信されました",
+    "Failed_to_send_token": "トークンの送信に失敗しました",
+    "Payment_Currency": "支払い通貨",
+    "Payment_Method": "支払い方法",
+    "Order_has_been_failed": "注文に失敗しました",
+    "Please_register_your_seller_information": "売り手情報を登録してください。売るためには売り手情報を登録する必要があります。",
+    "Nickname_saved": "ニックネームが保存されました",
+    "You_must_enter_different_nickname": "異なるニックネームを入力する必要があります",
+    "Profile_Information": "プロフィール情報",
+    "Bank_Information": "銀行情報",
+    "QR_Code_Payment_Information": "QRコード支払い情報",
+    "Waiting_for_buyer_to_send": "購入者が送信するのを待っています",
+    "Create_Escrow_Wallet": "エスクローウォレットを作成",
+    "Please_create_your_escrow_wallet": "エスクローウォレットを作成してください。売るためにはエスクローウォレットが必要です。",
+    "Payment_has_been_rollbacked": "支払いがロールバックされました",
+    "Buy_Order_Fiat": "フィアット購入注文"
 }
