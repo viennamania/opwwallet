@@ -684,9 +684,7 @@ export async function acceptSellOrder(data: any) {
   ///console.log('acceptSellOrder data: ' + JSON.stringify(data));
 
 
-
-
-  if (!data.orderId || !data.buyerWalletAddress || !data.buyerMobile) {
+  if (!data.orderId || !data.buyerWalletAddress ) {
     return null;
   }
 
@@ -743,6 +741,7 @@ export async function acceptSellOrder(data: any) {
         nickname: data.buyerNickname,
         avatar: data.buyerAvatar,
         mobile: data.buyerMobile,
+        email: data.buyerEmail,
         memo: buyerMemo,
         depositName: depositName,
         depositBankName: depositBankName,
@@ -861,8 +860,6 @@ export async function requestPayment(data: any) {
 
 
 export async function confirmPayment(data: any) {
-  
-  ///console.log('acceptSellOrder data: ' + JSON.stringify(data));
 
   if (!data.orderId) {
     return null;
@@ -1201,8 +1198,6 @@ export async function getOneByWalletAddress(
 
 
 export async function sellOrderRollbackPayment(data: any) {
-  
-  ///console.log('acceptSellOrder data: ' + JSON.stringify(data));
 
   if (!data.orderId) {
     return null;
@@ -1634,8 +1629,6 @@ export async function acceptBuyOrder(data: any) {
   */
 
 
-  ///console.log('acceptSellOrder data.orderId: ' + data.orderId);
-
  
   // *********************************************
   // update status to accepted if status is ordered
@@ -1665,20 +1658,11 @@ export async function acceptBuyOrder(data: any) {
   );
 
 
-
-
-
-
-
-
   if (result) {
 
     const updated = await collection.findOne<UserProps>(
       { _id: new ObjectId(data.orderId + '') }
     );
-
-    ///console.log('acceptSellOrder updated: ' + JSON.stringify(updated));
-
 
 
     return updated;
@@ -1697,8 +1681,6 @@ export async function acceptBuyOrder(data: any) {
 
 export async function buyOrderRequestPayment(data: any) {
   
-  ///console.log('acceptSellOrder data: ' + JSON.stringify(data));
-
   if (!data.orderId) {
     return null;
   }
@@ -1742,8 +1724,6 @@ export async function buyOrderRequestPayment(data: any) {
 
 export async function buyOrderConfirmPayment(data: any) {
   
-  ///console.log('acceptSellOrder data: ' + JSON.stringify(data));
-
   if (!data.orderId) {
     return null;
   }
@@ -1790,8 +1770,6 @@ export async function buyOrderConfirmPayment(data: any) {
 
 export async function buyOrderRollbackPayment(data: any) {
   
-  ///console.log('acceptSellOrder data: ' + JSON.stringify(data));
-
   if (!data.orderId) {
     return null;
   }

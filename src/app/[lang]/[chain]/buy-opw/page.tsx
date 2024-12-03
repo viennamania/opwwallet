@@ -44,7 +44,10 @@ import {
 import { inAppWallet } from "thirdweb/wallets";
 
 
-import { getUserPhoneNumber } from "thirdweb/wallets/in-app";
+import {
+  getUserPhoneNumber,
+  getUserEmail,
+} from "thirdweb/wallets/in-app";
 
 
 import { balanceOf, transfer } from "thirdweb/extensions/erc20";
@@ -243,6 +246,8 @@ export default function Index({ params }: any) {
 
     Reload: "",
 
+    Sell_Amount: "",
+
   } );
 
   useEffect(() => {
@@ -332,6 +337,8 @@ export default function Index({ params }: any) {
 
     Reload,
 
+    Sell_Amount,
+
 
   } = data;
 
@@ -357,7 +364,6 @@ export default function Index({ params }: any) {
 
   useEffect(() => {
 
-
     if (address) {
 
       //const phoneNumber = await getUserPhoneNumber({ client });
@@ -368,7 +374,19 @@ export default function Index({ params }: any) {
         setPhoneNumber(phoneNumber || "");
       });
 
+    }
 
+  } , [address]);
+
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+
+    if (address) {
+
+      getUserEmail({ client }).then((email) => {
+        setUserEmail(email || "");
+      });
 
     }
 
@@ -699,6 +717,7 @@ export default function Index({ params }: any) {
       index: number,
       orderId: string,
       smsNumber: string,
+      userEmail: string,
     ) => {
 
         if (!address) {
@@ -734,6 +753,7 @@ export default function Index({ params }: any) {
 
                 //buyerMobile: user.mobile,
                 buyerMobile: smsNumber,
+                buyerEmail: userEmail,
 
             }),
         })
@@ -1164,8 +1184,8 @@ export default function Index({ params }: any) {
                         <tr>
                           <th className="p-2">{Order_Opened}</th>
                           <th className="p-2">{Seller}</th>
+                          <th className="p-2">{Sell_Amount}</th>
                           <th className="p-2">{Price}</th>
-                          <th className="p-2">{Amount}</th>
                           <th className="p-2">{Payment}</th>
                           <th className="p-2">{Status}</th>
                           <th className="p-2">{Trades}</th>
@@ -1233,6 +1253,12 @@ export default function Index({ params }: any) {
                             </td>
 
                             <td className="p-2">
+                              <div className="text-lg font-semibold text-green-500">
+                                {item.opwAmount} OPW
+                              </div>
+                            </td>
+
+                            <td className="p-2">
                               <div className="text-sm font-semibold text-white">
                                 {
                                   item.fietCurrency === 'USD' ?
@@ -1262,11 +1288,7 @@ export default function Index({ params }: any) {
                               </div>
                             </td>
 
-                            <td className="p-2">
-                              <div className="text-sm font-semibold text-white">
-                                {item.opwAmount} OPW
-                              </div>
-                            </td>
+
 
                             <td className="p-2">
                               <div className="text-sm font-semibold text-white">
@@ -1367,7 +1389,7 @@ export default function Index({ params }: any) {
                                   </div>
                                 )}
 
-                                {item.status === 'completed' && (
+                                {item.status === 'paymentConfirmed' && (
                                   <div className="text-sm text-green-500">
                                     {Completed_at}
                                   </div>
@@ -1436,7 +1458,7 @@ export default function Index({ params }: any) {
                                       px-2 py-1 rounded-md hover:bg-green-600
                                     `}
                                     onClick={() => {
-                                      acceptSellOrder(index, item._id, smsReceiverMobileNumber);
+                                      acceptSellOrder(index, item._id, smsReceiverMobileNumber, userEmail);
                                     }}
                                   >
                                     {acceptingSellOrder[index] && (
@@ -1663,12 +1685,17 @@ export default function Index({ params }: any) {
 
 
 
-                            { (item.status === 'accepted' || item.status === 'paymentRequested' || item.status === 'cancelled') && (
+                            { (item.status === 'accepted'
+                            || item.status === 'paymentRequested'
+                            || item.status === 'cancelled'
+                            || item.status === 'paymentConfirmed'
+                            ) && (
                                 
                               <div className={`
                                 ${item.status !== 'cancelled' && 'h-16'}
 
-                                mb-4 flex flex-row items-center bg-zinc-800 px-2 py-1 rounded-md`}>
+                                mb-4 flex flex-row items-center bg-zinc-800 px-2 py-1 rounded-md`}
+                              >
                                   <Image
                                     src="/icon-trade.png"
                                     alt="Trade"
@@ -1796,20 +1823,36 @@ export default function Index({ params }: any) {
 
 
                             {item.status === 'cancelled' && (
-                                <div className="mt-4 flex flex-row items-center gap-2">
-                                  <Image
-                                    src='/icon-cancelled.webp'
-                                    alt='cancel'
-                                    width={20}
-                                    height={20}
-                                  />
-                                  <p className="text-sm text-red-500">
-                                    {Cancelled_at} {
-                                      new Date(item.cancelledAt).toLocaleDateString() + ' ' + new Date(item.cancelledAt).toLocaleTimeString()
-                                    }
-                                  </p>
-                                </div>
-                              )}
+                              <div className="mt-4 flex flex-row items-center gap-2">
+                                <Image
+                                  src='/icon-cancelled.webp'
+                                  alt='cancel'
+                                  width={20}
+                                  height={20}
+                                />
+                                <p className="text-sm text-red-500">
+                                  {Cancelled_at} {
+                                    new Date(item.cancelledAt).toLocaleDateString() + ' ' + new Date(item.cancelledAt).toLocaleTimeString()
+                                  }
+                                </p>
+                              </div>
+                            )}
+
+                            {item.status === 'paymentConfirmed' && (
+                              <div className="mt-4 flex flex-row items-center gap-2">
+                                <Image
+                                  src='/icon-completed.png'
+                                  alt='completed'
+                                  width={20}
+                                  height={20}
+                                />
+                                <p className="text-sm text-green-500">
+                                  {Completed_at} {
+                                    new Date(item.paymentConfirmedAt).toLocaleDateString() + ' ' + new Date(item.paymentConfirmedAt).toLocaleTimeString()
+                                  }
+                                </p>
+                              </div>
+                            )}
 
 
 
@@ -1819,38 +1862,48 @@ export default function Index({ params }: any) {
                               <div className="mt-4 flex flex-col items-start">
 
 
+                                <div className="flex flex-row items-center gap-2">
 
-                                <p className="text-2xl text-gray-800 font-semibold">
-                                  {Price}: {
-                                    // currency
-                                    item.fietCurrency === 'USD' ?
-                                    Number(item.fietAmount).toLocaleString('en-US', {
-                                      style: 'currency',
-                                      currency: 'USD',
-                                    }) : item.fietCurrency === 'JPY' ?
-                                    Number(item.fietAmount).toLocaleString('ja-JP', {
-                                      style: 'currency',
-                                      currency: 'JPY',
-                                    }) : item.fietCurrency === 'CNY' ?
-                                    Number(item.fietAmount).toLocaleString('en-US', {
-                                      style: 'currency',
-                                      currency: 'CNY',
-                                    }) : item.fietCurrency === 'KRW' ?
-                                    Number(item.fietAmount).toLocaleString('ko-KR', {
-                                      style: 'currency',
-                                      currency: 'KRW',
-                                    }) : Number(item.fietAmount).toLocaleString('en-US', {
-                                      style: 'currency',
-                                      currency: 'USD',
-                                    })
-                                  }
-                                </p>
+                                  <span className="text-lg font-semibold text-zinc-400">
+                                    {Sell_Amount}
+                                  </span>
+                                  <p className="text-2xl font-semibold text-green-500">
+                                    {item.opwAmount}{' '}OPW
+                                  </p>
+
+                                </div>
+
 
                                 <div className="mt-2 flex flex-row items-start gap-2">
 
-                                  <p className="text-xl font-semibold text-green-500">
-                                    {item.opwAmount}{' '}OPW
+
+                                  <p className="text-xl text-gray-800 font-semibold">
+                                    {Price}: {
+                                      // currency
+                                      item.fietCurrency === 'USD' ?
+                                      Number(item.fietAmount).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                      }) : item.fietCurrency === 'JPY' ?
+                                      Number(item.fietAmount).toLocaleString('ja-JP', {
+                                        style: 'currency',
+                                        currency: 'JPY',
+                                      }) : item.fietCurrency === 'CNY' ?
+                                      Number(item.fietAmount).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'CNY',
+                                      }) : item.fietCurrency === 'KRW' ?
+                                      Number(item.fietAmount).toLocaleString('ko-KR', {
+                                        style: 'currency',
+                                        currency: 'KRW',
+                                      }) : Number(item.fietAmount).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                      })
+                                    }
                                   </p>
+
+
                                   <p className="text-lg font-semibold text-gray-800">{Rate}: {
 
                                     Number(item.fietAmount / item.opwAmount).toFixed(2)
@@ -2345,7 +2398,7 @@ export default function Index({ params }: any) {
 
                                             {/* input sms receiver mobile number */}
 
-                                            {address && agreementForTrade[index] && (
+                                            {address && agreementForTrade[index] && smsReceiverMobileNumber && (
                                               <div className="mt-8 flex flex-row items-center justify-start gap-2">
 
                                                 <span className="text-sm text-zinc-400">SMS</span>
@@ -2365,6 +2418,27 @@ export default function Index({ params }: any) {
                                               </div>
                                             )}
 
+                                            {/* input email address */}
+                                            {address && agreementForTrade[index] && userEmail && (
+                                              <div className="mt-8 flex flex-row items-center justify-start gap-2">
+
+                                                <span className="text-sm text-zinc-400">Email</span>
+
+                                                <div className="flex flex-col items-start justify-start">
+                                                  <input
+                                                    disabled={!address || !agreementForTrade[index]}
+                                                    type="text"
+                                                    placeholder="Email Address"
+                                                    className={`w-full px-4 py-2 rounded-md text-black`}
+                                                    value={userEmail}
+                                                    onChange={(e) => {
+                                                        setUserEmail(e.target.value);
+                                                    }}
+                                                  />
+                                                </div>
+                                              </div>
+                                            )}
+
 
 
 
@@ -2376,7 +2450,7 @@ export default function Index({ params }: any) {
                                                 `}
                                               onClick={() => {
     
-                                                  acceptSellOrder(index, item._id, smsReceiverMobileNumber);
+                                                  acceptSellOrder(index, item._id, smsReceiverMobileNumber, userEmail);
                                             
 
                                               }}
