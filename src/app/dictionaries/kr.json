@@ -382,7 +382,7 @@
     "Bank_Information": "은행 정보",
     "QR_Code_Payment_Information": "QR코드 결제 정보",
 
-    "Waiting_for_buyer_to_send": "구매자가 전송하기를 기다리는 중",
+    "Waiting_for_buyer_to_send": "구매자가 결제하기를 기다리는 중",
 
 
     "Create_Escrow_Wallet": "에스크로 지갑 생성하기",
