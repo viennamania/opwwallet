@@ -391,7 +391,10 @@
 
     "Payment_has_been_rollbacked": "결제가 롤백되었습니다.",
 
-    "Buy_Order_Fiat": "화폐로 주문하기"
+    "Buy_Order_Fiat": "화폐로 주문하기",
 
+    "Buyer_has_accepted_the_trade": "구매 신청 접수: 결제 요청을 해주세요.",
+
+    "Sell_preparation_complete": "판매 준비 완료 : 결제 확인 후 결제 확인 버튼을 눌러 거래를 완성해 주세요."
 
 }

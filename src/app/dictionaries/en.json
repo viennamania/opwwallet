@@ -446,8 +446,11 @@
 
     "Payment_has_been_rollbacked": "Payment has been rollbacked",
 
-    "Buy_Order_Fiat": "Buy Order Fiat"
+    "Buy_Order_Fiat": "Buy Order Fiat",
 
+    "Buyer_has_accepted_the_trade": "Buyer has accepted the trade. Please request payment.",
+
+    "Sell_preparation_complete": "Sell preparation complete: After confirming the payment, press the payment confirmation button to complete the transaction."
 
 
 
