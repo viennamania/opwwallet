@@ -3929,6 +3929,8 @@ export default function Index({ params }: any) {
                                       height={32}
                                     />
                                     <div>{Escrow}: {item.opwAmount} OPW</div>
+
+ 
                                     <button
                                       className="bg-white text-black px-2 py-2 rounded-md"
                                       onClick={() => {
@@ -3954,6 +3956,9 @@ export default function Index({ params }: any) {
                                         height={20}
                                       />
                                     </button>
+
+                              
+
                                   </div>
 
                                   <div className="flex flex-row gap-2 items-center justify-start">
@@ -4033,7 +4038,8 @@ export default function Index({ params }: any) {
                                 )}
 
 
-                                {item.status === 'paymentRequested' && (
+                                {item.walletAddress === address && item.status === 'paymentRequested' && (
+                      
 
                                 <div className="mt-5 flex flex-col gap-1 mb-1">
 
