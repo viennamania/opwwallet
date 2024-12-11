@@ -199,6 +199,13 @@ export default function Index({ params }: any) {
   });
 
 
+  // USDT contract
+  const contractUsdt = getContract({
+    client,
+    chain: polygon,
+    address: contractAddress,
+  });
+
 
   // OPW contract
   const contractOpw = getContract({
@@ -401,18 +408,11 @@ export default function Index({ params }: any) {
   ///console.log('address', address);
 
 
-
+  /*
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
 
-    if (!address) return;
-    // get the balance
-
-
-    if (!contract) {
-      return;
-    }
 
     const getBalance = async () => {
 
@@ -432,30 +432,66 @@ export default function Index({ params }: any) {
 
     };
 
-    if (address) getBalance();
+    if (address && contract) getBalance();
 
     // get the balance in the interval
 
     const interval = setInterval(() => {
-      if (address) getBalance();
+      if (address && contract) getBalance();
     }, 1000);
 
 
     return () => clearInterval(interval);
 
   } , [address, contract]);
+   */
+
+
+    // usdt balance
+    const [usdtBalance, setUsdtBalance] = useState(0);
+    useEffect(() => {
+        
+  
+      const getUsdtBalance = async () => {
+  
+        try {
+          const result = await balanceOf({
+            contract: contractUsdt,
+            address: address,
+          });
+      
+          if (!result) return;
+      
+          setUsdtBalance( Number(result) / 10 ** 6 );
+  
+        } catch (error) {
+          console.error("Error getting balance", error);
+        }
+  
+      };
+  
+      if (address && contractUsdt) getUsdtBalance();
+  
+      // get the balance in the interval
+  
+      const interval = setInterval(() => {
+        if (address && contractUsdt) getUsdtBalance();
+      }, 1000);
+  
+  
+      return () => clearInterval(interval);
+  
+  } , [address, contractUsdt]);
+  
+  
+
 
 
   // OPW balance
   const [opwBalance, setOpwBalance] = useState(0);
   useEffect(() => {
       
-      if (!address) return;
-      // get the balance
 
-      if (!contractOpw) {
-        return;
-      }
 
       const getOpwBalance = async () => {
 
@@ -475,12 +511,12 @@ export default function Index({ params }: any) {
 
       };
 
-      if (address) getOpwBalance();
+      if (address && contractOpw) getOpwBalance();
 
       // get the balance in the interval
 
       const interval = setInterval(() => {
-        if (address) getOpwBalance();
+        if (address && contractOpw) getOpwBalance();
       }, 1000);
 
 
@@ -808,16 +844,11 @@ export default function Index({ params }: any) {
   //console.log("params.chain", params.chain);
 
 
-  console.log("address", address);
-
-
-  // usdt balance
-  const [usdtBalance, setUsdtBalance] = useState(0);
+ 
 
 
 
-
-
+  /*
   // chainBalance
   const [chainBalance, setChainBalance] = useState(0);
   useEffect(() => {
@@ -834,6 +865,7 @@ export default function Index({ params }: any) {
   }
 
   , [balance, params.chain]);
+  */
       
 
 
