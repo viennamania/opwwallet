@@ -15,7 +15,8 @@ const settings = {
 const alchemy = new Alchemy(settings);
   
 
-
+export const maxDuration = 5; // This function can run for a maximum of 5 seconds
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
 
@@ -28,12 +29,15 @@ export async function GET(request: NextRequest) {
   
   const data = await alchemy.core.getAssetTransfers({
     fromBlock: "0x0",
+    toBlock: "latest",
     
     //fromAddress: "0x5c43B1eD97e52d009611D89b74fA829FE4ac56b1",
 
     toAddress: toAddress,
     //toAddress: "0xd756755358f5ae805c189c9a63794cc51d44f4ed",
     //fromAddress: "0xf6d48af3161a418108239612c106b1F35231fa6D",
+
+
 
     category: [
       //AssetTransfersCategory.EXTERNAL, 
@@ -42,6 +46,12 @@ export async function GET(request: NextRequest) {
       //AssetTransfersCategory.ERC721, 
       //AssetTransfersCategory.ERC1155
     ],
+    
+    //order: "desc",
+    withMetadata: true,
+    excludeZeroValue: true,
+    //maxCount: "0x3e8",
+    
   });
   
   //console.log(data);
