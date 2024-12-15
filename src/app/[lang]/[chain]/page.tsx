@@ -1737,43 +1737,23 @@ export default function Index({ params }: any) {
 
 
               {/* POL balance */}
-              <div className="mt-4 flex flex-row gap-2 justify-between items-center p-2
-                bg-yellow-500 text-white rounded-lg text-center
-                hover:shadow-lg
-                transition duration-300 ease-in-out
-                transform hover:-translate-y-1
-              ">
+              <div
+                className="mt-4 flex flex-row gap-2 justify-end items-center p-2"
+              >
                 <Image
-                  src="/logo-polygon.png"
-                  alt="POL"
+                  src="/icon-gas-station.png"
+                  alt="Gas Station"
                   width={35}
                   height={35}
-                  className="rounded-full bg-white p-1"
                 />
-
-                <div className="text-4xl font-semibold text-zinc-100">
+                
+                <div className="text-xl font-semibold text-zinc-100">
                   {Number(polBalance).toFixed(2)}
                 </div>
-                <p className="w-12 text-sm text-zinc-100">
+                <p className="text-sm text-zinc-100">
                   POL
                 </p>
 
-                <button
-                  onClick={() => {
-                    router.push(
-                      "/" + params.lang + "/" + params.chain + "/send-coin/?wallet=" + wallet
-                    );
-
-                  }}
-                  className="text-sm text-blue-500 hover:underline"
-                >
-                  <Image
-                    src="/goto-icon.webp"
-                    alt="Send"
-                    width={20}
-                    height={20}
-                  />
-                </button>
               </div>
 
 
