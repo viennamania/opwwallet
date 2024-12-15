@@ -297,7 +297,7 @@ export default function SendUsdt({ params }: any) {
    
     const getBalance = async () => {
 
-      if (!address) return;
+      if (!address || !contract) return;
 
       const result = await balanceOf({
         contract,
@@ -314,8 +314,10 @@ export default function SendUsdt({ params }: any) {
     getBalance();
 
     const interval = setInterval(() => {
-      if (address) getBalance();
+      getBalance();
     }, 1000);
+
+    return () => clearInterval(interval);
     
   } , [address, contract, token]);
 
@@ -984,11 +986,14 @@ export default function SendUsdt({ params }: any) {
                     <ConnectButton
                     client={client}
                     wallets={wallets}
+
+                    /*
                     accountAbstraction={{
-                      chain: polygon,
-                       
+                      chain: polygon, 
                       sponsorGas: true
                     }}
+                    */
+                   
                     theme={"light"}
                     connectButton={{
                       label: Sign_in_with_Wallet,

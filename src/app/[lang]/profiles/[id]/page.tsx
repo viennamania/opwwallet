@@ -388,12 +388,12 @@ export default function ProfilePage() {
 
                             wallets={wallets}
                             
+                            /*
                             accountAbstraction={{        
                             chain: polygon,
-                            //chain: arbitrum,
-                            factoryAddress: "0x9Bb60d360932171292Ad2b80839080fb6F5aBD97", // polygon, arbitrum
                             gasless: true,
                             }}
+                            */
                             
                             theme={"light"}
                             connectModal={{

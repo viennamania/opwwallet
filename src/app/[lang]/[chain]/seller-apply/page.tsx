@@ -756,11 +756,14 @@ export default function SettingsPage({ params }: any) {
                             <ConnectButton
                             client={client}
                             wallets={wallets}
+
+                            /*
                             accountAbstraction={{
                                 chain: polygon,
-                                 
                                 sponsorGas: true
                             }}
+                            */
+                           
                             theme={"light"}
                             connectButton={{
                                 label: Sign_in_with_Wallet,

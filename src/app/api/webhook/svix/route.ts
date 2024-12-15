@@ -12,194 +12,12 @@ import { idCounter } from "thirdweb/extensions/farcaster/idRegistry";
 
 
 
-import { Svix } from "svix";
-
-const svix = new Svix("sk_Gx4Pkk2-wPwPCFLq51G1iHTHsKbl5V4L.us");
-
-
-
-// handleEventLog
-async function handleEventLog(data: any) {
-  
-  const {
-    chainId,
-    contractAddress,
-    blockNumber,
-    transactionHash,
-    topics,
-    data: data_,
-    eventName,
-    decodedLog,
-    timestamp,
-    transactionIndex,
-    logIndex,
-  } = data;
-
-  const {
-    to,
-    from,
-    value,
-  } = decodedLog;
-
-
-
-  
-
-  const toAddress = to.value;
-  const fromAddress = from.value;
-  const amount = value.value / 1e18;
-
-  /*
-  console.log("transactionHash", transactionHash);
-  console.log("timestamp", timestamp);
-  console.log("toAddress", toAddress);
-  console.log("fromAddress", fromAddress);
-  console.log("amount", amount);
-  */
-
-
-
-
-  try {
-    /*
-    await svix.message.create("app_2q8wyOIRHeDDMHdbjoS9VwBCmAC", {
-      eventType: "invoice",
-      eventId: "evt_Wqb1k73rXprtTm7Qdlr38G234",
-      payload: {
-        type: "invoice.paid",
-        id: "invoice_WF7WtCLFFtd8ubcTgboSFNql",
-        status: "paid",
-        attempt: 2,
-      },
-      
-    });
-    */
-
-    await svix.message.create("app_2q8wyOIRHeDDMHdbjoS9VwBCmAC", {
-      eventType: "invoice",
-      payload: {
-        transactionHash,
-        timestamp,
-        toAddress,
-        fromAddress,
-        amount,
-      },
-      
-    });
-
-
-  } catch (error) {
-    console.error("error", error);
-  }
-
-
-
-
-
-
-
-
-
-  return NextResponse.json({
-    result: "ok",
-  });
-
-}
-
-// handleTransactionReceipt
-function handleTransactionReceipt(data: any) {
-    
-  const {
-    chainId,
-    blockNumber,
-    contractAddress,
-    transactionHash,
-    blockHash,
-    timestamp,
-    data: data_,
-    value,
-    to,
-    from,
-    transactionIndex,
-    gasUsed,
-    effectiveGasPrice,
-    status,
-  } = data;
-
-  //console.log("to", to);
-  //console.log("from", from);
-  //console.log("value", value);
-
-  return NextResponse.json({
-    result: "ok",
-  });
-
-}
-
-
-
-
-
-
 export async function POST(request: NextRequest) {
 
   const body = await request.json();
 
-  /*
-  const {
-    queueId,
-    status,
-    chainId,
-    fromAddress,
-    toAddress,
-    data,
-    value,
-    nonce,
-    deployedContractAddress,
-    deployedContractType,
-    functionName,
-    functionArgs,
-    extension,
-    gasLimit,
-    gasPrice,
-    maxFeePerGas,
-    maxPriorityFeePerGas,
-    transactionType,
-    transactionHash,
-    queuedAt,
-    sentAt,
-    minedAt,
-    cancelledAt,
-    errorMessage,
-    sentAtBlockNumber,
-    blockNumber,
-    retryCount,
-    onChainTxStatus,
-    onchainStatus,
-    effectiveGasPrice,
-    cumulativeGasUsed,
-    signerAddress,
-    accountAddress,
-    target,
-    sender,
-    initCode,
-    callData,
-    callGasLimit,
-    verificationGasLimit,
-    preVerificationGas,
-    paymasterAndData,
-    userOpHash,
-    retryGasValues,
-    retryMaxFeePerGas,
-    retryMaxPriorityFeePerGas,
-  } = body;
-  */
 
-
-  ///console.log("body", body);
-
-
-
+  console.log("body", body);
 
   /*
   body {
@@ -247,7 +65,7 @@ export async function POST(request: NextRequest) {
   */
 
 
-  
+  /*
 
   const {
     type,
@@ -262,7 +80,7 @@ export async function POST(request: NextRequest) {
     return handleTransactionReceipt(data);
   }
 
-  
+  */
 
 
 
@@ -293,11 +111,10 @@ export async function POST(request: NextRequest) {
   */
 
 
-  /*
+  
   return NextResponse.json({
     result: "ok",
   });
-  */
   
   
 

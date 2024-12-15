@@ -1129,17 +1129,12 @@ export default function AIPage({ params }: any) {
                         client={client}
                         wallets={wallets}
 
-                        
+                        /*
                         accountAbstraction={{   
-                            chain: params.chain === "arbitrum" ? arbitrum : polygon,
-                            //
-                            //chain: polygon,
-
-                            //chain: arbitrum,
-                            factoryAddress: "0x9Bb60d360932171292Ad2b80839080fb6F5aBD97", // polygon, arbitrum
+                            chain: polygon,
                             gasless: true,
                         }}
-                        
+                        */
 
                         
                         theme={"light"}

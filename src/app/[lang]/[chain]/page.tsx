@@ -9,7 +9,9 @@ import thirdwebIcon from "@public/thirdweb.svg";
 
 import { client } from "../../client";
 
-import { createThirdwebClient } from "thirdweb";
+import {
+  createThirdwebClient,
+} from "thirdweb";
 
 import {
   //ThirdwebProvider,
@@ -31,10 +33,15 @@ import {
   lightTheme,
 
   useConnectModal,
+
+  useWalletBalance,
   
 } from "thirdweb/react";
 
-import { inAppWallet } from "thirdweb/wallets";
+import {
+  inAppWallet,
+  getWalletBalance,
+} from "thirdweb/wallets";
 
 import {
   polygon,
@@ -114,6 +121,8 @@ const client = createThirdwebClient({
   clientId: "dfb94ef692c2f754a60d35aeb8604f3d",
 });
 */
+
+
 
 
 
@@ -447,12 +456,92 @@ export default function Index({ params }: any) {
    */
 
 
+
+    // pol balance of polygon chain
+    /*
+    const {
+      data : polBalanceData,
+      isLoading : polBalanceIsLoading,
+      isError : polBalanceIsError,
+    } = useWalletBalance({
+      chain: polygon,
+      address: address,
+      client: client,
+    });
+    //console.log("polBalanceData", polBalanceData?.displayValue, polBalanceData?.symbol);
+    */
+   // getWalletBalance
+
+  const [polBalance, setPolBalance] = useState(0);
+  useEffect(() => {
+        
+    
+      const getPolBalance = async () => {
+  
+        if (!address) {
+          return;
+        }
+  
+        try {
+          const result = await getWalletBalance({
+            chain: polygon,
+            address: address,
+            client: client,
+          });
+
+          ///console.log("result", result);
+      
+          if (!result) return;
+      
+          setPolBalance( Number(result.value) / 10 ** 18 );
+  
+        } catch (error) {
+          console.error("Error getting balance", error);
+        }
+  
+      };
+  
+      
+      getPolBalance();
+  
+      // get the balance in the interval
+      const interval = setInterval(() => {
+        getPolBalance();
+      }, 1000);
+  
+  
+      return () => clearInterval(interval);
+ 
+  } , [address]);
+
+
+
+    // usdt balance of polygon chain
+    /*
+    const {
+      data : usdtBalanceData,
+      isLoading : usdtBalanceIsLoading,
+      isError : usdtBalanceIsError,
+    } = useWalletBalance({
+      chain: polygon,
+      address: address,
+      client: client,
+      tokenAddress: contractUsdt.address,
+    });
+    */
+
+
+    
     // usdt balance
     const [usdtBalance, setUsdtBalance] = useState(0);
     useEffect(() => {
         
   
       const getUsdtBalance = async () => {
+
+        if (!address || !contractUsdt) {
+          return;
+        }
   
         try {
           const result = await balanceOf({
@@ -470,30 +559,48 @@ export default function Index({ params }: any) {
   
       };
   
-      if (address && contractUsdt) getUsdtBalance();
+      
+      getUsdtBalance();
   
       // get the balance in the interval
-  
       const interval = setInterval(() => {
-        if (address && contractUsdt) getUsdtBalance();
+        getUsdtBalance();
       }, 1000);
   
   
       return () => clearInterval(interval);
   
   } , [address, contractUsdt]);
-  
+
   
 
 
 
   // OPW balance
+  /*
+  const {
+    data : opwBalanceData,
+    isLoading : opwBalanceIsLoading,
+    isError : opwBalanceIsError,
+  } = useWalletBalance({
+    chain: polygon,
+    address: address,
+    client: client,
+    tokenAddress: contractOpw.address,
+  });
+  */
+
+  
   const [opwBalance, setOpwBalance] = useState(0);
   useEffect(() => {
       
 
 
       const getOpwBalance = async () => {
+
+        if (!address || !contractOpw) {
+          return;
+        }
 
         try {
           const result = await balanceOf({
@@ -511,12 +618,11 @@ export default function Index({ params }: any) {
 
       };
 
-      if (address && contractOpw) getOpwBalance();
+      getOpwBalance();
 
       // get the balance in the interval
-
       const interval = setInterval(() => {
-        if (address && contractOpw) getOpwBalance();
+        getOpwBalance();
       }, 1000);
 
 
@@ -1042,10 +1148,14 @@ export default function Index({ params }: any) {
             <ConnectButton
               client={client}
               wallets={wallets}
+
+              /*
               accountAbstraction={{
                 chain: polygon,
                 sponsorGas: true
               }}
+              */
+             
               theme={"light"}
               connectButton={{
                 label: Sign_in_with_Wallet,
@@ -1626,6 +1736,47 @@ export default function Index({ params }: any) {
               )}
 
 
+              {/* POL balance */}
+              <div className="mt-4 flex flex-row gap-2 justify-between items-center p-2
+                bg-yellow-500 text-white rounded-lg text-center
+                hover:shadow-lg
+                transition duration-300 ease-in-out
+                transform hover:-translate-y-1
+              ">
+                <Image
+                  src="/logo-polygon.png"
+                  alt="POL"
+                  width={35}
+                  height={35}
+                  className="rounded-full bg-white p-1"
+                />
+
+                <div className="text-4xl font-semibold text-zinc-100">
+                  {Number(polBalance).toFixed(2)}
+                </div>
+                <p className="w-12 text-sm text-zinc-100">
+                  POL
+                </p>
+
+                <button
+                  onClick={() => {
+                    router.push(
+                      "/" + params.lang + "/" + params.chain + "/send-coin/?wallet=" + wallet
+                    );
+
+                  }}
+                  className="text-sm text-blue-500 hover:underline"
+                >
+                  <Image
+                    src="/goto-icon.webp"
+                    alt="Send"
+                    width={20}
+                    height={20}
+                  />
+                </button>
+              </div>
+
+
 
               {/* OPW balance */}
               <div className="mt-4 flex flex-row gap-2 justify-between items-center p-2
@@ -1640,7 +1791,7 @@ export default function Index({ params }: any) {
                   alt="OPW"
                   width={35}
                   height={35}
-                  className="rounded-lg w-8 h-8 xl:w-10 xl:h-10"
+                  className="rounded-full bg-white p-1"
                 />
 
                 <div className="text-4xl font-semibold text-zinc-100">
@@ -1681,7 +1832,7 @@ export default function Index({ params }: any) {
                   alt="USDT"
                   width={35}
                   height={35}
-                  className="rounded-lg w-8 h-8 xl:w-10 xl:h-10"
+                  className="rounded-full bg-white p-1"
                 />
 
                   {/* floating point number to fixed 5 and text size small */}
