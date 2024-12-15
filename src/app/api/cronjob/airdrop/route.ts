@@ -52,9 +52,12 @@ const settings = {
   };
   
 const alchemy = new Alchemy(settings);
-  
 
-export const maxDuration = 600; // This function can run for a maximum of 600 seconds
+/*
+Error: Builder returned invalid maxDuration value for Serverless Function "api/cronjob/airdrop". Serverless Functions must have a maxDuration between 1 and 300 for plan pro. : https://vercel.com/docs/concepts/limits/overview#serverless-function-execution-timeout
+*/
+
+export const maxDuration = 300; // This function can run for a maximum of 600 seconds
 export const dynamic = 'force-dynamic';
 
 
