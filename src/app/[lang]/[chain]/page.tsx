@@ -1743,8 +1743,8 @@ export default function Index({ params }: any) {
                 <Image
                   src="/icon-gas-station.png"
                   alt="Gas Station"
-                  width={35}
-                  height={35}
+                  width={25}
+                  height={25}
                 />
                 
                 <div className="text-xl font-semibold text-zinc-100">

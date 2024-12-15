@@ -23,6 +23,7 @@ import {
     useConnectedWallets,
 
     useSetActiveWallet,
+
     
 } from "thirdweb/react";
 
@@ -45,6 +46,7 @@ import { balanceOf, transfer } from "thirdweb/extensions/erc20";
 import {
   createWallet,
   inAppWallet,
+  getWalletBalance,
 } from "thirdweb/wallets";
 
 import Image from 'next/image';
@@ -289,7 +291,48 @@ export default function SendUsdt({ params }: any) {
 
 
 
-  //const [nativeBalance, setNativeBalance] = useState(0);
+  const [polBalance, setPolBalance] = useState(0);
+  useEffect(() => {
+        
+    
+      const getPolBalance = async () => {
+  
+        if (!address) {
+          return;
+        }
+  
+        try {
+          const result = await getWalletBalance({
+            chain: polygon,
+            address: address,
+            client: client,
+          });
+
+          ///console.log("result", result);
+      
+          if (!result) return;
+      
+          setPolBalance( Number(result.value) / 10 ** 18 );
+  
+        } catch (error) {
+          console.error("Error getting balance", error);
+        }
+  
+      };
+  
+      
+      getPolBalance();
+  
+      // get the balance in the interval
+      const interval = setInterval(() => {
+        getPolBalance();
+      }, 1000);
+  
+  
+      return () => clearInterval(interval);
+ 
+  } , [address]);
+
 
   const [balance, setBalance] = useState(0);
 
@@ -912,9 +955,10 @@ export default function SendUsdt({ params }: any) {
                   alt="token"
                   width={35}
                   height={35}
+                  className="rounded-full bg-white p-1"
                 />
         
-                
+                {/*
                 <Image
                   src={`/logo-${params.chain}.png`}
                   alt="chain"
@@ -922,6 +966,7 @@ export default function SendUsdt({ params }: any) {
                   height={32}
                   className="rounded-lg"
                 />
+                */}
                 
               </div>
 
@@ -1087,6 +1132,31 @@ export default function SendUsdt({ params }: any) {
 
 
                 </div>
+
+
+                {/* POL balance */}
+                <div
+                  className="flex flex-row gap-2 justify-start items-center p-2"
+                >
+                  <Image
+                    src="/icon-gas-station.png"
+                    alt="Gas Station"
+                    width={25}
+                    height={25}
+                  />
+                  
+                  <div className="text-xl font-semibold text-gray-800">
+                    {Number(polBalance).toFixed(2)}
+                  </div>
+                  <p className="text-sm text-gray-800">
+                    POL
+                  </p>
+
+                </div>
+
+
+
+
 
               </div>
 
