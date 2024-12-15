@@ -35,6 +35,8 @@ import {
   useConnectModal,
 
   useWalletBalance,
+
+  useDisconnect,
   
 } from "thirdweb/react";
 
@@ -88,7 +90,7 @@ import { N } from "ethers";
 import { useQRCode } from 'next-qrcode';
 import { acceptBuyOrder } from "@/lib/api/order";
 import App from "next/app";
-import { disconnect } from "process";
+//import { disconnect } from "process";
 
 
 
@@ -353,7 +355,7 @@ export default function Index({ params }: any) {
   
 
 
-
+  const disconnect = useDisconnect();
 
 
   // get the active wallet
@@ -1200,8 +1202,8 @@ export default function Index({ params }: any) {
               onClick={() => {
 
                 confirm(Are_you_sure_you_want_to_disconnect_your_wallet) && 
-                //activeWallet?.disconnect();
-                disconnect();
+                activeWallet?.disconnect();
+                //disconnect;
 
                 window.location.reload();
 
