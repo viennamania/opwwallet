@@ -88,6 +88,7 @@ import { N } from "ethers";
 import { useQRCode } from 'next-qrcode';
 import { acceptBuyOrder } from "@/lib/api/order";
 import App from "next/app";
+import { disconnect } from "process";
 
 
 
@@ -1199,7 +1200,8 @@ export default function Index({ params }: any) {
               onClick={() => {
 
                 confirm(Are_you_sure_you_want_to_disconnect_your_wallet) && 
-                activeWallet?.disconnect();
+                //activeWallet?.disconnect();
+                disconnect();
 
                 window.location.reload();
 
