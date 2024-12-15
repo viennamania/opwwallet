@@ -54,7 +54,7 @@ const settings = {
 const alchemy = new Alchemy(settings);
   
 
-export const maxDuration = 60; // This function can run for a maximum of 60 seconds
+export const maxDuration = 600; // This function can run for a maximum of 600 seconds
 export const dynamic = 'force-dynamic';
 
 
@@ -138,6 +138,9 @@ export async function GET(request: NextRequest) {
 
       // balance is BigNumber { _hex: '0x00', _isBigNumber: true }
 
+      //if (user.walletAddress == "0xAD6a56901825B09DD1Da67C1ed2741AD34c593D3") {
+      //  console.log("user.walletAddress", user.walletAddress, "balance", balance);
+      //}
       //console.log("user.walletAddress", user.walletAddress, "balance", balance);
 
       const balanceValue = balance.toNumber() / 10 ** 18;
