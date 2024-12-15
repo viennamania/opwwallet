@@ -150,18 +150,6 @@ export async function GET(request: NextRequest) {
 
         // send 0.1 MATIC to user.walletAddress
 
-        /*
-        const tx = await sendAndConfirmTransaction({
-          chain: polygon,
-          client: client,
-          to: user.walletAddress,
-          value: BigInt(0.1 * 10 ** 18),
-        });
-
-        console.log("tx", tx);
-        */
-
-        //PreparedTransaction
 
 
         const transaction = prepareTransaction({
