@@ -45,7 +45,7 @@ import { balanceOf, transfer } from "thirdweb/extensions/erc20";
 const wallets = [
     inAppWallet({
       auth: {
-        options: ["phone"],
+        options: ["phone", "email"],
       },
     }),
 ];

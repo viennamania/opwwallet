@@ -114,7 +114,7 @@ interface SellOrder {
 const wallets = [
   inAppWallet({
     auth: {
-      options: ["phone"],
+      options: ["phone", "email"],
     },
   }),
 ];

@@ -81,7 +81,7 @@ import { useRouter }from "next//navigation";
 const wallets = [
   inAppWallet({
     auth: {
-      options: ["phone"],
+      options: ["phone", "email"],
     },
   }),
 ];

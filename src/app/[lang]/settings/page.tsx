@@ -35,7 +35,7 @@ import { add } from 'thirdweb/extensions/farcaster/keyGateway';
 const wallets = [
     inAppWallet({
       auth: {
-        options: ["phone"],
+        options: ["phone", "email"],
       },
     }),
 ];

@@ -115,7 +115,7 @@ interface SellOrder {
 const wallets = [
   inAppWallet({
     auth: {
-      options: ["phone"],
+      options: ["phone", "email"],
     },
   }),
 ];
@@ -720,7 +720,25 @@ export default function Index({ params }: any) {
 
     
   
+    // fiet currency
 
+    const [fietCurrency, setFietCurrency] = useState('USDT');
+
+    useEffect(() => {
+
+      if (fietCurrency === 'USDT') {
+        setRate(1);
+      } else if (fietCurrency === 'USD') {
+        setRate(1);
+      } else if (fietCurrency === 'KRW') {
+        setRate(1400);
+      } else if (fietCurrency === 'JPY') {
+        setRate(155);
+      } else if (fietCurrency === 'CNY') {
+        setRate(7);
+      }
+
+    } , [fietCurrency]);
 
 
 
@@ -734,7 +752,6 @@ export default function Index({ params }: any) {
 
 
     const [seller, setSeller] = useState(null) as any;
-
 
 
     const [isSeller, setIsSeller] = useState(false);
@@ -786,7 +803,7 @@ export default function Index({ params }: any) {
                 
                 setSeller(data.result?.seller);
 
-
+                
                 if (data?.result?.seller
                   || data?.result?.sellerAliPay
                   || data?.result?.sellerWechatPay
@@ -797,6 +814,12 @@ export default function Index({ params }: any) {
                 ) {
                   setIsSeller(true);
                 }
+
+                // if fietCurrency is USDT, isSeller is true
+                if (fietCurrency === 'USDT') {
+                  setIsSeller(true);
+                }
+
 
 
 
@@ -840,7 +863,7 @@ export default function Index({ params }: any) {
   
         address && fetchData();
   
-    }, [address]);
+    }, [address, fietCurrency]);
 
 
 
@@ -962,25 +985,7 @@ export default function Index({ params }: any) {
     const [checkInputKrwAmount, setCheckInputKrwAmount] = useState(false);
 
 
-    // fiet currency
 
-    const [fietCurrency, setFietCurrency] = useState('USDT');
-
-    useEffect(() => {
-
-      if (fietCurrency === 'USDT') {
-        setRate(1);
-      } else if (fietCurrency === 'USD') {
-        setRate(1);
-      } else if (fietCurrency === 'KRW') {
-        setRate(1400);
-      } else if (fietCurrency === 'JPY') {
-        setRate(155);
-      } else if (fietCurrency === 'CNY') {
-        setRate(7);
-      }
-
-    } , [fietCurrency]);
 
 
 
@@ -2100,23 +2105,6 @@ export default function Index({ params }: any) {
                           </div>
                         )}
                       
-
-                        {userCode && paymentMethods.length === 0 && (
-                          <div className="flex flex-col gap-2 items-start">
-                            <div className="text-sm text-blue-500">
-                              {Please_register_your_seller_information}
-                            </div>
-                            <button
-                              onClick={() => {
-                                router.push('/' + params.lang + '/' + params.chain + '/seller-apply')
-                              }}
-                              className="text-sm text-blue-500 underline"
-                            >
-                              {Apply_for_Listing_New_Seller}
-                            </button>
-                          </div>
-                        )}
-
                       </div>
                     
                     </div>
@@ -3667,9 +3655,9 @@ export default function Index({ params }: any) {
                                   {Price}:{' '}
                                   {
                                     item.fietCurrency === 'USDT' ? (
-                                      Number(item.fietAmount).toLocaleString('ko-KR', {
+                                      Number(item.fietAmount).toLocaleString('en-US', {
                                         style: 'currency',
-                                        currency: 'KRW',
+                                        currency: 'USD',
                                       })
                                     ) : item.fietCurrency === 'KRW' ? (
                                       Number(item.fietAmount).toLocaleString('ko-KR', {

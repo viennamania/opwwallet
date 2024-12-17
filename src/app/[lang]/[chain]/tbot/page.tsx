@@ -80,7 +80,7 @@ import { Alert } from '@mui/material';
 const wallets = [
     inAppWallet({
       auth: {
-        options: ["phone"],
+        options: ["phone", "email"],
       },
     }),
 ];
