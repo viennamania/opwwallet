@@ -991,235 +991,257 @@ export default function SettingsPage({ params }: any) {
 
                                 <div className='w-full flex flex-col xl:flex-row gap-2 items-start justify-between'>
 
-                                {seller && (
+                                    {seller && (
 
-                                    <div className='w-full flex flex-row gap-2 items-start justify-between border border-gray-300 p-4 rounded-lg'>
+                                        <div className='w-full flex flex-row gap-2 items-start justify-between border border-gray-300 p-4 rounded-lg'>
 
-                                        <div className="bg-green-500 text-sm text-zinc-100 p-2 rounded">
-                                            {Seller}
-                                        </div>
+                                            <div className="bg-green-500 text-sm text-zinc-100 p-2 rounded">
+                                                {Seller}
+                                            </div>
 
-                                        <div className="flex flex-col p-5 bg-zinc-800 rounded text-zinc-100 text-xl font-semibold gap-5">
-                                            
-                                            <div className='flex flex-col xl:flex-row gap-2 items-center justify-between'>
-                                                <span className='text-xs font-semibold'>
-                                                    {Bank_Name}
-                                                </span>
-                                                <div className="text-lg font-semibold">
-                                                    {seller?.bankInfo?.bankName}
+                                            <div className="flex flex-col p-5 bg-zinc-800 rounded text-zinc-100 text-xl font-semibold gap-5">
+                                                
+                                                <div className='flex flex-col xl:flex-row gap-2 items-center justify-between'>
+                                                    <span className='text-xs font-semibold'>
+                                                        {Bank_Name}
+                                                    </span>
+                                                    <div className="text-lg font-semibold">
+                                                        {seller?.bankInfo?.bankName}
+                                                    </div>
+                                                </div>
+                                                <div className='flex flex-col xl:flex-row gap-2 items-center justify-between'>
+                                                    <span className='text-xs font-semibold'>
+                                                        {Account_Number}
+                                                    </span>
+                                                    <div className="text-lg font-semibold">
+                                                        {seller?.bankInfo?.accountNumber}
+                                                    </div>
+                                                </div>
+                                                <div className='flex flex-col xl:flex-row gap-2 items-center justify-between'>
+                                                    <span className='text-xs font-semibold'>
+                                                        {Account_Holder}
+                                                    </span>
+                                                    <div className="text-lg font-semibold">
+                                                        {seller?.bankInfo?.accountHolder}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className='flex flex-col xl:flex-row gap-2 items-center justify-between'>
-                                                <span className='text-xs font-semibold'>
-                                                    {Account_Number}
-                                                </span>
-                                                <div className="text-lg font-semibold">
-                                                    {seller?.bankInfo?.accountNumber}
-                                                </div>
-                                            </div>
-                                            <div className='flex flex-col xl:flex-row gap-2 items-center justify-between'>
-                                                <span className='text-xs font-semibold'>
-                                                    {Account_Holder}
-                                                </span>
-                                                <div className="text-lg font-semibold">
-                                                    {seller?.bankInfo?.accountHolder}
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        {/*
-                                        <button
-                                            onClick={() => {
-                                                setEditSeller(!editSeller);
-                                            }}
-                                            className="p-2 bg-blue-500 text-zinc-100 rounded"
-                                        >
-                                            {editSeller ? Cancel : Edit}
-                                        </button>
-                                        */}
-
-                                        
-
-
-                                        <Image
-                                            src="/verified.png"
-                                            alt="Verified"
-                                            width={20}
-                                            height={20}
-                                            className="rounded-lg"
-                                        />
-
-
-                                    </div>
-                                )}
-
-
-                                <div className='w-full flex flex-col gap-2 items-center justify-between border border-gray-300 p-4 rounded-lg'>
-                                
-                                    <div className='w-full flex flex-row gap-2 items-center justify-between'>
-
-                                        <div className="bg-green-500 text-sm text-zinc-100 p-2 rounded">
-                                            {Seller}
-                                        </div>
-
-                                        {!seller && (
-                                            <div className="p-2 bg-zinc-800 rounded text-zinc-100 text-xl font-semibold">
-                                                {Not_a_seller}
-                                            </div>
-                                        )}
-
-                                        {applying ? (
-                                            <div className="p-2 bg-gray-300 text-gray-400 rounded text-sm font-semibold">
-                                                {Applying}...
-                                            </div>
-                                        ) : (
+                                            {/*
                                             <button
-                                                disabled={applying || !verifiedOtp}
-
                                                 onClick={() => {
-                                                    // apply to be a seller
-                                                    // set seller to true
-                                                    // set seller to false
-                                                    // set seller to pending
-
-                                                    apply();
-
+                                                    setEditSeller(!editSeller);
                                                 }}
-                                                className={`
-                                                    ${!verifiedOtp ? 'bg-gray-300 text-gray-400'
-                                                    : 'bg-green-500 text-zinc-100'}
-
-                                                    p-2 rounded-lg text-sm font-semibold
-                                                `}
+                                                className="p-2 bg-blue-500 text-zinc-100 rounded"
                                             >
-                                                {Apply}
+                                                {editSeller ? Cancel : Edit}
                                             </button>
-                                        )}
+                                            */}
 
-                                    </div>
-
-                                    {/* 은행명, 계좌번호, 예금주 */}
-                                    <div className='w-full flex flex-col gap-2 items-start justify-between'>
-                                                                            
-                                        <input 
-                                            disabled={applying}
-                                            className="p-2 w-64 text-zinc-100 bg-zinc-800 rounded text-lg font-semibold"
-                                            placeholder={Enter_your_bank_name}
-                                            value={bankName}
-                                            type='text'
-                                            onChange={(e) => {
-                                                setBankName(e.target.value);
-                                            }}
-                                        />
-                                        <input 
-                                            disabled={applying}
-                                            className="p-2 w-64 text-zinc-100 bg-zinc-800 rounded text-lg font-semibold"
-                                            placeholder={Enter_your_account_number}
-                                            value={accountNumber}
-                                            type='number'
-                                            onChange={(e) => {
-
-                                                // check if the value is a number
-
-                                                e.target.value = e.target.value.replace(/[^0-9]/g, '');
-
-                                                setAccountNumber(e.target.value);
-                                            }}
-                                        />
-                                        <input 
-                                            disabled={applying}
-                                            className="p-2 w-64 text-zinc-100 bg-zinc-800 rounded text-lg font-semibold"
-                                            placeholder={Enter_your_account_holder}
-                                            value={accountHolder}
-                                            type='text'
-                                            onChange={(e) => {
-                                                setAccountHolder(e.target.value);
-                                            }}
-                                        />
-                                    </div>
-                                    {/*
-                                    <div className="text-xs font-semibold">
-                                        To become a seller, you need to send 1 USDT to the contract address
-                                    </div>
-                                    */}
-
-
-
-                                
-
-                                    {/* otp verification */}
-
-                                    {/*
-                                    {verifiedOtp ? (
-                                        <div className="w-full flex flex-row gap-2 items-center justify-center">
-                                        <Image
-                                            src="/verified.png"
-                                            alt="check"
-                                            width={30}
-                                            height={30}
-                                        />
-                                        <div className="text-white">
-                                            {OTP_verified}
-                                        </div>
-                                        </div>
-                                    ) : (
-                                    
-                                
-                                        <div className="w-full flex flex-row gap-2 items-start">
-
-                                        <button
-                                            disabled={!address || isSendingOtp}
-                                            onClick={sendOtp}
-                                            className={`
                                             
-                                            ${isSendedOtp && 'hidden'}
 
-                                            w-32 p-2 rounded-lg text-sm font-semibold
 
-                                                ${
-                                                !address || isSendingOtp
-                                                ?'bg-gray-300 text-gray-400'
-                                                : 'bg-green-500 text-white'
-                                                }
-                                            
-                                            `}
-                                        >
-                                            {Send_OTP}
-                                        </button>
-
-                                        <div className={`flex flex-row gap-2 items-center justify-center ${!isSendedOtp && 'hidden'}`}>
-                                            <input
-                                            type="text"
-                                            placeholder={Enter_OTP}
-                                            className=" w-40 p-2 border border-gray-300 rounded text-black text-sm font-semibold"
-                                            value={otp}
-                                            onChange={(e) => setOtp(e.target.value)}
+                                            <Image
+                                                src="/verified.png"
+                                                alt="Verified"
+                                                width={20}
+                                                height={20}
+                                                className="rounded-lg"
                                             />
 
-                                            <button
-                                            disabled={!otp || isVerifingOtp}
-                                            onClick={verifyOtp}
-                                            className={`w-32 p-2 rounded-lg text-sm font-semibold
 
-                                                ${
-                                                !otp || isVerifingOtp
-                                                ?'bg-gray-300 text-gray-400'
-                                                : 'bg-green-500 text-white'
-                                                }
+                                        </div>
+                                    )}
+
+
+                                    {/* bank information */}
+                                    <div className='w-full flex flex-col gap-2 items-center justify-between border border-gray-300 p-4 rounded-lg'>
+                                    
+                                        <div className='w-full flex flex-row gap-2 items-center justify-between'>
+
+                                            <div className="bg-green-500 text-sm text-zinc-100 p-2 rounded">
+                                                {Seller}
+                                            </div>
+
+                                            {!seller && (
+                                                <div className="p-2 bg-zinc-800 rounded text-zinc-100 text-xl font-semibold">
+                                                    {Not_a_seller}
+                                                </div>
+                                            )}
+
+                                            {applying ? (
+                                                <div className="p-2 bg-gray-300 text-gray-400 rounded text-sm font-semibold">
+                                                    {Applying}...
+                                                </div>
+                                            ) : (
+                                                <button
+                                                    disabled={applying || !verifiedOtp}
+
+                                                    onClick={() => {
+                                                        // apply to be a seller
+                                                        // set seller to true
+                                                        // set seller to false
+                                                        // set seller to pending
+
+                                                        apply();
+
+                                                    }}
+                                                    className={`
+                                                        ${!verifiedOtp ? 'bg-gray-300 text-gray-400'
+                                                        : 'bg-green-500 text-zinc-100'}
+
+                                                        p-2 rounded-lg text-sm font-semibold
+                                                    `}
+                                                >
+                                                    {Apply}
+                                                </button>
+                                            )}
+
+                                        </div>
+
+                                        {/* 은행명, 계좌번호, 예금주 */}
+                                        <div className='w-full flex flex-col gap-2 items-start justify-between'>
+                                                                                
+                                            <input 
+                                                disabled={applying}
+                                                className="p-2 w-64 text-zinc-100 bg-zinc-800 rounded text-lg font-semibold"
+                                                placeholder={Enter_your_bank_name}
+                                                value={bankName}
+                                                type='text'
+                                                onChange={(e) => {
+                                                    setBankName(e.target.value);
+                                                }}
+                                            />
+                                            <input 
+                                                disabled={applying}
+                                                className="p-2 w-64 text-zinc-100 bg-zinc-800 rounded text-lg font-semibold"
+                                                placeholder={Enter_your_account_number}
+                                                value={accountNumber}
+                                                type='number'
+                                                onChange={(e) => {
+
+                                                    // check if the value is a number
+
+                                                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+
+                                                    setAccountNumber(e.target.value);
+                                                }}
+                                            />
+                                            <input 
+                                                disabled={applying}
+                                                className="p-2 w-64 text-zinc-100 bg-zinc-800 rounded text-lg font-semibold"
+                                                placeholder={Enter_your_account_holder}
+                                                value={accountHolder}
+                                                type='text'
+                                                onChange={(e) => {
+                                                    setAccountHolder(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+
+
+
+
+                                        {/*
+                                        <div className="text-xs font-semibold">
+                                            To become a seller, you need to send 1 USDT to the contract address
+                                        </div>
+                                        */}
+
+
+
+                                    
+
+                                        {/* otp verification */}
+
+                                        {/*
+                                        {verifiedOtp ? (
+                                            <div className="w-full flex flex-row gap-2 items-center justify-center">
+                                            <Image
+                                                src="/verified.png"
+                                                alt="check"
+                                                width={30}
+                                                height={30}
+                                            />
+                                            <div className="text-white">
+                                                {OTP_verified}
+                                            </div>
+                                            </div>
+                                        ) : (
+                                        
+                                    
+                                            <div className="w-full flex flex-row gap-2 items-start">
+
+                                            <button
+                                                disabled={!address || isSendingOtp}
+                                                onClick={sendOtp}
+                                                className={`
+                                                
+                                                ${isSendedOtp && 'hidden'}
+
+                                                w-32 p-2 rounded-lg text-sm font-semibold
+
+                                                    ${
+                                                    !address || isSendingOtp
+                                                    ?'bg-gray-300 text-gray-400'
+                                                    : 'bg-green-500 text-white'
+                                                    }
                                                 
                                                 `}
                                             >
-                                                {Verify_OTP}
+                                                {Send_OTP}
                                             </button>
-                                        </div>
 
-                                        </div>
+                                            <div className={`flex flex-row gap-2 items-center justify-center ${!isSendedOtp && 'hidden'}`}>
+                                                <input
+                                                type="text"
+                                                placeholder={Enter_OTP}
+                                                className=" w-40 p-2 border border-gray-300 rounded text-black text-sm font-semibold"
+                                                value={otp}
+                                                onChange={(e) => setOtp(e.target.value)}
+                                                />
 
-                                    )}
+                                                <button
+                                                disabled={!otp || isVerifingOtp}
+                                                onClick={verifyOtp}
+                                                className={`w-32 p-2 rounded-lg text-sm font-semibold
+
+                                                    ${
+                                                    !otp || isVerifingOtp
+                                                    ?'bg-gray-300 text-gray-400'
+                                                    : 'bg-green-500 text-white'
+                                                    }
+                                                    
+                                                    `}
+                                                >
+                                                    {Verify_OTP}
+                                                </button>
+                                            </div>
+
+                                            </div>
+
+                                        )}
+                                        */}
+
+
+                                    </div>
+
+                                    {/* USDT Payment Information */}
+                                    {/* my wallet address */}
+                                    {/*
+                                    <div className='w-full flex flex-col gap-2 items-start justify-between border border-gray-300 p-4 rounded-lg'>
+                                        <input 
+                                            className="p-2 w-64 text-zinc-100 bg-zinc-800 rounded text-lg font-semibold"
+                                            placeholder="USDT Payment Wallet Address"
+                                            value={address}
+                                            type='text'
+                                            disabled
+                                        />
+                                        
+                                    </div>
                                     */}
 
 
-                                </div>
 
 
                                 </div>

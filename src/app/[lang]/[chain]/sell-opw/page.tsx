@@ -771,7 +771,7 @@ export default function Index({ params }: any) {
   
             const data = await response.json();
   
-            console.log("data", data);
+            ///console.log("data", data);
 
 
   
@@ -822,6 +822,9 @@ export default function Index({ params }: any) {
 
                 // clear paymentMethods
                 setPaymentMethods([]);
+
+
+                ////setPaymentMethods( (prev) => [...prev, {"method":"Wallet","seller": data.result?.seller}] );
 
                 data?.result?.seller && setPaymentMethods( (prev) => [...prev, {"method":"Bank","seller": data.result?.seller}] );
                 data?.result?.sellerAliPay && setPaymentMethods( (prev) => [...prev, {"method":"AliPay","seller": data.result?.sellerAliPay}] );
@@ -961,11 +964,13 @@ export default function Index({ params }: any) {
 
     // fiet currency
 
-    const [fietCurrency, setFietCurrency] = useState('USD');
+    const [fietCurrency, setFietCurrency] = useState('USDT');
 
     useEffect(() => {
 
-      if (fietCurrency === 'USD') {
+      if (fietCurrency === 'USDT') {
+        setRate(1);
+      } else if (fietCurrency === 'USD') {
         setRate(1);
       } else if (fietCurrency === 'KRW') {
         setRate(1400);
@@ -1029,8 +1034,8 @@ export default function Index({ params }: any) {
               method: paymentMethod,
 
               seller:
-
-              paymentMethod === 'Bank' ? user?.seller
+              paymentMethod === 'Wallet' ? 'Wallet'
+              : paymentMethod === 'Bank' ? user?.seller
               : paymentMethod === 'AliPay' ? user?.sellerAliPay
               : paymentMethod === 'WechatPay' ? user?.sellerWechatPay
               : paymentMethod === 'UnionPay' ? user?.sellerUnionPay
@@ -1550,7 +1555,7 @@ export default function Index({ params }: any) {
       const data = await response.json();
 
       
-      ////console.log('getAllSellOrders data', data);
+      //console.log('getAllSellOrders data', data);
 
 
 
@@ -1645,6 +1650,7 @@ export default function Index({ params }: any) {
 
 
 
+    //console.log('sellOrders', sellOrders);
     
     
     
@@ -1792,7 +1798,7 @@ export default function Index({ params }: any) {
                               // walletAddress === address
                               // and status === 'paymentRequested'
 
-                              sellOrders.filter((item) => item?.seller?.walletAddress === address && item.status === 'paymentRequested').length
+                              sellOrders.filter((item) => item.walletAddress === address && item.status === 'paymentRequested').length
 
                             }{' '}EA
                           </span>
@@ -1902,6 +1908,12 @@ export default function Index({ params }: any) {
                             setFietCurrency(e.target.value);
                           }}
                         >
+                          <option
+                            value="USDT"
+                            selected={fietCurrency === 'USDT'}
+                          >
+                            USDT
+                          </option>
                           
                           <option
                             value="USD"
@@ -1940,9 +1952,30 @@ export default function Index({ params }: any) {
 
                         {/* radio button for payment method */}
 
+
+                        {/* if fietCurrency is USDT, only my wallet address is shown
+                        */}
+                        
+                        {address && userCode && fietCurrency === 'USDT' && (
+                          <div className="flex flex-row items-center gap-2">
+                            <input
+                              type="radio"
+                              id="Wallet"
+                              name="paymentMethod"
+                              value="Wallet"
+                              checked={paymentMethod === 'Wallet'}
+                              onChange={(e) => setPaymentMethod(e.target.value)}
+                            />
+                            <label htmlFor="Wallet" className="text-sm text-zinc-400">
+                              {address.substring(0, 6)}...{address.substring(address.length - 4)}
+                            </label>
+                          </div>
+                        )}
                         
 
-                        {userCode && paymentMethods.length > 0 && (
+                        
+
+                        {userCode && fietCurrency !== 'USDT' && paymentMethods.length > 0 && (
                           <div className="flex flex-row items-center gap-2">
 
                             <div className="flex flex-col items-start gap-2">
@@ -1966,15 +1999,21 @@ export default function Index({ params }: any) {
                             </div>
 
                             <span className="text-sm text-zinc-400">
-                              {paymentMethod === 'Bank' ?
-
+                              {
+                                paymentMethod === 'Wallet' && address ?
                                 <div className="flex flex-col gap-2 items-start border border-zinc-400 rounded-md p-2">
-                                    {
-                                  paymentMethods.filter((item) => item.method === paymentMethod)[0]?.seller?.bankInfo?.bankName 
-                                  + ' ' + paymentMethods.filter((item) => item.method === paymentMethod)[0]?.seller?.bankInfo?.accountNumber
-                                  + ' ' + paymentMethods.filter((item) => item.method === paymentMethod)[0]?.seller?.bankInfo?.accountHolder
-                                  }
+                                  {address.substring(0, 6)}...{address.substring(address.length - 4)}
                                 </div>
+
+                                : paymentMethod === 'Bank' ?
+
+                                  <div className="flex flex-col gap-2 items-start border border-zinc-400 rounded-md p-2">
+                                      {
+                                    paymentMethods.filter((item) => item.method === paymentMethod)[0]?.seller?.bankInfo?.bankName 
+                                    + ' ' + paymentMethods.filter((item) => item.method === paymentMethod)[0]?.seller?.bankInfo?.accountNumber
+                                    + ' ' + paymentMethods.filter((item) => item.method === paymentMethod)[0]?.seller?.bankInfo?.accountHolder
+                                    }
+                                  </div>
                                 
                                 : paymentMethod === 'AliPay' ?
                                   <Image
@@ -2078,11 +2117,6 @@ export default function Index({ params }: any) {
                           </div>
                         )}
 
-
-
-
-
-
                       </div>
                     
                     </div>
@@ -2141,7 +2175,12 @@ export default function Index({ params }: any) {
 
                           <p className="mt-4 text-xl font-bold text-zinc-400">1 OPW = 
                             {
-                              fietCurrency === 'USD' ? (
+                              fietCurrency === 'USDT' ? (
+                                Number(rate).toLocaleString('en-US', {
+                                  style: 'currency',
+                                  currency: 'USD'
+                                })                              
+                              ) : fietCurrency === 'USD' ? (
                                 Number(rate).toLocaleString('en-US', {
                                   style: 'currency',
                                   currency: 'USD'
@@ -2200,7 +2239,14 @@ export default function Index({ params }: any) {
                             <p className=" text-xl text-zinc-400 font-bold">
                               = {
 
-                                fietCurrency === 'USD' ? (
+                                fietCurrency === 'USDT' ? (
+                                  Number(opwAmount * rate).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD'
+                                  })
+
+
+                                ) : fietCurrency === 'USD' ? (
                                   Number(opwAmount * rate).toLocaleString('en-US', {
                                     style: 'currency',
                                     currency: 'USD'
@@ -2976,7 +3022,13 @@ export default function Index({ params }: any) {
 
                                   <span className="text-lg text-yellow-500 font-semibold">
                                     
-                                    {item.fietCurrency === 'USD' ? (
+                                    {
+                                      item.fietCurrency === 'USDT' ? (
+                                        Number(item.fietAmount).toLocaleString('en-US', {
+                                          style: 'currency',
+                                          currency: 'USD'
+                                        })
+                                      ) : item.fietCurrency === 'USD' ? (
                                       Number(item.fietAmount).toLocaleString('en-US', {
                                         style: 'currency',
                                         currency: 'USD'
@@ -3010,7 +3062,12 @@ export default function Index({ params }: any) {
                            
                               <td>
 
-                                {item?.payment?.method === 'Bank' ? (
+                                {
+                                item?.payment?.method === 'Wallet' ? (
+                                  <span className="text-xs text-yellow-500 font-semibold">
+                                    {item?.walletAddress.substring(0, 10)}...
+                                  </span>
+                                ) : item?.payment?.method === 'Bank' ? (
                                   <div className="flex flex-col gap-1">
                                     <span>{item?.payment?.seller?.bankInfo.bankName}</span>
                                     <span>{item?.payment?.seller?.bankInfo.accountNumber}</span>
@@ -3609,7 +3666,12 @@ export default function Index({ params }: any) {
                                 <p className="text-xl text-zinc-400">
                                   {Price}:{' '}
                                   {
-                                    item.fietCurrency === 'KRW' ? (
+                                    item.fietCurrency === 'USDT' ? (
+                                      Number(item.fietAmount).toLocaleString('ko-KR', {
+                                        style: 'currency',
+                                        currency: 'KRW',
+                                      })
+                                    ) : item.fietCurrency === 'KRW' ? (
                                       Number(item.fietAmount).toLocaleString('ko-KR', {
                                         style: 'currency',
                                         currency: 'KRW',
@@ -3663,7 +3725,14 @@ export default function Index({ params }: any) {
                                   
                                   {/*item.seller?.bankInfo.bankName} {item.seller?.bankInfo.accountNumber} {item.seller?.bankInfo.accountHolder*/}
 
-                                  {item?.payment?.method === 'Bank' ? (
+                                  {
+                                  item?.payment?.method === 'Wallet' ? (
+
+                                    <div className="flex flex-row items-center gap-2 text-zinc-400">
+                                      <span>{item?.walletAddress.substring(0, 10)}...</span>
+                                    </div>
+
+                                  ) : item?.payment?.method === 'Bank' ? (
                                     <div className="flex flex-row items-center gap-2 text-zinc-400">
                                       <span>{item?.payment?.seller?.bankInfo.bankName}</span>
                                       <span>{item?.payment?.seller?.bankInfo.accountNumber}</span>
