@@ -250,6 +250,8 @@ export default function Index({ params }: any) {
 
     Pay_for_escrow: "",
 
+    Insufficient_USDT_balance: "",
+
   } );
 
   useEffect(() => {
@@ -342,6 +344,8 @@ export default function Index({ params }: any) {
     Sell_Amount,
 
     Pay_for_escrow,
+
+    Insufficient_USDT_balance,
 
 
   } = data;
@@ -950,13 +954,13 @@ export default function Index({ params }: any) {
       }
 
       if (usdtBalance < fietAmount) {
-        toast.error('Insufficient USDT balance');
+        toast.error(Insufficient_USDT_balance);
         setPayingForEscrow(payingForEscrow.map((item, i) => i === index ? false : item));
         return;
       }
 
 
-      
+
 
       // send USDT to seller wallet address
       const transaction = transfer({

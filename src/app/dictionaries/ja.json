@@ -251,5 +251,7 @@
 
     "Sell_preparation_complete": "販売準備完了：支払いを確認した後、支払い確認ボタンを押して取引を完了してください。",
 
-    "Pay_for_escrow": "エスクローに支払う"
+    "Pay_for_escrow": "エスクローに支払う",
+
+    "Insufficient_USDT_balance": "USDT 残高不足"
 }

@@ -245,5 +245,6 @@
     "Please_create_your_escrow_wallet": "กรุณาสร้างกระเป๋าเงินเอสโครว์ของคุณ คุณต้องมีกระเป๋าเงินเอสโครว์เพื่อขายสินค้า",
     "Payment_has_been_rollbacked": "การชำระเงินถูกยกเลิกแล้ว",
     "Buy_Order_Fiat": "คำสั่งซื้อ Fiat",
-    "Pay_for_escrow": "ชำระเงินสำหรับเอสโครว์"
+    "Pay_for_escrow": "ชำระเงินสำหรับเอสโครว์",
+    "Insufficient_USDT_balance": "USDT ไม่เพียงพอ"
 }

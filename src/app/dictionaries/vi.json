@@ -245,5 +245,6 @@
     "Please_create_your_escrow_wallet": "Vui lòng tạo ví escrow của bạn. Bạn phải có ví escrow để bán hàng.",
     "Payment_has_been_rollbacked": "Thanh toán đã được hoàn nguyên",
     "Buy_Order_Fiat": "Đơn Hàng Mua Fiat",
-    "Pay_for_escrow": "Thanh Toán Escrow"
+    "Pay_for_escrow": "Thanh Toán Escrow",
+    "Insufficient_USDT_balance": "USDT không đủ"
 }
