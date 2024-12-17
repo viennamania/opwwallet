@@ -118,8 +118,16 @@ const wallets = [
 
 
 
-const contractAddress = "0xcF3Ad9031729B5E131582138edE799F08F52299D"; // OPW on Polygon
-const contractAddressArbitrum = "0xcF3Ad9031729B5E131582138edE799F08F52299D"; // OPW on Arbitrum
+//const contractAddress = "0xcF3Ad9031729B5E131582138edE799F08F52299D"; // OPW on Polygon
+//const contractAddressArbitrum = "0xcF3Ad9031729B5E131582138edE799F08F52299D"; // OPW on Arbitrum
+
+const contractAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"; // USDT on Polygon
+
+const contractAddressArbitrum = "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"; // USDT on Arbitrum
+
+
+// OPW contract address
+const contractAddressOpw = "0xcF3Ad9031729B5E131582138edE799F08F52299D"; // OPW on Polygon
 
 
 
@@ -128,29 +136,21 @@ export default function Index({ params }: any) {
 
   const searchParams = useSearchParams();
  
-  const wallet = searchParams.get('wallet');
 
-
-  const contract = getContract({
-    // the client you have created via `createThirdwebClient()`
+  // USDT contract
+  const contractUsdt = getContract({
     client,
-    // the chain the contract is deployed on
-    
-    
-    chain: params.chain === "arbitrum" ? arbitrum : polygon,
-  
-  
-  
-    // the contract's address
-    ///address: contractAddress,
-
-    address: params.chain === "arbitrum" ? contractAddressArbitrum : contractAddress,
-
-
-    // OPTIONAL: the contract's abi
-    //abi: [...],
+    chain: polygon,
+    address: contractAddress,
   });
 
+
+  // OPW contract
+  const contractOpw = getContract({
+    client,
+    chain: polygon,
+    address: contractAddressOpw,
+  });
 
 
 
@@ -394,59 +394,88 @@ export default function Index({ params }: any) {
 
 
 
-
-
-  const [nativeBalance, setNativeBalance] = useState(0);
-  const [balance, setBalance] = useState(0);
-  useEffect(() => {
-
-    // get the balance
-    const getBalance = async () => {
-
-      ///console.log('getBalance address', address);
-
       
-      const result = await balanceOf({
-        contract,
-        address: address || "",
-      });
+  // usdt balance
+  const [usdtBalance, setUsdtBalance] = useState(0);
+  useEffect(() => {
+      
 
-  
-      //console.log(result);
-  
-      setBalance( Number(result) / 10 ** 18 );
+    const getUsdtBalance = async () => {
 
+      if (!address || !contractUsdt) {
+        return;
+      }
 
-      await fetch('/api/user/getBalanceByWalletAddress', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chain: params.chain,
-          walletAddress: address,
-        }),
-      })
+      try {
+        const result = await balanceOf({
+          contract: contractUsdt,
+          address: address,
+        });
+    
+        if (!result) return;
+    
+        setUsdtBalance( Number(result) / 10 ** 6 );
 
-      .then(response => response.json())
-
-      .then(data => {
-          setNativeBalance(data.result?.displayValue);
-      });
-
-
+      } catch (error) {
+        console.error("Error getting balance", error);
+      }
 
     };
 
-    if (address) getBalance();
+    
+    getUsdtBalance();
 
+    // get the balance in the interval
     const interval = setInterval(() => {
-      if (address) getBalance();
-    } , 1000);
+      getUsdtBalance();
+    }, 1000);
+
 
     return () => clearInterval(interval);
+  
+  } , [address, contractUsdt]);
 
-  } , [address, contract, params.chain]);
+
+
+  const [opwBalance, setOpwBalance] = useState(0);
+  useEffect(() => {
+      
+
+
+      const getOpwBalance = async () => {
+
+        if (!address || !contractOpw) {
+          return;
+        }
+
+        try {
+          const result = await balanceOf({
+            contract: contractOpw,
+            address: address,
+          });
+      
+          if (!result) return;
+      
+          setOpwBalance( Number(result) / 10 ** 18 );
+  
+        } catch (error) {
+          console.error("Error getting balance", error);
+        }
+
+      };
+
+      getOpwBalance();
+
+      // get the balance in the interval
+      const interval = setInterval(() => {
+        getOpwBalance();
+      }, 1000);
+
+
+      return () => clearInterval(interval);
+
+  } , [address, contractOpw]);
+
 
 
 
@@ -510,7 +539,7 @@ export default function Index({ params }: any) {
 
 
       const result = await balanceOf({
-        contract,
+        contract: contractOpw,
         address: escrowWalletAddress,
       });
 
@@ -545,7 +574,7 @@ export default function Index({ params }: any) {
 
     return () => clearInterval(interval);
 
-  } , [address, escrowWalletAddress, contract, params.chain]);
+  } , [address, escrowWalletAddress, contractOpw, params.chain]);
   
 
 
@@ -951,11 +980,19 @@ export default function Index({ params }: any) {
                       <div className="text-sm">{My_Balance}</div>
                       <div className="flex flex-row items-end justify-center  gap-2">
                         <span className="text-4xl font-semibold text-gray-800">
-                          {Number(balance).toFixed(2)}
+                          {Number(opwBalance).toFixed(2)}
                         </span>
                         <span className="text-lg">OPW</span>
                       </div>
+                      <div className="flex flex-row items-end justify-center  gap-2">
+                        <span className="text-4xl font-semibold text-gray-800">
+                          {Number(usdtBalance).toFixed(2)}
+                        </span>
+                        <span className="text-lg">USDT</span>
+                      </div>
                     </div>
+
+                    
 
                     {!address && (
 

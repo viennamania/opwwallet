@@ -190,26 +190,6 @@ export default function Index({ params }: any) {
 
 
 
-  const contract = getContract({
-    // the client you have created via `createThirdwebClient()`
-    client,
-    // the chain the contract is deployed on
-    
-    
-    chain: params.chain === "arbitrum" ? arbitrum : polygon,
-  
-  
-  
-    // the contract's address
-    ///address: contractAddress,
-
-    address: params.chain === "arbitrum" ? contractAddressArbitrum : contractAddress,
-
-
-    // OPTIONAL: the contract's abi
-    //abi: [...],
-  });
-
 
   // USDT contract
   const contractUsdt = getContract({
@@ -535,43 +515,43 @@ export default function Index({ params }: any) {
 
 
     
-    // usdt balance
-    const [usdtBalance, setUsdtBalance] = useState(0);
-    useEffect(() => {
-        
-  
-      const getUsdtBalance = async () => {
+  // usdt balance
+  const [usdtBalance, setUsdtBalance] = useState(0);
+  useEffect(() => {
+      
 
-        if (!address || !contractUsdt) {
-          return;
-        }
-  
-        try {
-          const result = await balanceOf({
-            contract: contractUsdt,
-            address: address,
-          });
-      
-          if (!result) return;
-      
-          setUsdtBalance( Number(result) / 10 ** 6 );
-  
-        } catch (error) {
-          console.error("Error getting balance", error);
-        }
-  
-      };
-  
-      
+    const getUsdtBalance = async () => {
+
+      if (!address || !contractUsdt) {
+        return;
+      }
+
+      try {
+        const result = await balanceOf({
+          contract: contractUsdt,
+          address: address,
+        });
+    
+        if (!result) return;
+    
+        setUsdtBalance( Number(result) / 10 ** 6 );
+
+      } catch (error) {
+        console.error("Error getting balance", error);
+      }
+
+    };
+
+    
+    getUsdtBalance();
+
+    // get the balance in the interval
+    const interval = setInterval(() => {
       getUsdtBalance();
-  
-      // get the balance in the interval
-      const interval = setInterval(() => {
-        getUsdtBalance();
-      }, 1000);
-  
-  
-      return () => clearInterval(interval);
+    }, 1000);
+
+
+    return () => clearInterval(interval);
   
   } , [address, contractUsdt]);
 
