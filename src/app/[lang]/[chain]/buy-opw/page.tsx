@@ -2367,6 +2367,22 @@ export default function Index({ params }: any) {
 
                                     </div>
 
+                                    {/* pay for escrow */}
+                                    {address && item?.buyer?.walletAddress === address && (
+                                      <button
+                                        className="mt-4 text-lg text-white bg-green-500 px-4 py-2 rounded-md"
+                                        onClick={() => {
+                                          // api call
+                                          // payForEscrow
+
+                                          //payForEscrow(item._id, item.opwAmount, item.fietAmount, item.fietCurrency);
+
+                                        }}
+                                      >
+                                        결제하기 {item.fietAmount} {item.fietCurrency}
+                                      </button>
+                                    )}
+
 
                                   </div>
                               )}
