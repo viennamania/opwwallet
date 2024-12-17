@@ -1298,7 +1298,16 @@ export default function Index({ params }: any) {
                                 
                                 {/*item.seller?.bankInfo.bankName*/}
 
-                                {item?.payment?.method === 'Bank' ? (
+                                {
+                                  item?.payment?.method === 'Wallet' ? (
+
+                                    <div className="flex flex-col items-center gap-2 text-zinc-400">
+                                      <span>
+                                        {item?.walletAddress.substring(0, 6)}...{item?.walletAddress.substring(item?.walletAddress.length - 4)}
+                                      </span>
+                                    </div>
+                                  
+                                  ) : item?.payment?.method === 'Bank' ? (
                                     <div className="flex flex-col items-center gap-2 text-zinc-400">
                                       <span>{item?.payment?.seller?.bankInfo.bankName}</span>
                                       <span>{item?.payment?.seller?.bankInfo.accountNumber}</span>
@@ -1928,7 +1937,16 @@ export default function Index({ params }: any) {
                                   
                                   {/*item.seller?.bankInfo.bankName} {item.seller?.bankInfo.accountNumber} {item.seller?.bankInfo.accountHolder*/}
 
-                                  {item?.payment?.method === 'Bank' ? (
+                                  {
+                                  item?.payment?.method === 'Wallet' ? (
+                                      
+                                      <div className="flex flex-row items-center gap-2 text-zinc-400">
+                                        <span>
+                                          {item?.walletAddress.substring(0, 6)}...{item?.walletAddress.substring(item?.walletAddress.length - 4)}
+                                        </span>
+                                      </div>
+                                  
+                                  ) : item?.payment?.method === 'Bank' ? (
                                     <div className="flex flex-row items-center gap-2 text-zinc-400">
                                       <span>{item?.payment?.seller?.bankInfo.bankName}</span>
                                       <span>{item?.payment?.seller?.bankInfo.accountNumber}</span>
@@ -2282,7 +2300,11 @@ export default function Index({ params }: any) {
 
                                       <div>{Waiting_for_buyer_to_send} {
 
-                                        item.fietCurrency === 'USD' ?
+                                        item.fietCurrency === 'USDT' ?
+                                        Number(item.fietAmount).toLocaleString('en-US', {
+                                          style: 'currency',
+                                          currency: 'USD',
+                                        }) : item.fietCurrency === 'USD' ?
                                         Number(item.fietAmount).toLocaleString('en-US', {
                                           style: 'currency',
                                           currency: 'USD',
