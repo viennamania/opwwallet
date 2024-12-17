@@ -450,7 +450,9 @@
 
     "Buyer_has_accepted_the_trade": "Buyer has accepted the trade. Please request payment.",
 
-    "Sell_preparation_complete": "Sell preparation complete: After confirming the payment, press the payment confirmation button to complete the transaction."
+    "Sell_preparation_complete": "Sell preparation complete: After confirming the payment, press the payment confirmation button to complete the transaction.",
+
+    "Pay_for_escrow": "Pay for escrow"
 
 
 

@@ -248,6 +248,8 @@ export default function Index({ params }: any) {
 
     Sell_Amount: "",
 
+    Pay_for_escrow: "",
+
   } );
 
   useEffect(() => {
@@ -338,6 +340,8 @@ export default function Index({ params }: any) {
     Reload,
 
     Sell_Amount,
+
+    Pay_for_escrow,
 
 
   } = data;
@@ -912,6 +916,107 @@ export default function Index({ params }: any) {
 
 
 
+    // payForEscrow
+    const [payingForEscrow, setPayingForEscrow] = useState([] as boolean[]);
+    useEffect(() => {
+      setPayingForEscrow(sellOrders.map(() => false));
+    } , [sellOrders]);
+
+    const payForEscrow = async (orderId: string, index: number) => {
+
+      if (payingForEscrow[index]) {
+        return;
+      }
+
+      setPayingForEscrow(payingForEscrow.map((item, i) => i === index ? true : item));
+
+
+      // transfer USDT to seller wallet address
+
+      const sellerWalletAddress = sellOrders[index].walletAddress;
+
+      if (!sellerWalletAddress) {
+        toast.error('Seller wallet address is empty');
+        setPayingForEscrow(payingForEscrow.map((item, i) => i === index ? false : item));
+        return;
+      }
+
+      const fietAmount = sellOrders[index].fietAmount;
+
+      if (!fietAmount) {
+        toast.error('Fiet amount is empty');
+        setPayingForEscrow(payingForEscrow.map((item, i) => i === index ? false : item));
+        return;
+      }
+
+      if (usdtBalance < fietAmount) {
+        toast.error('Insufficient USDT balance');
+        setPayingForEscrow(payingForEscrow.map((item, i) => i === index ? false : item));
+        return;
+      }
+
+
+      
+
+      // send USDT to seller wallet address
+      const transaction = transfer({
+        contract: contractUsdt,
+        to: sellerWalletAddress,
+        amount: fietAmount,
+      });
+
+      const transactionResult = await sendAndConfirmTransaction({
+        transaction,
+        account: activeAccount as any,
+      });
+
+      if (!transactionResult) {
+        toast.error('Failed to send USDT to seller wallet address');
+        setPayingForEscrow(payingForEscrow.map((item, i) => i === index ? false : item));
+        return;
+      }
+
+
+
+      const response = await fetch('/api/orderOpw/payForEscrow', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          orderId: orderId,
+        })
+      });
+
+      const data = await response.json();
+
+      ///console.log('data', data);
+
+      if (data.result) {
+        toast.success(Pay_for_escrow);
+
+        await fetch('/api/orderOpw/getAllSellOrdersForBuyer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+          })
+        }).then(async (response) => {
+          const data = await response.json();
+          //console.log('data', data);
+          if (data.result) {
+            setSellOrders(data.result.orders);
+          }
+        });
+
+      } else {
+        toast.error(Order_has_been_failed);
+      }
+
+      setPayingForEscrow(payingForEscrow.map((item, i) => i === index ? false : item));
+
+    }
 
 
 
@@ -2375,11 +2480,11 @@ export default function Index({ params }: any) {
                                           // api call
                                           // payForEscrow
 
-                                          //payForEscrow(item._id, item.opwAmount, item.fietAmount, item.fietCurrency);
+                                          payForEscrow(item._id, index);
 
                                         }}
                                       >
-                                        결제하기 {item.fietAmount} {item.fietCurrency}
+                                        {Pay_for_escrow} {item.fietAmount} {item.fietCurrency}
                                       </button>
                                     )}
 

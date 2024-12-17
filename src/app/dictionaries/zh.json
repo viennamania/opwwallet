@@ -275,6 +275,8 @@
 
     "Buyer_has_accepted_the_trade": "买家已接受交易。请请求付款。",
 
-    "Sell_preparation_complete": "卖出准备完成：确认付款后，按付款确认按钮完成交易。"
+    "Sell_preparation_complete": "卖出准备完成：确认付款后，按付款确认按钮完成交易。",
+
+    "Pay_for_escrow": "支付托管"
    
 }
