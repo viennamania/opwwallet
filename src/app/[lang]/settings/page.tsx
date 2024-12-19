@@ -96,6 +96,8 @@ export default function SettingsPage({ params }: any) {
 
         Wallet_Settings: "",
         Profile_Settings: "",
+
+        Are_you_sure_you_want_to_disconnect_your_wallet: "",
     
     } );
     
@@ -130,6 +132,9 @@ export default function SettingsPage({ params }: any) {
 
         Wallet_Settings,
         Profile_Settings,
+
+        Are_you_sure_you_want_to_disconnect_your_wallet,
+        
     } = data;
     
     
@@ -529,9 +534,11 @@ export default function SettingsPage({ params }: any) {
                                 <button
                                     disabled={!activeWallet}
                                     onClick={() => {
+
+                                        confirm(Are_you_sure_you_want_to_disconnect_your_wallet) && 
                                         activeWallet?.disconnect();
 
-                                        window.location.reload();
+                                        ///window.location.reload();
                                     }}
                                     className="p-2 bg-red-500 text-zinc-100 rounded"
                                 >

@@ -1182,10 +1182,11 @@ export default function Index({ params }: any) {
               onClick={() => {
 
                 confirm(Are_you_sure_you_want_to_disconnect_your_wallet) && 
+                
                 activeWallet?.disconnect();
-                //disconnect;
 
-                window.location.reload();
+
+                //window.location.reload();
 
               }}
               className="text-lg bg-red-500 text-white px-4 py-2 rounded-lg

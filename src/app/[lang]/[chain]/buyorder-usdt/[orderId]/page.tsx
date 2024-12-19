@@ -292,6 +292,8 @@ export default function Index({ params }: any) {
 
       Sign_in_with_Wallet: "",
 
+      Are_you_sure_you_want_to_disconnect_your_wallet: "",
+
     } );
   
     useEffect(() => {
@@ -388,6 +390,8 @@ export default function Index({ params }: any) {
       Reload,
 
       Sign_in_with_Wallet,
+
+      Are_you_sure_you_want_to_disconnect_your_wallet,
 
     } = data;
    
@@ -1325,11 +1329,12 @@ export default function Index({ params }: any) {
               <button
                 onClick={() => {
 
+                  confirm(Are_you_sure_you_want_to_disconnect_your_wallet) && 
                   activeWallet?.disconnect();
 
                     
                     
-                  window.location.reload();
+                 /// window.location.reload();
 
                 }}
                 className="text-lg bg-red-500 text-white px-4 py-2 rounded-md"

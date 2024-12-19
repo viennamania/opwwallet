@@ -122,7 +122,7 @@ export default function SettingsPage({ params }: any) {
 
         Disconnect_Wallet: "",
     
-
+        Are_you_sure_you_want_to_disconnect_your_wallet: "",
     
     } );
     
@@ -169,6 +169,8 @@ export default function SettingsPage({ params }: any) {
         Copy,
 
         Disconnect_Wallet,
+
+        Are_you_sure_you_want_to_disconnect_your_wallet,
 
     } = data;
     
@@ -594,6 +596,7 @@ export default function SettingsPage({ params }: any) {
                                         //activeWallet?.disconnect();
                                         //window.location.reload();
 
+                                        confirm(Are_you_sure_you_want_to_disconnect_your_wallet) && 
                                         disconnect(activeWallet);
 
 
