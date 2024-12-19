@@ -1108,8 +1108,10 @@ export default function Index({ params }: any) {
                       <ConnectButton
                       client={client}
 
-                      /*
+                      
                       wallets={wallets}
+
+                      /*
                       accountAbstraction={{
                         chain: polygon,
                         sponsorGas: true
