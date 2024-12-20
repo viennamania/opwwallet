@@ -435,7 +435,7 @@ export default function SendUsdt({ params }: any) {
 
 
 
-
+  const [escrowWalletAddress, setEscrowWalletAddress] = useState('');
 
 
 
@@ -473,8 +473,12 @@ export default function SendUsdt({ params }: any) {
 
       const data = await response.json();
 
+      console.log("getUser", data);
 
       setUser(data.result);
+
+
+      setEscrowWalletAddress(data.result?.escrowWalletAddress);
 
     };
 
@@ -525,7 +529,7 @@ export default function SendUsdt({ params }: any) {
 
       const data = await response.json();
 
-      console.log("getUsers", data);
+      ///console.log("getUsers", data);
 
 
       ///setUsers(data.result.users);
@@ -912,6 +916,67 @@ export default function SendUsdt({ params }: any) {
 
 
 
+
+  const [escrowBalance, setEscrowBalance] = useState(0);
+  const [escrowNativeBalance, setEscrowNativeBalance] = useState(0);
+  useEffect(() => {
+
+    const getEscrowBalance = async () => {
+
+      if (!address) {
+        setEscrowBalance(0);
+        return;
+      }
+
+      if (!escrowWalletAddress || escrowWalletAddress === '') return;
+
+
+      const result = await balanceOf({
+        contract,
+        address: escrowWalletAddress,
+      });
+
+  
+      setEscrowBalance( Number(result) / 10 ** 18 );
+
+
+
+
+      await fetch('/api/user/getBalanceByWalletAddress', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chain: params.chain,
+          walletAddress: escrowWalletAddress,
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+          setEscrowNativeBalance(data.result?.displayValue);
+      });
+
+    };
+
+    getEscrowBalance();
+
+    const interval = setInterval(() => {
+      getEscrowBalance();
+    } , 1000);
+
+    return () => clearInterval(interval);
+
+  } , [address, escrowWalletAddress, contract, params.chain]);
+  
+
+
+  console.log("escrowBalance", escrowBalance);
+
+
+
+
+
   return (
 
     <main className="p-4 pb-10 min-h-[100vh] flex items-start justify-center container max-w-screen-lg mx-auto">
@@ -1162,6 +1227,54 @@ export default function SendUsdt({ params }: any) {
 
                 </div>
                 */}
+
+
+
+                  {/* escrow opw balance */}
+                  {escrowWalletAddress && (
+
+                    <div className="flex flex-row items-start gap-3">
+
+                      <div className="flex flex-col gap-2 items-start">
+                        
+
+
+                        <div className="flex flex-row items-end justify-center  gap-2">
+                          <span className="text-4xl font-semibold text-gray-800">
+                            {Number(escrowBalance).toFixed(2)}
+                          </span>
+                          <span className="text-lg">OPW</span>
+                        </div>
+
+
+                      </div>
+
+                      <div className="flex flex-col gap-2 items-center
+                        border border-zinc-400 rounded-md p-2">
+                        {/* excrow wallet address */}
+                        <div className="flex flex-row items-center gap-2">
+                          <button
+                            className="text-sm text-zinc-400 underline"
+                            onClick={() => {
+                              navigator.clipboard.writeText(escrowWalletAddress);
+                              toast.success('Copied escrow wallet address');
+                            } }
+                          >
+                            {escrowWalletAddress.substring(0, 6)}...{escrowWalletAddress.substring(escrowWalletAddress.length - 4)}
+                          </button>
+                        </div>
+
+                      {/*
+                        <div className="flex flex-row items-center gap-2 text-xs ">
+                          {escrowNativeBalance && Number(escrowNativeBalance).toFixed(4)}{' '}POL
+                        </div>
+                        */}
+                        
+                      </div>
+
+                    </div>
+
+                  ) }
 
 
 
