@@ -1062,6 +1062,63 @@ export default function SendUsdt({ params }: any) {
             </button>
         </div>
         */}
+
+          {/* language selection */}
+  
+          <div className=" flex flex-row gap-2 justify-end items-center">
+            <select
+              className="
+                p-2 bg-blue-500 text-white rounded w-40
+                transition duration-300 ease-in-out
+                transform hover:-translate-y-1
+
+              "
+              onChange={(e) => {
+                const lang = e.target.value;
+                router.push(
+                  "/" + lang + "/" + params.chain + "/send-token-old" + "?wallet=" + wallet + "&token=" + token
+                );
+              }}
+            >
+              <option
+                value="en"
+                selected={params.lang === "en"}
+              >
+                English(US)
+              </option>
+              <option
+                value="zh"
+                selected={params.lang === "zh"}
+              >
+                中文(ZH)
+              </option>
+              <option
+                value="ja"
+                selected={params.lang === "ja"}
+              >
+                日本語(JP)
+              </option>
+              <option
+                value="kr"
+                selected={params.lang === "kr"}
+              >
+                한국어(KR)
+              </option>
+              <option
+                value="vi"
+                selected={params.lang === "vi"}
+              >
+                Tiếng Việt(VN)
+              </option>
+              <option
+                value="th"
+                selected={params.lang === "th"}
+              >
+                ไทย(TH)
+              </option>
+            </select>
+
+          </div>
         
 
 
