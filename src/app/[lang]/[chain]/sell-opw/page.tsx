@@ -2820,78 +2820,80 @@ export default function Index({ params }: any) {
                   </div>
 
          
-                  <div className="mt-10 w-full flex flex-row items-center justify-between gap-4">
+                  <div className="mt-10 w-full flex flex-col xl:flex-row items-center justify-between gap-4">
                     
-
-                    {/* checkbox for search my trades */}
-                    <div className="flex flex-row items-center gap-2">
-                      <input
-                        disabled={!address}
-                        type="checkbox"
-                        checked={searchMyOrders}
-                        onChange={(e) => setSearchMyOrders(e.target.checked)}
-                        className="w-5 h-5"
-                      />
-                      <label className="text-sm text-zinc-400">
-                        {Search_my_trades}
-                      </label>
-                    </div>
-
-                    {/* select table view or card view */}
-                    <div className="flex flex-row items-center space-x-4">
-                        <div className="text-sm">{Table_View}</div>
-                        <input
-                          type="checkbox"
-                          checked={tableView}
-                          onChange={(e) => setTableView(e.target.checked)}
-                          className="w-5 h-5 rounded-full"
-                        />
-                    </div>
-
-                    <div className="p-2 flex flex-row items-start justify-between gap-2">
-
-                      {/*
-                      <div className="flex flex-col gap-2 items-center">
-                        <div className="text-sm">{Total}</div>
-                        <div className="text-xl font-semibold text-zinc-800">
-                          {sellOrders.length}
+                      <div className="flex flex-row items-center gap-2">
+                        {/* checkbox for search my trades */}
+                        <div className="flex flex-row items-center gap-2">
+                          <input
+                            disabled={!address}
+                            type="checkbox"
+                            checked={searchMyOrders}
+                            onChange={(e) => setSearchMyOrders(e.target.checked)}
+                            className="w-5 h-5"
+                          />
+                          <label className="text-sm text-zinc-400">
+                            {Search_my_trades}
+                          </label>
                         </div>
-                      </div>
-                      */}
 
-                      <div className="flex flex-col gap-2 items-center">
-                        <div className="text-sm">{Orders}</div>
-                        <div className="text-xl font-semibold text-gray-800">
-                          {sellOrders.filter((item) => item.status === 'ordered').length}
+                        {/* select table view or card view */}
+                        <div className="flex flex-row items-center space-x-4">
+                            <div className="text-sm">{Table_View}</div>
+                            <input
+                              type="checkbox"
+                              checked={tableView}
+                              onChange={(e) => setTableView(e.target.checked)}
+                              className="w-5 h-5 rounded-full"
+                            />
                         </div>
                       </div>
 
-                      {/* completed trades */}
-                      <div className="flex flex-col gap-2 items-center">
-                        <div className="text-sm">{Completed}</div>
-                        <div className="text-xl font-semibold text-gray-800">
-                          {sellOrders.filter((item) => item.status === 'paymentConfirmed').length}
-                        </div>
-                      </div>
+                      
+                      <div className="p-2 flex flex-row items-start justify-between gap-2">
 
-                      {/* cancelled trades */}
-                      <div className="flex flex-col gap-2 items-center">
-                        <div className="text-sm">{Cancelled}</div>
-                        <div className="text-xl font-semibold text-gray-800">
-                          {sellOrders.filter((item) => item.status === 'cancelled').length}
+                        {/*
+                        <div className="flex flex-col gap-2 items-center">
+                          <div className="text-sm">{Total}</div>
+                          <div className="text-xl font-semibold text-zinc-800">
+                            {sellOrders.length}
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex flex-col gap-2 items-center">
-                        <div className="text-sm">{Trades}</div>
-                        <div className="text-4xl font-semibold text-gray-800">
-                          {
-                            //sellOrders.filter((item) => item.status === 'accepted').length
-                            sellOrders.filter((item) => item.status === 'accepted' || item.status === 'paymentRequested').length
-                          }
-                        </div>
-                      </div>
+                        */}
 
-                    </div>
+                        <div className="flex flex-col gap-2 items-center">
+                          <div className="text-sm">{Orders}</div>
+                          <div className="text-xl font-semibold text-gray-800">
+                            {sellOrders.filter((item) => item.status === 'ordered').length}
+                          </div>
+                        </div>
+
+                        {/* completed trades */}
+                        <div className="flex flex-col gap-2 items-center">
+                          <div className="text-sm">{Completed}</div>
+                          <div className="text-xl font-semibold text-gray-800">
+                            {sellOrders.filter((item) => item.status === 'paymentConfirmed').length}
+                          </div>
+                        </div>
+
+                        {/* cancelled trades */}
+                        <div className="flex flex-col gap-2 items-center">
+                          <div className="text-sm">{Cancelled}</div>
+                          <div className="text-xl font-semibold text-gray-800">
+                            {sellOrders.filter((item) => item.status === 'cancelled').length}
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-2 items-center">
+                          <div className="text-sm">{Trades}</div>
+                          <div className="text-4xl font-semibold text-gray-800">
+                            {
+                              //sellOrders.filter((item) => item.status === 'accepted').length
+                              sellOrders.filter((item) => item.status === 'accepted' || item.status === 'paymentRequested').length
+                            }
+                          </div>
+                        </div>
+
+                      </div>
      
                   </div>
 
@@ -3716,6 +3718,7 @@ export default function Index({ params }: any) {
                               
                               
                               <div className="mt-4 flex flex-col gap-2 items-start">
+
                                 <p className="mt-2 text-sm text-zinc-400">
                                   {Payment}:
                                 </p>
@@ -3743,13 +3746,13 @@ export default function Index({ params }: any) {
                                   || item?.payment?.method === 'NaverPay'
                                   || item?.payment?.method === 'KakaoPay' ? (
 
-                                    <div className="flex flex-row items-center gap-2 text-zinc-400">
+                                    <div className="w-full flex flex-row items-center justify-between gap-2 text-zinc-400">
                                       <span>{item?.payment?.method}</span>
                                       <Image
                                         src={item?.payment?.seller?.qrcodeImage ? item?.payment?.seller?.qrcodeImage : '/icon-qrcode.png'}
                                         alt="qrcode"
-                                        width={128}
-                                        height={128}
+                                        width={200}
+                                        height={200}
                                         className="rounded-md"
                                       />
                                     </div>
