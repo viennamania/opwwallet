@@ -971,7 +971,54 @@ export default function SendUsdt({ params }: any) {
   
 
 
-  console.log("escrowBalance", escrowBalance);
+  //console.log("escrowBalance", escrowBalance);
+
+
+  // send opw escrowWalletAddress to my wallet address
+
+  const [isSendingEscrowToMyWallet, setIsSendingEscrowToMyWallet] = useState(false);
+
+  const sendEscrowToMyWallet = async () => {
+
+    setIsSendingEscrowToMyWallet(true);
+
+    try {
+      // Call api to send escrow to my wallet
+      const response = await fetch('/api/transaction/sendEscrowToMyWallet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          lang: params.lang,
+          chain: params.chain,
+          walletAddress: address,
+          amount: escrowBalance,
+        }),
+      });
+
+      if (!response) {
+        toast.error('Failed to send OPW');
+        return;
+      }
+
+      const data = await response.json();
+
+      const { transactionHash } = data;
+
+      if (transactionHash) {
+        toast.success('OPW sent successfully');
+        setEscrowBalance(0);
+      } else {
+        toast.error('Failed to send OPW');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to send OPW');
+    }
+
+    setIsSendingEscrowToMyWallet(false);
+  }
 
 
 
