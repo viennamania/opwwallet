@@ -1206,7 +1206,7 @@ export default function Index({ params }: any) {
 
 
 
-                <div className="w-full flex flex-row items-between justify-start gap-2">
+                <div className="w-full flex flex-col xl:flex-row items-start justify-start gap-5">
 
                   <div className="flex flex-row items-center  gap-2">
 
@@ -1277,7 +1277,21 @@ export default function Index({ params }: any) {
                   </div>
 
 
-                  <div className=" ml-10 flex flex-col items-end gap-2">
+                  <div className="flex flex-row items-center justify-between gap-2">
+
+
+                    {/* select table view or card view */}
+                    <div className="flex flex-row items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={tableView}
+                          onChange={(e) => setTableView(e.target.checked)}
+                          className="w-5 h-5 rounded-full"
+                        />
+                        <div className="text-sm text-zinc-400">{Table_View}</div>
+                    </div>
+
+
                     {/* reload button */}
                     <button
                       className="text-sm bg-zinc-800 px-2 py-1 rounded-md text-white hover:bg-zinc-700"
@@ -1300,16 +1314,6 @@ export default function Index({ params }: any) {
                       {Reload}
                     </button>
 
-                    {/* select table view or card view */}
-                    <div className="flex flex-row items-center space-x-4">
-                        <div className="text-sm">{Table_View}</div>
-                        <input
-                          type="checkbox"
-                          checked={tableView}
-                          onChange={(e) => setTableView(e.target.checked)}
-                          className="w-5 h-5 rounded-full"
-                        />
-                    </div>
 
                   </div>
 
