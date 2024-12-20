@@ -1280,44 +1280,65 @@ export default function SendUsdt({ params }: any) {
                   {/* escrow opw balance */}
                   {escrowWalletAddress && (
 
-                    <div className="flex flex-row items-start gap-3">
+                    <div className='flex flex-col gap-2 items-start justify-center'>
+                      <div className="flex flex-row items-start gap-3">
 
-                      <div className="flex flex-col gap-2 items-start">
-                        
+                        <div className="flex flex-col gap-2 items-start">
+                          
 
 
-                        <div className="flex flex-row items-end justify-center  gap-2">
-                          <span className="text-4xl font-semibold text-gray-800">
-                            {Number(escrowBalance).toFixed(2)}
-                          </span>
-                          <span className="text-lg">OPW</span>
+                          <div className="flex flex-row items-end justify-center  gap-2">
+                            <span className="text-4xl font-semibold text-gray-800">
+                              {Number(escrowBalance).toFixed(2)}
+                            </span>
+                            <span className="text-lg">OPW</span>
+                          </div>
+
+
                         </div>
 
+                        <div className="flex flex-col gap-2 items-center
+                          border border-zinc-400 rounded-md p-2">
+                          {/* excrow wallet address */}
+                          <div className="flex flex-row items-center gap-2">
+                            <button
+                              className="text-sm text-zinc-400 underline"
+                              onClick={() => {
+                                navigator.clipboard.writeText(escrowWalletAddress);
+                                toast.success('Copied escrow wallet address');
+                              } }
+                            >
+                              {escrowWalletAddress.substring(0, 6)}...{escrowWalletAddress.substring(escrowWalletAddress.length - 4)}
+                            </button>
+                          </div>
+
+                        {/*
+                          <div className="flex flex-row items-center gap-2 text-xs ">
+                            {escrowNativeBalance && Number(escrowNativeBalance).toFixed(4)}{' '}POL
+                          </div>
+                          */}
+                          
+                        </div>
 
                       </div>
 
-                      <div className="flex flex-col gap-2 items-center
-                        border border-zinc-400 rounded-md p-2">
-                        {/* excrow wallet address */}
-                        <div className="flex flex-row items-center gap-2">
-                          <button
-                            className="text-sm text-zinc-400 underline"
-                            onClick={() => {
-                              navigator.clipboard.writeText(escrowWalletAddress);
-                              toast.success('Copied escrow wallet address');
-                            } }
-                          >
-                            {escrowWalletAddress.substring(0, 6)}...{escrowWalletAddress.substring(escrowWalletAddress.length - 4)}
-                          </button>
-                        </div>
 
-                      {/*
-                        <div className="flex flex-row items-center gap-2 text-xs ">
-                          {escrowNativeBalance && Number(escrowNativeBalance).toFixed(4)}{' '}POL
-                        </div>
-                        */}
-                        
-                      </div>
+                      {/* sendEscrowToMyWallet button */}
+                      {/* isSendingEscrowToMyWallet */}
+                      <button
+                        disabled={isSendingEscrowToMyWallet}
+                        className={
+                          `
+                            w-full p-2 rounded-md text-white font-semibold
+                            ${isSendingEscrowToMyWallet ? 'bg-gray-500' : 'bg-green-500'}`
+
+                        }
+
+                        onClick={sendEscrowToMyWallet}
+                      >
+                        {isSendingEscrowToMyWallet ? Sending : 'Send OPW to My Wallet'}
+                      </button>
+
 
                     </div>
 

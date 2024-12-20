@@ -83,10 +83,8 @@ export const config = {
 //const chain = polygon;
 
 
-// USDT Token (USDT)
-const tokenContractAddressUSDT = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
-
-const contractAddressArbitrum = "0x2f2a2543B76A4166549F7aab2e75Bef0aefC5B0f"; // USDT on Arbitrum
+// OPW Token (OPW)
+const tokenContractAddressOPW = '0x7f0c8d6f0d8c6f0b7d1f2f1b8f7d1e1f3f0f0f0';
 
 
 
@@ -100,6 +98,9 @@ export async function POST(request: NextRequest) {
   const { lang, chain, walletAddress, amount: escrowAmount } = body;
 
 
+  console.log("chain===>" + chain);
+  console.log("walletAddress===>" + walletAddress);
+  console.log("escrowAmount===>" + escrowAmount);
 
   
   try {
@@ -117,6 +118,7 @@ export async function POST(request: NextRequest) {
 
 
 
+
     const toAddressStore = walletAddress;
 
     // const sendAmountToStore = amount; // This line is no longer needed
@@ -126,6 +128,8 @@ export async function POST(request: NextRequest) {
 
 
       const escrowWalletPrivateKey = user.escrowWalletPrivateKey;
+
+      ///console.log("escrowWalletPrivateKey===>" + escrowWalletPrivateKey);
 
       if (!escrowWalletPrivateKey) {
         return NextResponse.json({
@@ -138,6 +142,7 @@ export async function POST(request: NextRequest) {
       });
 
       if (!client) {
+
         return NextResponse.json({
           result: null,
         });
@@ -148,6 +153,8 @@ export async function POST(request: NextRequest) {
         client,
         privateKey: escrowWalletPrivateKey,
       });
+
+      console.log("personalAccount===>" + personalAccount);
     
       if (!personalAccount) {
         return NextResponse.json({
@@ -161,13 +168,25 @@ export async function POST(request: NextRequest) {
         sponsorGas: true,
       });
 
+      console.log("wallet===>" + wallet);
+
+      if (!wallet) {
+        console.log("wallet is null");
+        return NextResponse.json({
+          result: null,
+        });
+      }
+
       // Connect the smart wallet
       const account = await wallet.connect({
         client: client,
         personalAccount: personalAccount,
       });
 
+      console.log("account===>" + account);
+
       if (!account) {
+        console.log("account is null");
         return NextResponse.json({
           result: null,
         });
@@ -177,7 +196,7 @@ export async function POST(request: NextRequest) {
       const contract = getContract({
         client,
         chain: chain === 'polygon' ? polygon : arbitrum,
-        address: tokenContractAddressUSDT, // erc20 contract from thirdweb.com/explore
+        address: tokenContractAddressOPW, // erc20 contract from thirdweb.com/explore
       });
       
                 
@@ -191,9 +210,12 @@ export async function POST(request: NextRequest) {
         transaction: transactionSendToStore,
         account: account,
       });
+
+      console.log("sendDataStore===>" + JSON.stringify(sendDataStore));
   
       
       if (!sendDataStore) {
+        console.log("sendDataStore is null");
         return NextResponse.json({
           result: null,
         });
@@ -224,7 +246,7 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
       
-    console.log(" error=====>" + error);
+    console.log(" error=====>" + JSON.stringify(error));
 
 
 
