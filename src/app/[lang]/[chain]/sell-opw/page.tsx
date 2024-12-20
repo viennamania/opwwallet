@@ -1825,6 +1825,12 @@ export default function Index({ params }: any) {
                         border border-zinc-400 rounded-md p-2">
                         {/* excrow wallet address */}
                         <div className="flex flex-row items-center gap-2">
+
+                          <div className="text-sm text-zinc-400">
+                            {escrowWalletAddress.substring(0, 6)}...{escrowWalletAddress.substring(escrowWalletAddress.length - 4)}
+                          </div>
+
+                          {/*
                           <button
                             className="text-sm text-zinc-400 underline"
                             onClick={() => {
@@ -1834,7 +1840,11 @@ export default function Index({ params }: any) {
                           >
                             {escrowWalletAddress.substring(0, 6)}...{escrowWalletAddress.substring(escrowWalletAddress.length - 4)}
                           </button>
+                          */}
+
+
                         </div>
+
 
                        {/*
                         <div className="flex flex-row items-center gap-2 text-xs ">
