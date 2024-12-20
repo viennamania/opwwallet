@@ -83,9 +83,9 @@ export const config = {
 //const chain = polygon;
 
 
-// OPW Token (OPW)
-const tokenContractAddressOPW = '0x7f0c8d6f0d8c6f0b7d1f2f1b8f7d1e1f3f0f0f0';
 
+// OPW Token (OPW)
+const tokenContractAddressOPW = "0xcF3Ad9031729B5E131582138edE799F08F52299D"; // OPW on Polygon
 
 
 
