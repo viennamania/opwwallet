@@ -253,5 +253,11 @@
 
     "Pay_for_escrow": "エスクローに支払う",
 
-    "Insufficient_USDT_balance": "USDT 残高不足"
+    "Insufficient_USDT_balance": "USDT 残高不足",
+
+    "Country_Code": "国コード",
+
+    "Mobile_Number": "携帯電話番号",
+
+    "Message": "メッセージ"
 }

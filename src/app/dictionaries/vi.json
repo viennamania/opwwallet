@@ -246,5 +246,8 @@
     "Payment_has_been_rollbacked": "Thanh toán đã được hoàn nguyên",
     "Buy_Order_Fiat": "Đơn Hàng Mua Fiat",
     "Pay_for_escrow": "Thanh Toán Escrow",
-    "Insufficient_USDT_balance": "USDT không đủ"
+    "Insufficient_USDT_balance": "USDT không đủ",
+    "Country_Code": "Mã Quốc Gia",
+    "Mobile_Number": "Số Điện Thoại Di Động",
+    "Message": "Tin Nhắn"
 }

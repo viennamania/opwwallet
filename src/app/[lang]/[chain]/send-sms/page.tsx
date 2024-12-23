@@ -93,10 +93,13 @@ import {
   useSearchParams
 } from "next//navigation";
 
-import { Select } from '@mui/material';
+///import { Select } from '@mui/material';
+
+
 import { Sen } from 'next/font/google';
 import { Router } from 'next/router';
 import path from 'path';
+import { Message } from 'twilio/lib/twiml/MessagingResponse';
 
 
 
@@ -216,6 +219,10 @@ export default function SendSms({ params }: any) {
 
     Sign_in_with_Wallet: "",
 
+    Country_Code: "",
+    Mobile_Number: "",
+    Message: "",
+
   } );
 
   useEffect(() => {
@@ -271,6 +278,10 @@ export default function SendSms({ params }: any) {
     Send,
 
     Sign_in_with_Wallet,
+
+    Country_Code,
+    Mobile_Number,
+    Message,
     
   } = data;
 
@@ -555,357 +566,10 @@ export default function SendSms({ params }: any) {
 
 
 
-  ///console.log("recipient", recipient);
-
-  //console.log("recipient.walletAddress", recipient.walletAddress);
-  //console.log("amount", amount);
-
-
-
-  const [otp, setOtp] = useState('');
-
-  
-  
-  /////const [verifiedOtp, setVerifiedOtp] = useState(false);
-  const [verifiedOtp, setVerifiedOtp] = useState(true); // for testing
-
-
-  const [isSendedOtp, setIsSendedOtp] = useState(false);
-
-
-
-  const [isSendingOtp, setIsSendingOtp] = useState(false);
-
-  const [isVerifingOtp, setIsVerifingOtp] = useState(false);
-
-  
-
-  const sendOtp = async () => {
-
-    setIsSendingOtp(true);
-      
-    const response = await fetch('/api/transaction/setOtp', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        lang: params.lang,
-        chain: params.chain,
-        walletAddress: address,
-        mobile: user.mobile,
-      }),
-    });
-
-    const data = await response.json();
-
-    //console.log("data", data);
-
-    if (data.result) {
-      setIsSendedOtp(true);
-      toast.success('OTP sent successfully');
-    } else {
-      toast.error('Failed to send OTP');
-    }
-
-    setIsSendingOtp(false);
-
-  };
-
-  const verifyOtp = async () => {
-
-    setIsVerifingOtp(true);
-      
-    const response = await fetch('/api/transaction/verifyOtp', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        lang: params.lang,
-        chain: params.chain,
-        walletAddress: address,
-        otp: otp,
-      }),
-    });
-
-    const data = await response.json();
-
-    //console.log("data", data);
-
-    if (data.status === 'success') {
-      setVerifiedOtp(true);
-      toast.success('OTP verified successfully');
-    } else {
-      toast.error('Failed to verify OTP');
-    }
-
-    setIsVerifingOtp(false);
-  
-  }
-
-
-
-
-  const [sending, setSending] = useState(false);
-
-
-  
-  const sendUsdt = async () => {
-    if (sending) {
-      return;
-    }
-
-   
-    if (!amount) {
-      toast.error('Please enter a valid amount');
-      return;
-    }
-
-    //console.log('amount', amount, "balance", balance);
-
- 
-    if (Number(amount) > balance) {
-      toast.error('Insufficient balance');
-      return;
-    }
-
-    setSending(true);
-
-
-
-    try {
-
-
-
-
-        // send USDT
-        // Call the extension function to prepare the transaction
-        const transaction = transfer({
-            //contract,
-
-            contract: contract,
-
-            to: recipient.walletAddress,
-            amount: amount,
-        });
-        
-
-        const { transactionHash } = await sendTransaction({
-          
-          account: activeAccount as any,
-
-          transaction,
-        });
-
-        
-        if (transactionHash) {
-
-
-          await fetch('/api/transaction/setTransfer', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              lang: params.lang,
-              chain: params.chain,
-              walletAddress: address,
-              amount: amount,
-              toWalletAddress: recipient.walletAddress,
-            }),
-          });
-
-
-
-          toast.success(USDT_sent_successfully);
-
-          setAmount(0); // reset amount
-
-          // refresh balance
-
-          // get the balance
-
-          const result = await balanceOf({
-            contract,
-            address: address || "",
-          });
-
-          //console.log(result);
-          if (token === "USDT") {
-            setBalance( Number(result) / 10 ** 6 );
-          } else if (token === "OPW") {
-            setBalance( Number(result) / 10 ** 18 );
-          }
-
-
-        } else {
-
-          toast.error(Failed_to_send_USDT);
-
-        }
-
-      
-
-      
-
-
-    } catch (error) {
-      
-      console.error("error", error);
-
-      toast.error(Failed_to_send_USDT);
-    }
-
-    setSending(false);
-  };
-
-
-
-  const sendToken = async () => {
-    if (sending) {
-      return;
-    }
-
-    if (!recipient.walletAddress) {
-      toast.error('Please enter a valid address');
-      return;
-    }
-
-    if (!amount) {
-      toast.error('Please enter a valid amount');
-      return;
-    }
-
-    if (Number(amount) > balance) {
-      toast.error('Insufficient balance');
-      return;
-    }
-
-    setSending(true);
-
-    try {
-      // Call the extension function to prepare the transaction
-      const transaction = transfer({
-        contract,
-        to: recipient.walletAddress,
-        amount: amount,
-      });
-
-      const { transactionHash } = await sendTransaction({
-        account: activeAccount as any,
-        transaction,
-      });
-
-      if (transactionHash) {
-        toast.success(Token_sent_successfully);
-        setAmount(0); // reset amount
-
-      } else {
-        toast.error(Failed_to_send_token);
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error(Failed_to_send_token);
-    }
-
-    setSending(false);
-  };
-
-
-
-
-
-
-  // get user by wallet address
-  const getUserByWalletAddress = async (walletAddress: string) => {
-
-    const response = await fetch('/api/user/getUserByWalletAddress', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        walletAddress: walletAddress,
-      }),
-    });
-
-    const data = await response.json();
-
-    //console.log("getUserByWalletAddress", data);
-
-    return data.result;
-
-  };
-  
-  const [wantToReceiveWalletAddress, setWantToReceiveWalletAddress] = useState(true);
-
-
-  const [isWhateListedUser, setIsWhateListedUser] = useState(false);
-
-  
-  /*
-  useEffect(() => {
-
-    if (!recipient?.walletAddress) {
-      return;
-    }
-
-    // check recipient.walletAddress is in the user list
-    getUserByWalletAddress(recipient?.walletAddress)
-    .then((data) => {
-        
-        //console.log("data============", data);
-  
-        const checkUser = data
-
-        if (checkUser) {
-          setIsWhateListedUser(true);
-
-          setRecipient(checkUser as any);
-
-        } else {
-          setIsWhateListedUser(false);
-
-          setRecipient({
-
-
-            _id: '',
-            id: 0,
-            email: '',
-            nickname: '',
-            avatar: '',
-            mobile: '',
-            walletAddress: recipient?.walletAddress,
-            createdAt: '',
-            settlementAmountOfFee: '',
-
-          });
-
-
-        }
-
-    });
-
-  } , [recipient?.walletAddress]);
-  */
-
-  
-
-
-  
-
-
-
-
-
-  // usdt balance
-  const [usdtBalance, setUsdtBalance] = useState(0);
-
-
 
   // send sms
-  const [mobile, setMobile] = useState('');
+  const [countryCode, setCountryCode] = useState('+86');
+  const [mobileNumber, setMobileNumber] = useState('');
   const [message, setMessage] = useState('');
   const [isSendingSms, setIsSendingSms] = useState(false);
   const sendSms = async () => {
@@ -914,7 +578,12 @@ export default function SendSms({ params }: any) {
       return;
     }
 
-    if (!mobile) {
+    if (!countryCode) {
+      toast.error('Please enter a valid country code');
+      return;
+    }
+
+    if (!mobileNumber) {
       toast.error('Please enter a valid mobile number');
       return;
     }
@@ -934,7 +603,7 @@ export default function SendSms({ params }: any) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          mobile: mobile,
+          mobile: countryCode + mobileNumber,
           message: message,
         }),
       });
@@ -943,6 +612,9 @@ export default function SendSms({ params }: any) {
 
       if (data.result) {
         toast.success('SMS sent successfully');
+
+        setMessage('');
+
       } else {
         toast.error('Failed to send SMS');
       }
@@ -1032,6 +704,60 @@ export default function SendSms({ params }: any) {
             */}
 
 
+            <div className="w-full flex flex-row gap-2 justify-end items-center">
+              <select
+                className="
+                  p-2 bg-blue-500 text-white rounded w-40
+                  transition duration-300 ease-in-out
+                  transform hover:-translate-y-1
+
+                "
+                onChange={(e) => {
+                  const lang = e.target.value;
+                  router.push(
+                    "/" + lang + "/" + params.chain + "/send-sms"
+                  );
+                }}
+              >
+                <option
+                  value="en"
+                  selected={params.lang === "en"}
+                >
+                  English(US)
+                </option>
+                <option
+                  value="zh"
+                  selected={params.lang === "zh"}
+                >
+                  中文(ZH)
+                </option>
+                <option
+                  value="ja"
+                  selected={params.lang === "ja"}
+                >
+                  日本語(JP)
+                </option>
+                <option
+                  value="kr"
+                  selected={params.lang === "kr"}
+                >
+                  한국어(KR)
+                </option>
+                <option
+                  value="vi"
+                  selected={params.lang === "vi"}
+                >
+                  Tiếng Việt(VN)
+                </option>
+                <option
+                  value="th"
+                  selected={params.lang === "th"}
+                >
+                  ไทย(TH)
+                </option>
+              </select>
+
+            </div>
           
 
 
@@ -1044,43 +770,90 @@ export default function SendSms({ params }: any) {
 
                 {/* send sms */}
                 {/* input mobile phome number and input message */}
-                <div className='flex flex-col gap-4'>
-                  <div className='flex flex-row items-center gap-4'>
+                <div className='w-full flex flex-col gap-4'>
+
+                  
+                  
+                  <div className='w-full flex flex-col items-start gap-4'>
                     <div className='text-lg font-semibold'>
-                      Mobile
+                      {Mobile_Number}
                     </div>
-                    <input
-                      type='text'
-                      className='w-full p-2 rounded-lg border border-white'
-                      placeholder='+8210123456789'
-                      onChange={(e) => setMobile(e.target.value)}
-                    />
+
+
+                    <div className='flex flex-row items-center gap-4'>
+                      {/* country code */}
+                      {/* select country code */}
+                      <select
+                        className='w-24 p-2 rounded-lg border border-white text-black'
+                        onChange={(e) => setCountryCode(e.target.value)}
+                      >
+                        <option
+                          value='+86'
+                          //selected={countryCode === '+86'}
+                        >+86</option>
+                        <option
+                          value='+82'
+                          //selected={countryCode === '+82'}
+                        >+82</option>
+                        <option
+                          value='+81'
+                          selected={countryCode === '+81'}
+                        >+81</option>
+                        <option
+                          value='+84'
+                          selected={countryCode === '+84'}
+                        >+84</option>
+                        <option
+                          value='+66'
+                          selected={countryCode === '+66'}
+                        >+66</option>
+
+                      </select>
+
+
+
+                      <div className='text-lg font-semibold'>
+                        -
+                      </div>
+                      <input
+                        type='text'
+                        className='w-full p-2 rounded-lg border border-white text-black'
+                        placeholder='1012345678'
+                        value={mobileNumber}
+                        onChange={(e) => setMobileNumber(e.target.value)}
+                      />
+                    </div>
+
                   </div>
-                  <div className='flex flex-row items-center gap-4'>
-                    <div className='text-lg font-semibold'>
-                      Message
+
+
+                  <div className='w-full flex flex-row items-between gap-4'>
+                    <div className='w-20  text-lg font-semibold'>
+                      {Message}
                     </div>
                     <textarea
-                      className='w-full p-2 rounded-lg border border-white'
+                      className='w-full p-2 rounded-lg border border-white text-black'
                       placeholder='Hello, World!'
+                      value={message}
                       onChange={(e) => setMessage(e.target.value)}
                     />
                   </div>
                 </div>
 
                 {/* send button */}
-                <div className='flex justify-center'>
+                <div className='w-full flex justify-center'>
                   <button
-                    disabled={isSendingSms}
+                    disabled={isSendingSms || !countryCode || !mobileNumber || !message}
                     className={`
-                      ${isSendingSms ? 'bg-gray-500' : 'bg-yellow-500'}
+                      ${isSendingSms ? 'bg-gray-500' : 'bg-blue-500'}
+                      w-40
                       text-white p-2 rounded-lg
                       transition duration-300 ease-in-out
                       transform hover:-translate-y-1
                     `}
                     onClick={sendSms}
                   >
-                    {Send}
+                    {isSendingSms ? 'Sending...' : 'Send'}
                   </button>
                 </div>
 

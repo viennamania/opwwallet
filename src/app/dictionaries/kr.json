@@ -399,6 +399,12 @@
 
     "Pay_for_escrow": "결제하기",
 
-    "Insufficient_USDT_balance": "USDT 잔액이 부족합니다."
+    "Insufficient_USDT_balance": "USDT 잔액이 부족합니다.",
+
+    "Country_Code": "국가번호",
+
+    "Mobile_Number": "휴대폰 번호",
+
+    "Message": "메시지"
 
 }

@@ -279,6 +279,12 @@
 
     "Pay_for_escrow": "支付托管",
 
-    "Insufficient_USDT_balance": "USDT 余额不足"
+    "Insufficient_USDT_balance": "USDT 余额不足",
+
+    "Country_Code": "国家代码",
+
+    "Mobile_Number": "手机号码",
+
+    "Message": "消息"
    
 }

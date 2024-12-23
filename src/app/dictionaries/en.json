@@ -454,7 +454,13 @@
 
     "Pay_for_escrow": "Pay for escrow",
 
-    "Insufficient_USDT_balance": "USDT balance is insufficient"
+    "Insufficient_USDT_balance": "USDT balance is insufficient",
+
+    "Country_Code": "Country Code",
+
+    "Mobile_Number": "Mobile Number",
+
+    "Message": "Message"
 
 
 

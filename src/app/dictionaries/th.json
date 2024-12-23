@@ -246,5 +246,8 @@
     "Payment_has_been_rollbacked": "การชำระเงินถูกยกเลิกแล้ว",
     "Buy_Order_Fiat": "คำสั่งซื้อ Fiat",
     "Pay_for_escrow": "ชำระเงินสำหรับเอสโครว์",
-    "Insufficient_USDT_balance": "USDT ไม่เพียงพอ"
+    "Insufficient_USDT_balance": "USDT ไม่เพียงพอ",
+    "Country_Code": "รหัสประเทศ",
+    "Mobile_Number": "หมายเลขโทรศัพท์มือถือ",
+    "Message": "ข้อความ"
 }
