@@ -485,11 +485,13 @@ export default function Index({ params }: any) {
       };
   
       
-      getPolBalance();
+      address && getPolBalance();
+
+      !address && setPolBalance(0);
   
       // get the balance in the interval
       const interval = setInterval(() => {
-        getPolBalance();
+        address && getPolBalance();
       }, 1000);
   
   
@@ -543,11 +545,12 @@ export default function Index({ params }: any) {
     };
 
     
-    getUsdtBalance();
+    address && getUsdtBalance();
+    !address && setUsdtBalance(0);
 
     // get the balance in the interval
     const interval = setInterval(() => {
-      getUsdtBalance();
+      address && getUsdtBalance();
     }, 1000);
 
 
@@ -601,11 +604,12 @@ export default function Index({ params }: any) {
 
       };
 
-      getOpwBalance();
+      address && getOpwBalance();
+      !address && setOpwBalance(0);
 
       // get the balance in the interval
       const interval = setInterval(() => {
-        getOpwBalance();
+        address && getOpwBalance();
       }, 1000);
 
 
@@ -686,8 +690,8 @@ export default function Index({ params }: any) {
         setPhoneNumber(phoneNumber || "");
       });
 
-
-
+    } else {
+      setPhoneNumber("");
     }
 
   } , [address]);
@@ -713,11 +717,7 @@ export default function Index({ params }: any) {
 
   useEffect(() => {
 
-      if (!address) {
-          return;
-      }
 
-      
       const fetchData = async () => {
 
           const response = await fetch("/api/user/getUser", {
@@ -753,7 +753,15 @@ export default function Index({ params }: any) {
           setLoadingUser(false);
       };
 
-      fetchData();
+      address && fetchData();
+
+      !address && setLoadingUser(false);
+      !address && setNickname("");
+      !address && setAvatar("/profile-default.png");
+      !address && setUserCode("");
+      !address && setSeller(null);
+
+
 
   }, [address]);
 
