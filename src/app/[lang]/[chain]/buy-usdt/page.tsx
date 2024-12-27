@@ -1518,7 +1518,7 @@ export default function Index({ params }: any) {
 
                           <article
                               //key={index}
-                              className={` w-96 xl:w-full h-full relative
+                              className={` w-full h-full relative
                                 ${item.walletAddress === address ? 'border-green-500' : 'border-red-600'}
 
                                 ${item.status === 'accepted' || item.status === 'paymentRequested' ? 'border-red-600' : 'border-gray-200'}

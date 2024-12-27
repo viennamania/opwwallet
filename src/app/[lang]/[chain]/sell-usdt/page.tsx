@@ -2929,11 +2929,15 @@ export default function Index({ params }: any) {
                 */}
 
 
+                {/* table view is horizontal scroll */}
+
                 {tableView ? (
 
 
-           
-                <table className=" w-full table-auto border-collapse border border-zinc-800 rounded-md">
+                <table
+                  className=" w-full table-auto border-collapse border border-zinc-800 rounded-md
+                  overflow-x-scroll"
+                >
 
                   <thead>
                       <tr
@@ -3436,7 +3440,7 @@ export default function Index({ params }: any) {
                             key={index}
                             className={`
 
-                              w-96 xl:w-full h-full
+                              w-full h-full
 
                               bg-black p-4 rounded-md border
                               

@@ -1582,7 +1582,7 @@ export default function Index({ params }: any) {
                             key={index}
                             className={`
 
-                              w-96 xl:w-full h-full
+                              w-full h-full
 
                               bg-black p-4 rounded-md border
                               
