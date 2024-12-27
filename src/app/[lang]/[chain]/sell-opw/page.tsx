@@ -4111,7 +4111,15 @@ export default function Index({ params }: any) {
                                 )}
 
 
-                                {item.walletAddress === address && item.status === 'paymentRequested' && (
+
+
+                                {/* item?.payment?.method === 'Wallet'
+
+                                페이먼트 컨펌은 필요없다.
+                                */}
+
+                                {item?.payment?.method !== 'Wallet' &&
+                                item.walletAddress === address && item.status === 'paymentRequested' && (
                       
 
                                 <div className="mt-5 flex flex-col gap-1 mb-1">

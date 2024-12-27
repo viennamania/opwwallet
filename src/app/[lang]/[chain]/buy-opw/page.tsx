@@ -928,6 +928,8 @@ export default function Index({ params }: any) {
 
     const payForEscrow = async (orderId: string, index: number) => {
 
+      console.log('payForEscrow', orderId, index);
+
       if (payingForEscrow[index]) {
         return;
       }
@@ -974,6 +976,8 @@ export default function Index({ params }: any) {
         account: activeAccount as any,
       });
 
+      console.log('transactionResult', transactionResult);
+
       if (!transactionResult) {
         toast.error('Failed to send USDT to seller wallet address');
         setPayingForEscrow(payingForEscrow.map((item, i) => i === index ? false : item));
@@ -988,7 +992,10 @@ export default function Index({ params }: any) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          lang: params.lang,
+          chain: params.chain,
           orderId: orderId,
+          paymentAmount: fietAmount,
         })
       });
 
@@ -2482,10 +2489,15 @@ export default function Index({ params }: any) {
 
                                     </div>
 
-                                    {/* pay for escrow */}
-                                    {address && item?.buyer?.walletAddress === address && (
+                                    {/* pay for escrow when payment is wallet */}
+                                    {address && item?.buyer?.walletAddress === address &&
+                                    item?.payment?.method === 'Wallet' &&
+                                    (
                                       <button
-                                        className="mt-4 text-lg text-white bg-green-500 px-4 py-2 rounded-md"
+                                        disabled={payingForEscrow[index]}
+                                        className={`mt-4 text-lg text-white px-4 py-2 rounded-md
+                                          ${payingForEscrow[index] ? 'bg-zinc-800 cursor-not-allowed' : 'bg-green-500 hover:bg-green-600'}
+                                        `}
                                         onClick={() => {
                                           // api call
                                           // payForEscrow
