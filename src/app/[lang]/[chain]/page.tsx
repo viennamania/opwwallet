@@ -260,6 +260,8 @@ export default function Index({ params }: any) {
 
     Copied_Wallet_Address: "",
 
+    Price: "",
+
   } );
 
   useEffect(() => {
@@ -312,6 +314,8 @@ export default function Index({ params }: any) {
     Copy_Wallet_Address,
 
     Copied_Wallet_Address,
+
+    Price,
 
   } = data;
 
@@ -1223,7 +1227,23 @@ export default function Index({ params }: any) {
 
           </div>
         )*/}
+
+        {/*
+        OPW Price : 1 OPW = $1.2
+        */}
             
+        <div className="
+          mt-5
+          w-full flex flex-col gap-2 justify-start items-start
+          bg-zinc-800 p-5 rounded-lg
+          hover:shadow-lg
+          transition duration-300 ease-in-out
+          transform hover:-translate-y-1
+        ">
+          <h2 className="text-2xl md:text-3xl font-semibold text-zinc-100">
+            OPW {Price} : 1 OPW = $1.2
+          </h2>
+        </div>
 
 
         <div className="mt-2 w-full flex flex-col xl:flex-row items-center xl:items-stretch justify-center gap-5 mb-10">
